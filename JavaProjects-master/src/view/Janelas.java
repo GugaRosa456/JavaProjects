@@ -17,12 +17,18 @@ public class Janelas extends JFrame {
 	private CardLayout cardLayout;
 	
 	private Login  login;
+	private ListarProdutos listarProdutos;
+	private ComprarProdutos comprarProdutos;
 	private CadastroProdutos cadastroProdutos;
-	private ComprarProdutos  comprarProdutos;
+	protected CadastroUsuarios cadastroUsuarios;
+	
 	
 	public static final String LOGIN_PANEL = "telaLogin";
 	public static final String CADASTROPRODUTOS_PANEL = "telaCadastroProdutos";
-	public static final String COMPRAR_PANEL = "telaCompra";
+	public static final String COMPRAR_PANEL = "telaComprar";
+	public static final String LISTAR_PANEL = "telalistar";
+	public static final String USUARIOS_PANEL = "telausuarios";
+	
 	
     private String currentUser;
 	
@@ -39,13 +45,17 @@ public class Janelas extends JFrame {
 	    contentPane.setPreferredSize(new Dimension(500, 200));
 	    
 	   login = new Login(this);
-	   cadastroProdutos = new CadastroProdutos(this);
+	 listarProdutos = new ListarProdutos(this);
 	   comprarProdutos = new ComprarProdutos(this);
+	   cadastroProdutos = new CadastroProdutos(this);
+	   cadastroUsuarios = new CadastroUsuarios(this);
+	   
 	   
 	   contentPane.add(login, LOGIN_PANEL);
-	   contentPane.add(cadastroProdutos, CADASTROPRODUTOS_PANEL);
+	   contentPane.add(listarProdutos, CADASTROPRODUTOS_PANEL);
 	   contentPane.add(comprarProdutos, COMPRAR_PANEL);
-	   
+	   contentPane.add(cadastroProdutos, CADASTROPRODUTOS_PANEL);
+	   contentPane.add(cadastroUsuarios, USUARIOS_PANEL);
 		setContentPane(contentPane);
 	   
 		mostrarTela(LOGIN_PANEL);
@@ -54,5 +64,7 @@ public class Janelas extends JFrame {
     public void mostrarTela(String panelName) {
         cardLayout.show(contentPane, panelName);
     }
-
+    public void adicionarTela(String nome, JPanel tela) {
+		this.contentPane.add(tela, nome);
+	}
 }

@@ -26,8 +26,9 @@ public class CadastroUsuarios extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param janelas 
 	 */
-	public CadastroUsuarios() {
+	public CadastroUsuarios(Janelas janelas) {
 		setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();

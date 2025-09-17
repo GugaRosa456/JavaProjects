@@ -76,6 +76,14 @@ public class Login extends JPanel {
 		JButton btnCadastro = new JButton("Cadastro");
 		btnCadastro.setBounds(234, 213, 89, 23);
 		add(btnCadastro);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Janelas frame = new Janelas();
+				frame.setVisible(true);
+				
+				
+			}
+		});
 
 	}
 }
