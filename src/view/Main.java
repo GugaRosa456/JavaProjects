@@ -18,7 +18,7 @@ public class Main {
 	        UsuarioDAO usuarioDAO = new UsuarioDAO();
 	        ProdutosDAO produtosDAO = new ProdutosDAO();
          
-            //CadastroController cadastroController = new C
+            CadastroProdutosController cadastroController = new CadastroProdutosController(janela.getCadastroProdutos(), produtosDAO, janela.getMostrarProdutos(),navegador);
             
 	        LoginController loginController = new LoginController(janela.login, usuarioDAO, navegador, janela.getCadastroUsuarios(), janela.getListarProdutos(), janela.getMostrarProdutos());
 

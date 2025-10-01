@@ -28,7 +28,7 @@ public class ListarProdutosController {
  			this.navegador.navegarPara(Janelas.COMPRAR_PANEL);
  		});
     	this.view.pagar(e -> {
- 			this.navegador.navegarPara(Janelas.COMPRAR_PANEL);
+ 			this.navegador.navegarPara(Janelas.PAGAMENTO_PANEL);
  		});
     }
 }
