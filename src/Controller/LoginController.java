@@ -47,7 +47,7 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 			            JOptionPane.showMessageDialog(view, "Nome ou senha incorretos!", "Erro de login", JOptionPane.ERROR_MESSAGE);
 			        }
 			    } catch (NumberFormatException ex) {
-			        JOptionPane.showMessageDialog(view, " e senha devem ser numéricos.", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
+			        JOptionPane.showMessageDialog(view, " a senha teve conter caracteres númericos", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
 			    } catch (Exception ex) {
 			        JOptionPane.showMessageDialog(view, "Erro ao fazer login: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 			    }
