@@ -2,7 +2,10 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutosDAO {
 	public void adicionarProduto(Produtos produto) {
@@ -35,4 +38,33 @@ public class ProdutosDAO {
             }
         }
     }
+	
+	
+	public List<Produtos> listarProdutos() {
+	    List<Produtos> produtos = new ArrayList<>();
+	    String sql = "SELECT * FROM produtos";
+	    
+	    try (Connection conexao = BancoDeDados.conectar();
+	         PreparedStatement stmt = conexao.prepareStatement(sql);
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            Produtos p = new Produtos(
+	                rs.getInt("dataFabricacao"),
+	                rs.getInt("dataVencimento"),
+	                rs.getString("nomeProduto"),
+	                rs.getInt("valor"),
+	                rs.getInt("quantidade"),
+	                rs.getString("marca"),
+	                rs.getString("estado")
+	            );
+	            produtos.add(p);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return produtos;
+	}
+
 }

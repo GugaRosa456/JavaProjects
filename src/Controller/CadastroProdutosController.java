@@ -1,5 +1,7 @@
 package Controller;
 
+import javax.swing.JOptionPane;
+
 import model.Produtos;
 import model.ProdutosDAO;
 import view.CadastroProdutos;
@@ -20,7 +22,27 @@ public class CadastroProdutosController{
     this.navegador = navegador;
 	
     this.view2.cadastrar1(e -> {
-			this.navegador.navegarPara(Janelas.MOSTRAR_PANEL);
+			try {
+			String nome = view2.getNomeProduto();
+		    String marca = view2.getMarca();
+		    String estado = view2.getEstado();
+		    int dataFabricacao = view2.getDataFabricação();
+		    int dataVencimento = view2.getDataVencimento();
+		    int quantidade = view2.getQuantidade();
+		    int valor = view2.getValor();
+		    Produtos produto = new Produtos(dataFabricacao, dataVencimento, nome, valor, quantidade, marca, estado);
+		    
+		    model.adicionarProduto(produto);
+		    
+		    view.carregarProdutos(model.listarProdutos()); 
+		    
+            JOptionPane.showMessageDialog(view, "Produto cadastrado com sucesso!");
+            navegador.navegarPara(Janelas.MOSTRAR_PANEL); 
+			} catch (NumberFormatException ex) {
+			  System.out.println("Erro: Data de fabricação, data de vencimento, valor e quantidade devem ser números.");
+			} catch (Exception ex) {
+				System.out.println("Erro ao cadastrar produto:" + ex.getMessage());
+			}
 		});
 	
 	

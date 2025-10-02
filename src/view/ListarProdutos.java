@@ -4,11 +4,15 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import model.Produtos;
+
 import javax.swing.JComboBox;
 
 public class ListarProdutos extends JPanel {
@@ -72,5 +76,28 @@ public class ListarProdutos extends JPanel {
 	public void pagar(ActionListener actionListener) {
 		this.Pagar.addActionListener(actionListener);
 	}
+	
+	public void carregarProdutos(List<Produtos> lista) {
+	    DefaultTableModel model = new DefaultTableModel(
+	        new Object[][] {},
+	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
+	    );
+
+	    for (Produtos p : lista) {
+	        model.addRow(new Object[] {
+	            p.getNomeProduto(),
+	            p.getMarca(),
+	            p.getEstado(),
+	            p.getDataFabricacao(),
+	            p.getDataVencimento(),
+	            p.getQuantidade(),
+	            p.getValor()
+	        });
+	    }
+
+	    table.setModel(model);
+	}
+
+	
 	
 }

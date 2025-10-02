@@ -6,10 +6,14 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import model.Produtos;
+
 import javax.swing.JButton;
 
 public class MostrarProdutos extends JPanel {
@@ -56,6 +60,8 @@ public class MostrarProdutos extends JPanel {
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
+			
+			
 		));
 		table.setBounds(0, 33, 450, 224);
 		add(table);
@@ -68,4 +74,29 @@ public class MostrarProdutos extends JPanel {
    public void alterar(ActionListener actionListener) {
 		this.alterar.addActionListener(actionListener);
 	}
+   
+  
+   public void carregarProdutos(List<Produtos> lista) {
+	    DefaultTableModel model = new DefaultTableModel(
+	        new Object[][] {},
+	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
+	    );
+
+	    for (Produtos p : lista) {
+	        model.addRow(new Object[] {
+	            p.getNomeProduto(),
+	            p.getMarca(),
+	            p.getEstado(),
+	            p.getDataFabricacao(),
+	            p.getDataVencimento(),
+	            p.getQuantidade(),
+	            p.getValor()
+	        });
+	    }
+
+	    table.setModel(model);
+	}
+
+	   
+   
 }
