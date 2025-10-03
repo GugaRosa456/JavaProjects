@@ -19,10 +19,11 @@ public class Main {
 	        UsuarioDAO usuarioDAO = new UsuarioDAO();
 	        ProdutosDAO produtosDAO = new ProdutosDAO();
 	        Supermercado supermercado = new Supermercado();
-         
-      
             
-	        LoginController loginController = new LoginController(janela.login, usuarioDAO, navegador, janela.getCadastroUsuarios(), janela.getListarProdutos(), janela.getMostrarProdutos());
+           
+            
+	        LoginController loginController = new LoginController(janela.login, usuarioDAO, navegador, janela.getCadastroUsuarios(), janela.getListarProdutos(), janela.getMostrarProdutos(),supermercado, produtosDAO,
+	        		janela.getCadastroProdutos(), janela.getComprarProdutos(), janela.getPagamento());
 
 	        MostrarProdutosController mostrarprodutos = new MostrarProdutosController(janela.getMostrarProdutos(), produtosDAO, navegador,janela.getCadastroProdutos());
 

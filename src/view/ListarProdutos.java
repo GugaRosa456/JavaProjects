@@ -12,7 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Controller.Navegador;
 import model.Produtos;
+import model.UsuarioDAO;
 
 import javax.swing.JComboBox;
 
@@ -84,26 +86,28 @@ public class ListarProdutos extends JPanel {
 		this.Pagar.addActionListener(actionListener);
 	}
 	
-	public void carregarProdutos(List<Produtos> lista) {
-	    DefaultTableModel model = new DefaultTableModel(
-	        new Object[][] {},
-	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
-	    );
 
-	    for (Produtos p : lista) {
-	        model.addRow(new Object[] {
-	            p.getNomeProduto(),
-	            p.getMarca(),
-	            p.getEstado(),
-	            p.getDataFabricacao(),
-	            p.getDataVencimento(),
-	            p.getQuantidade(),
-	            p.getValor()
-	        });
-	    }
+    public void carregarProdutos(List<Produtos> lista) {
+ 	    DefaultTableModel model = new DefaultTableModel(
+ 	        new Object[][] {},
+ 	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
+ 	    );
 
-	    table.setModel(model);
-	}
+ 	    for (Produtos p : lista) {
+ 	        model.addRow(new Object[] {
+ 	            p.getNomeProduto(),
+ 	            p.getMarca(),
+ 	            p.getEstado(),
+ 	            p.getDataFabricacao(),
+ 	            p.getDataVencimento(),
+ 	            p.getQuantidade(),
+ 	            p.getValor()
+ 	        });
+ 	    }
+
+ 	 table.setModel(model);
+ 	}
+
 
 	
 	

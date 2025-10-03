@@ -67,4 +67,31 @@ public class ProdutosDAO {
 	    return produtos;
 	}
 
+	
+	public Produtos buscarPorNome(String nome) {
+	    for (Produtos p : listarProdutos()) {
+	        if (p.getNomeProduto().equalsIgnoreCase(nome)) {
+	            return p;
+	        }
+	    }
+	    return null;
+	}
+
+	public void atualizarProduto(Produtos produto) {
+	    try (Connection conexao = BancoDeDados.conectar()) {
+	        String sql = "UPDATE produtos SET quantidade=? WHERE id=?";
+	        PreparedStatement stmt = conexao.prepareStatement(sql);
+	        stmt.setInt(1, produto.getQuantidade());
+	        stmt.setString(2, produto.getNomeProduto());
+	        stmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	
+	
+	
+	
+	
 }

@@ -13,7 +13,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Controller.Navegador;
 import model.Produtos;
+import model.UsuarioDAO;
 
 import javax.swing.JButton;
 
@@ -77,9 +79,10 @@ public class MostrarProdutos extends JPanel {
 	}
  public void alterar(ActionListener action) {
 	 alterar.addActionListener(action);
- }
-  
-   public void carregarProdutos(List<Produtos> lista) {
+ } 
+
+ public void carregarProdutos(List<Produtos> lista, ListarProdutos view2, MostrarProdutos view3, UsuarioDAO model2, Login view4,
+			Navegador navegador) {
 	    DefaultTableModel model = new DefaultTableModel(
 	        new Object[][] {},
 	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
@@ -97,9 +100,17 @@ public class MostrarProdutos extends JPanel {
 	        });
 	    }
 
-	    table.setModel(model);
+	  table.setModel(model);
 	}
 
-	   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
    
 }

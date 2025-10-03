@@ -26,6 +26,9 @@ public class ComprarProdutos extends JPanel {
 	private JTable table;
 	private JTable table_1;
 	private JTextField textField;
+	private JButton Comprar;
+	private JButton Sair;
+	private JButton Remover;
 
 	/**
 	 * Create the panel.
@@ -41,21 +44,21 @@ public class ComprarProdutos extends JPanel {
 		comboBox.setBounds(0, 2, 110, 20);
 		add(comboBox);
 		
-		JButton Comprar = new JButton("Comprar");
+		 Comprar = new JButton("Comprar");
 		Comprar.setFocusTraversalPolicyProvider(true);
 		Comprar.setForeground(Color.WHITE);
 		Comprar.setBackground(new Color(0, 102, 204));
 		Comprar.setBounds(23, 266, 89, 23);
 		add(Comprar);
 		
-		JButton Sair = new JButton("sair");
+		 Sair = new JButton("sair");
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
 		Sair.setBounds(351, 266, 89, 23);
 		add(Sair);
 		
-		JButton Remover = new JButton("remover");
+		 Remover = new JButton("remover");
 		Remover.setFocusTraversalPolicyProvider(true);
 		Remover.setForeground(Color.WHITE);
 		Remover.setBackground(new Color(0, 102, 204));
@@ -149,25 +152,36 @@ public class ComprarProdutos extends JPanel {
 
 			    table.setModel(model);
 			}
-		  public void carregarProdutos1(List<Produtos> lista) {
+		  public void carregarCarrinho(List<Produtos> lista) {
 			    DefaultTableModel model = new DefaultTableModel(
 			        new Object[][] {},
-			        new String[] {"Nome"}
+			        new String[] {"Nome do Produto"}
 			    );
 
 			    for (Produtos p : lista) {
 			        model.addRow(new Object[] {
-			            p.getNomeProduto(),
-			            p.getMarca(),
-			            p.getEstado(),
-			            p.getDataFabricacao(),
-			            p.getDataVencimento(),
-			            p.getQuantidade(),
-			            p.getValor()
+			            p.getNomeProduto()
 			        });
 			    }
 
 			    table_1.setModel(model);
 			}
-	
+
+			
+		  public JButton getComprarButton() {
+			    return Comprar;
+			}
+
+			public JButton getRemoverButton() {
+			    return Remover;
+			}
+
+			public JTextField getTextField() {
+			    return textField;
+			}
+
+			public JTable getTableCarrinho() {
+			    return table_1;
+			} 
+		  
 }
