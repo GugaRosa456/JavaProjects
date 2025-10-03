@@ -2,15 +2,20 @@ package view;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import model.Produtos;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import java.awt.Font;
@@ -36,21 +41,26 @@ public class ComprarProdutos extends JPanel {
 		comboBox.setBounds(0, 2, 110, 20);
 		add(comboBox);
 		
-		JButton btnNewButton = new JButton("Comprar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(23, 266, 89, 23);
-		add(btnNewButton);
+		JButton Comprar = new JButton("Comprar");
+		Comprar.setFocusTraversalPolicyProvider(true);
+		Comprar.setForeground(Color.WHITE);
+		Comprar.setBackground(new Color(0, 102, 204));
+		Comprar.setBounds(23, 266, 89, 23);
+		add(Comprar);
 		
-		JButton btnSair = new JButton("sair");
-		btnSair.setBounds(351, 266, 89, 23);
-		add(btnSair);
+		JButton Sair = new JButton("sair");
+		Sair.setFocusTraversalPolicyProvider(true);
+		Sair.setForeground(Color.WHITE);
+		Sair.setBackground(new Color(0, 102, 204));
+		Sair.setBounds(351, 266, 89, 23);
+		add(Sair);
 		
-		JButton btnRemover = new JButton("remover");
-		btnRemover.setBounds(122, 266, 89, 23);
-		add(btnRemover);
+		JButton Remover = new JButton("remover");
+		Remover.setFocusTraversalPolicyProvider(true);
+		Remover.setForeground(Color.WHITE);
+		Remover.setBackground(new Color(0, 102, 204));
+		Remover.setBounds(122, 266, 89, 23);
+		add(Remover);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 253, 430, 2);
@@ -117,6 +127,47 @@ public class ComprarProdutos extends JPanel {
 		textField.setBounds(218, 267, 123, 20);
 		add(textField);
 		textField.setColumns(10);
-
 	}
+		  public void carregarProdutos(List<Produtos> lista) {
+			    DefaultTableModel model = new DefaultTableModel(
+			        new Object[][] {},
+			        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
+			        );
+			   
+
+			    for (Produtos p : lista) {
+			        model.addRow(new Object[] {
+			            p.getNomeProduto(),
+			            p.getMarca(),
+			            p.getEstado(),
+			            p.getDataFabricacao(),
+			            p.getDataVencimento(),
+			            p.getQuantidade(),
+			            p.getValor()
+			        });
+			    }
+
+			    table.setModel(model);
+			}
+		  public void carregarProdutos1(List<Produtos> lista) {
+			    DefaultTableModel model = new DefaultTableModel(
+			        new Object[][] {},
+			        new String[] {"Nome"}
+			    );
+
+			    for (Produtos p : lista) {
+			        model.addRow(new Object[] {
+			            p.getNomeProduto(),
+			            p.getMarca(),
+			            p.getEstado(),
+			            p.getDataFabricacao(),
+			            p.getDataVencimento(),
+			            p.getQuantidade(),
+			            p.getValor()
+			        });
+			    }
+
+			    table_1.setModel(model);
+			}
+	
 }

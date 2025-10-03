@@ -5,6 +5,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.List;
 
@@ -66,15 +67,17 @@ public class MostrarProdutos extends JPanel {
 		table.setBounds(0, 33, 450, 224);
 		add(table);
 		
-		 alterar = new JButton("Alterar");
+		alterar = new JButton("Alterar");
+		alterar.setFocusTraversalPolicyProvider(true);
+		alterar.setForeground(Color.WHITE);
+		alterar.setBackground(new Color(0, 102, 204));
 		alterar.setBounds(183, 268, 89, 23);
 		add(alterar);
 // tela para mostrar os produtos já cadastrados para o admin
 	}
-   public void alterar(ActionListener actionListener) {
-		this.alterar.addActionListener(actionListener);
-	}
-   
+ public void alterar(ActionListener action) {
+	 alterar.addActionListener(action);
+ }
   
    public void carregarProdutos(List<Produtos> lista) {
 	    DefaultTableModel model = new DefaultTableModel(

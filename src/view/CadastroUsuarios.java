@@ -62,12 +62,12 @@ public class CadastroUsuarios extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("Nome");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(20, 18, 46, 14);
+		lblNewLabel.setBounds(10, 21, 36, 14);
 		add(lblNewLabel);
 		
 		lblCpf = new JLabel("CPF");
 		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCpf.setBounds(20, 145, 30, 14);
+		lblCpf.setBounds(10, 145, 22, 14);
 		add(lblCpf);
 		
 		lblSenha = new JLabel("Senha");
@@ -90,11 +90,11 @@ public class CadastroUsuarios extends JPanel {
 		
 		lblUmAdministrador = new JLabel("É um administrador ?");
 		lblUmAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblUmAdministrador.setBounds(112, 222, 130, 14);
+		lblUmAdministrador.setBounds(112, 221, 122, 14);
 		add(lblUmAdministrador);
 		
 		JRadioButton sim = new JRadioButton("sim");
-		sim.setBounds(112, 243, 46, 23);
+		sim.setBounds(112, 243, 50, 23);
 		add(sim);
 		
 		JRadioButton não = new JRadioButton("não");

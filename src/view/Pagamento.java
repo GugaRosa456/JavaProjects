@@ -4,9 +4,15 @@ import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import java.awt.Color;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import model.Produtos;
 
 public class Pagamento extends JPanel {
 
@@ -43,9 +49,12 @@ public class Pagamento extends JPanel {
 		textField_1.setBounds(30, 138, 212, 20);
 		add(textField_1);
 		
-		JButton btnNewButton = new JButton("pagar");
-		btnNewButton.setBounds(74, 204, 89, 23);
-		add(btnNewButton);
+		JButton pagar = new JButton("pagar");
+		pagar.setFocusTraversalPolicyProvider(true);
+		pagar.setForeground(Color.WHITE);
+		pagar.setBackground(new Color(0, 102, 204));
+		pagar.setBounds(74, 204, 89, 23);
+		add(pagar);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -76,4 +85,21 @@ public class Pagamento extends JPanel {
 		add(lblNewLabel_1);
 
 	}
+	
+	  public void carregarProdutos(List<Produtos> lista) {
+		    DefaultTableModel model = new DefaultTableModel(
+		        new Object[][] {},
+		        new String[] {"Nome"}
+		    );
+
+		    for (Produtos p : lista) {
+		        model.addRow(new Object[] {
+		            p.getNomeProduto(),
+		        });
+		    }
+
+		    table.setModel(model);
+		}
+	  
+	  
 }

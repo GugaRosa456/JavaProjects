@@ -5,9 +5,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JSeparator;
+import java.awt.event.ActionEvent;
 
 public class CadastroProdutos extends JPanel {
 
@@ -27,6 +30,7 @@ public class CadastroProdutos extends JPanel {
 	private JLabel lblNewLabel_1;
 	private JButton Cadastrar1;
 	private Janelas janela;
+	private JSeparator separator_1;
 
 
 	/**
@@ -36,76 +40,83 @@ public class CadastroProdutos extends JPanel {
 		this.janela = janela;
 		setLayout(null);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 450, 22);
-		add(menuBar);
-		
 		DataFabricação = new JTextField();
-		DataFabricação.setBounds(26, 61, 183, 20);
+		DataFabricação.setBounds(245, 92, 183, 20);
 		add(DataFabricação);
 		DataFabricação.setColumns(10);
 		
 		DataVenciemento = new JTextField();
 		DataVenciemento.setColumns(10);
-		DataVenciemento.setBounds(26, 122, 183, 20);
+		DataVenciemento.setBounds(26, 92, 183, 20);
 		add(DataVenciemento);
 		
 		Marca = new JTextField();
 		Marca.setColumns(10);
-		Marca.setBounds(245, 122, 183, 20);
+		Marca.setBounds(245, 210, 183, 20);
 		add(Marca);
 		
 		Quantidade = new JTextField();
 		Quantidade.setColumns(10);
-		Quantidade.setBounds(245, 61, 183, 20);
+		Quantidade.setBounds(26, 154, 183, 20);
 		add(Quantidade);
 		
 		JLabel lblNewLabel = new JLabel("Data de Fabricação");
-		lblNewLabel.setBounds(26, 36, 125, 14);
+		lblNewLabel.setBounds(245, 67, 125, 14);
 		add(lblNewLabel);
 		
 		lblDataDeVencimento = new JLabel("Data de Vencimento");
-		lblDataDeVencimento.setBounds(26, 97, 125, 14);
+		lblDataDeVencimento.setBounds(26, 67, 125, 14);
 		add(lblDataDeVencimento);
 		
 		lblMarca = new JLabel("Quantidade");
-		lblMarca.setBounds(245, 36, 125, 14);
+		lblMarca.setBounds(26, 125, 125, 14);
 		add(lblMarca);
 		
 		lblMarca_1 = new JLabel("Marca");
-		lblMarca_1.setBounds(245, 97, 125, 14);
+		lblMarca_1.setBounds(245, 185, 125, 14);
 		add(lblMarca_1);
 		
 		NomeProduto = new JTextField();
 		NomeProduto.setColumns(10);
-		NomeProduto.setBounds(26, 182, 183, 20);
+		NomeProduto.setBounds(26, 36, 402, 20);
 		add(NomeProduto);
 		
 		lblNomeDoProduto = new JLabel("Nome do Produto");
-		lblNomeDoProduto.setBounds(26, 157, 125, 14);
+		lblNomeDoProduto.setBounds(26, 11, 125, 14);
 		add(lblNomeDoProduto);
 		
 		Estado = new JTextField();
 		Estado.setColumns(10);
-		Estado.setBounds(245, 182, 183, 20);
+		Estado.setBounds(245, 154, 183, 20);
 		add(Estado);
 		
 		lblEstado = new JLabel("Estado");
-		lblEstado.setBounds(245, 157, 125, 14);
+		lblEstado.setBounds(245, 125, 125, 14);
 		add(lblEstado);
 		
 		valor = new JTextField();
-		valor.setBounds(26, 238, 183, 20);
+		valor.setBounds(26, 210, 183, 20);
 		add(valor);
 		valor.setColumns(10);
 		
 		lblNewLabel_1 = new JLabel("valor");
-		lblNewLabel_1.setBounds(26, 213, 95, 14);
+		lblNewLabel_1.setBounds(26, 185, 95, 14);
 		add(lblNewLabel_1);
 		
 		Cadastrar1 = new JButton("Cadastrar");
-		Cadastrar1.setBounds(289, 237, 89, 23);
+		Cadastrar1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Cadastrar1.setFocusTraversalPolicyProvider(true);
+		Cadastrar1.setForeground(Color.WHITE);
+		Cadastrar1.setBackground(new Color(0, 102, 204));
+		Cadastrar1.setBounds(180, 266, 89, 23);
 		add(Cadastrar1);
+		
+		separator_1 = new JSeparator();
+		separator_1.setBounds(26, 241, 400, 2);
+		add(separator_1);
 
 	}
 	public String getNomeProduto() {
@@ -133,5 +144,4 @@ public int getValor() {
 	public void cadastrar1(ActionListener actionListener) {
 		this.Cadastrar1.addActionListener(actionListener);
 	}
-
 }

@@ -1,4 +1,4 @@
-package model;
+package Controller;
 
 public class Carrinho {
 

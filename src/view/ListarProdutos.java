@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -61,11 +62,17 @@ public class ListarProdutos extends JPanel {
 		comboBox.setBounds(0, 2, 110, 20);
 		add(comboBox);
 		
-		 Comprar = new JButton("Comprar");
+		Comprar = new JButton("Comprar");
+		Comprar.setFocusTraversalPolicyProvider(true);
+		Comprar.setForeground(Color.WHITE);
+		Comprar.setBackground(new Color(0, 102, 204));
 		Comprar.setBounds(118, 266, 89, 23);
 		add(Comprar);
 		
 		 Pagar = new JButton("Pagar");
+		 Pagar.setFocusTraversalPolicyProvider(true);
+		 Pagar.setForeground(Color.WHITE);
+		 Pagar.setBackground(new Color(0,102, 204));
 		Pagar.setBounds(232, 266, 89, 23);
 		add(Pagar);
 	
