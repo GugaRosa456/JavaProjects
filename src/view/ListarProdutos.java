@@ -1,6 +1,8 @@
 package view;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -57,7 +59,9 @@ public class ListarProdutos extends JPanel {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
-		table.setBounds(0, 27, 450, 224);
+		table = new JTable();
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(0, 27, 450, 224);
 		add(table);
 		
 		JComboBox comboBox = new JComboBox();

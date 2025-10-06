@@ -25,11 +25,11 @@ public class CadastroUsuarioController {
 	 			
 	 			try {
                     String nome = view.getNome();
-                    String cpf = view.getCPF();
                    String senha = view.getSenha();
+                   String cpf = view.getCPF();
                     boolean admin = view.isAdmin();
                     Usuario novoUsuario = new Usuario(nome, senha, cpf, admin );
-                
+              
                     model.adicionarUsuario(novoUsuario);
 
                     JOptionPane.showMessageDialog(view, "Usuário cadastrado com sucesso!");

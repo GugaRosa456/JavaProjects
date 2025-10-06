@@ -4,16 +4,16 @@ CREATE Database if not exists mercado;
 USE mercado;
 
 CREATE TABLE if not exists usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     senha VARCHAR(255) NOT NULL,
-    cpf VARCHAR(14) NOT NULL ,
-    id INT AUTO_INCREMENT PRIMARY KEY
+    cpf VARCHAR(14) NOT NULL 
 );
 
 CREATE TABLE if not exists produtos (
  id INT AUTO_INCREMENT PRIMARY KEY,
   nomeProduto VARCHAR(100) NOT NULL,
-  dataValidade INT NOT NULL,
+  datafabricao INT NOT NULL,
   dataVencimento INT NOT NULL,
   valor INT NOT NULL,
   quantidade INT NOT NULL,
@@ -23,4 +23,5 @@ CREATE TABLE if not exists produtos (
 
 ALTER TABLE usuarios ADD COLUMN is_admin INTEGER DEFAULT 0;
 
-select * from usuarios
+select * from usuarios;
+select * from produtos

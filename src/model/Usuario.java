@@ -1,15 +1,16 @@
 package model;
 
 public class Usuario {
-private String Nome;
-private String CPF;
-private String Senha;
+private String nome;
+private String senha;
+private String cpf;
 private boolean isadmin;
 
-public Usuario(String Nome, String Senha, String CPF, boolean isadmin) {
-this.Nome = Nome;
-this.Senha = Senha;
-this.CPF = CPF;
+
+public Usuario(String nome, String senha, String cpf, boolean isadmin) {
+this.nome = nome;
+this.senha = senha;
+this.cpf = cpf;
 this.isadmin = isadmin;
 }
 
@@ -24,27 +25,27 @@ public void setAdmin(boolean admin) {
 
 
 public String getNome() {
-	return Nome;
+	return nome;
 }
 
 public void setNome(String nome) {
-	Nome = nome;
+	this.nome = nome;
 }
 
 public String getCPF() {
-	return CPF;
+	return cpf;
 }
 
-public void setCPF(String cPF) {
-	CPF = cPF;
+public void setCPF(String cpf) {
+	this.cpf = cpf;
 }
 
 public String getSenha() {
-	return Senha;
+	return senha;
 }
 
 public void setSenha(String senha) {
-	Senha = senha;
+	this.senha= senha;
 }
 
 

@@ -34,6 +34,8 @@ public class CadastroUsuarios extends JPanel {
 	private ButtonGroup admin;
 	private JRadioButton sim;
 	private JRadioButton não;
+	private JLabel lblNome;
+	private JLabel lblCpf_1;
 
 	/**
 	 * Create the panel.
@@ -41,36 +43,25 @@ public class CadastroUsuarios extends JPanel {
 	 */
 	public CadastroUsuarios(Janelas janelas) {
 		setLayout(null);
-		
+	
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(10, 170, 314, 20);
+		textFieldNome.setBounds(10, 43, 314, 20);
 		add(textFieldNome);
-		textFieldNome.setColumns(10);
-		
-		textFieldCPF = new JTextField();
-		textFieldCPF.setColumns(10);
-		textFieldCPF.setBounds(10, 112, 152, 20);
-		add(textFieldCPF);
+
 		
 		textFieldSenha = new JTextField();
-		textFieldSenha.setColumns(10);
-		textFieldSenha.setBounds(10, 43, 314, 20);
+		textFieldSenha.setBounds(10, 112, 152, 20);
 		add(textFieldSenha);
-		
+
 		textFieldConfirmarSenha = new JTextField();
-		textFieldConfirmarSenha.setColumns(10);
 		textFieldConfirmarSenha.setBounds(172, 112, 154, 20);
 		add(textFieldConfirmarSenha);
+
 		
-		JLabel lblNewLabel = new JLabel("Nome");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(10, 21, 36, 14);
-		add(lblNewLabel);
-		
-		lblCpf = new JLabel("CPF");
-		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCpf.setBounds(10, 145, 22, 14);
-		add(lblCpf);
+		textFieldCPF = new JTextField();
+		textFieldCPF.setBounds(10, 170, 314, 20);
+		add(textFieldCPF);
+
 		
 		lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -106,6 +97,16 @@ public class CadastroUsuarios extends JPanel {
 		 admin = new ButtonGroup();
 		admin.add(sim);
 		admin.add(não);
+		
+		lblNome = new JLabel("Nome");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setBounds(10, 18, 36, 14);
+		add(lblNome);
+		
+		lblCpf_1 = new JLabel("CPF");
+		lblCpf_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCpf_1.setBounds(10, 145, 36, 14);
+		add(lblCpf_1);
 
 	}
 	
@@ -130,8 +131,5 @@ public class CadastroUsuarios extends JPanel {
 		public void cadastrar(ActionListener actionListener) {
 			this.Cadastrar.addActionListener(actionListener);
 		}
-
-		
-
 	}
 
