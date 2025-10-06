@@ -2,14 +2,14 @@ package model;
 
 public class Usuario {
 private String Nome;
-private int CPF;
-private int senha;
+private String CPF;
+private String Senha;
 private boolean isadmin;
 
-public Usuario(String Nome, int Senha, int CPF, boolean isadmin) {
+public Usuario(String Nome, String Senha, String CPF, boolean isadmin) {
 this.Nome = Nome;
 this.CPF = CPF;
-this.senha = Senha;
+this.Senha = Senha;
 this.isadmin = isadmin;
 }
 
@@ -31,19 +31,22 @@ public void setNome(String nome) {
 	Nome = nome;
 }
 
-public int getSenha() {
-	return senha;
-}
-
-public void setSenha(int senha) {
-	this.senha = senha;
-}
-public int getCPF() {
+public String getCPF() {
 	return CPF;
 }
 
-public void setCPF(int cpf) {
-	CPF = cpf;
+public void setCPF(String cPF) {
+	CPF = cPF;
 }
+
+public String getSenha() {
+	return Senha;
+}
+
+public void setSenha(String senha) {
+	Senha = senha;
+}
+
+
 
 }

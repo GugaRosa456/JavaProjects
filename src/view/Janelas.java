@@ -58,6 +58,7 @@ public class Janelas extends JFrame {
         contentPane.add(cadastroUsuarios, USUARIOS_PANEL);
         contentPane.add(cadastroProdutos, CADASTROPRODUTOS_PANEL);
         contentPane.add(pagamento, PAGAMENTO_PANEL);
+        contentPane.add(login, LOGIN_PANEL);
         mostrarTela(LOGIN_PANEL);
     }
 	   
@@ -88,4 +89,8 @@ public class Janelas extends JFrame {
     public Pagamento getPagamento() {
     	return this.pagamento;
     }
+    public Login getLogin() {
+    	return this.login;
+    }
+    
 }

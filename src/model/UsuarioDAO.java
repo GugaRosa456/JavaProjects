@@ -12,7 +12,7 @@ import java.util.List;
 public class UsuarioDAO {
 	 
     public void adicionarUsuario(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (Nome, Senha, CPF, is_admin) VALUES (?, ?, ? , ?)";
+        String sql = "INSERT INTO usuarios (nome, senha, cpf, is_admin) VALUES (?, ?, ? , ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -20,8 +20,8 @@ public class UsuarioDAO {
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, usuario.getNome());
-            pstm.setInt(2, usuario.getSenha());
-            pstm.setInt(3, usuario.getCPF());
+            pstm.setString(2, usuario.getSenha());
+            pstm.setString(3, usuario.getCPF());
             pstm.setBoolean(4, usuario.isAdmin());
           
             pstm.executeUpdate();
@@ -38,7 +38,7 @@ public class UsuarioDAO {
             }
         }
     }
-    public Usuario buscarPorUsuarios(String nome, int senha) {
+    public Usuario buscarPorUsuarios(String nome, String senha) {
         String sql = "SELECT * FROM usuarios WHERE Nome = ? AND Senha = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
@@ -49,13 +49,13 @@ public class UsuarioDAO {
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, nome);
-            pstm.setInt(2, senha);
+            pstm.setString(2, senha);
             rset = pstm.executeQuery();
 
             if (rset.next()) {
                  rset.getString("Nome");
-                 rset.getInt("Senha");
-                int cpf = rset.getInt("CPF");
+                 rset.getString("Senha");
+                String cpf = rset.getString("CPF");
                 boolean is_admin = rset.getBoolean("is_admin");
                 usuario = new Usuario(nome, senha, cpf, is_admin);
             }

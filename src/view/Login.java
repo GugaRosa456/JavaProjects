@@ -87,8 +87,8 @@ public class Login extends JPanel {
 		}
 
 		
-		public int getSenha() {
-			 return Integer.parseInt(this.textFieldSenha.getText().trim());
+		public String getSenha() {
+			return this.textFieldSenha.getText();
 		}
 
 		public void entrar(ActionListener actionListener) {

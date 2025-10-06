@@ -53,7 +53,7 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 	this.view.entrar(e -> {
 		  try {
 		        String nome = view.getNome();    
-		        int senha = view.getSenha(); 
+		        String senha = view.getSenha(); 
 		        Usuario usuario = model.buscarPorUsuarios(nome, senha);
 
 		        if (usuario != null) {

@@ -11,13 +11,13 @@ import view.Login;
 public class CadastroUsuarioController {
 
 	 
-	 public class CadastroController {
+	 public class  CadastroUsuarioController {
 	 	private final CadastroUsuarios view;
 	 	private final UsuarioDAO model;
 	 	private final Navegador navegador;
 	 	private final Login view1;
 	 	
-	 	public CadastroController(CadastroUsuarios view, UsuarioDAO model, Navegador navegador,Login view1) {
+	 	public CadastroUsuarioController(CadastroUsuarios view, UsuarioDAO model, Navegador navegador,Login view1) {
 	 		this.view = view;
 	 		this.model = model;
 	 		this.navegador = navegador;
@@ -28,8 +28,8 @@ public class CadastroUsuarioController {
 	 			
 	 			try {
                     String nome = view.getNome();
-                    int cpf = view.getCPF();
-                    int senha = view.getSenha();
+                    String cpf = view.getCPF();
+                   String senha = view.getSenha();
                     boolean admin = view.isAdmin();
                     Usuario novoUsuario = new Usuario(nome, senha, cpf, admin );
                 

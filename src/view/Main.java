@@ -5,6 +5,8 @@ import view.CadastroProdutos;
 import model.ProdutosDAO;
 import model.UsuarioDAO;
 import Controller.CadastroProdutosController;
+import Controller.CadastroUsuarioController;
+import Controller.CadastroUsuarioController.CadastroController;
 import Controller.ListarProdutosController;
 import Controller.Navegador;
 import Controller.Supermercado;
@@ -20,8 +22,8 @@ public class Main {
 	        ProdutosDAO produtosDAO = new ProdutosDAO();
 	        Supermercado supermercado = new Supermercado();
             
-           
-            
+	        CadastroUsuarioController cadastroUsuarioController = new CadastroUsuarioController(janela.getCadastroUsuarios(), usuarioDAO, navegador, janela.getLogin());
+          
 	        LoginController loginController = new LoginController(janela.login, usuarioDAO, navegador, janela.getCadastroUsuarios(), janela.getListarProdutos(), janela.getMostrarProdutos(),supermercado, produtosDAO,
 	        		janela.getCadastroProdutos(), janela.getComprarProdutos(), janela.getPagamento());
 

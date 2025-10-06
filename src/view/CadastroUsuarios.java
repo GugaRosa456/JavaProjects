@@ -116,13 +116,13 @@ public class CadastroUsuarios extends JPanel {
 		}
 
 		
-		public int getSenha() {
-			 return Integer.parseInt(this.textFieldSenha.getText().trim());
+		public String getSenha() {
+			return this.textFieldSenha.getText();
 		}
 
 		
-		public int getCPF() {
-			return Integer.parseInt(this.textFieldCPF.getText().trim());
+		public String getCPF() {
+			return this.textFieldCPF.getText();
 		}
 		
 		public void cadastrar(ActionListener actionListener) {
