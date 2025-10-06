@@ -26,7 +26,7 @@ public class CadastroProdutosController{
     this.supermercado = supermercado;
 	
     this.view2.cadastrar1(e -> {
-    	 supermercado.visualizarProdutos(view2, model, view, navegador);
+    	 supermercado.CadastroProdutos(view2, model, view, navegador);
 		});
 	
 	

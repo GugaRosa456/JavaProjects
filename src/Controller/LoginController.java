@@ -58,11 +58,11 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 
 		        if (usuario != null) {
 		            if (usuario.isAdmin()) {
+		                supermercado.carregarProdutosParaAdmin(view3, produtosDAO);
 		                navegador.navegarPara(Janelas.MOSTRAR_PANEL);
-		                supermercado.visualizarProdutos(view4, produtosDAO, view3, navegador);
 		            } else {
 		                navegador.navegarPara(Janelas.LISTAR_PANEL);
-		                supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador);
+		                supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador,view3);
 		            }
 		        } else {
 		            JOptionPane.showMessageDialog(view, "Nome ou senha incorretos!", "Erro de login", JOptionPane.ERROR_MESSAGE);

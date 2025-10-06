@@ -81,8 +81,7 @@ public class MostrarProdutos extends JPanel {
 	 alterar.addActionListener(action);
  } 
 
- public void carregarProdutos(List<Produtos> lista, ListarProdutos view2, MostrarProdutos view3, UsuarioDAO model2, Login view4,
-			Navegador navegador) {
+ public void carregarProdutos(List<Produtos> lista) {
 	    DefaultTableModel model = new DefaultTableModel(
 	        new Object[][] {},
 	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}

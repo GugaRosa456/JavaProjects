@@ -22,7 +22,7 @@ public class Supermercado {
 	
 	
 	
-    public static void visualizarProdutos(
+    public static void CadastroProdutos(
     		
     		            CadastroProdutos view2, 
     		            ProdutosDAO model, 
@@ -64,16 +64,28 @@ public class Supermercado {
             ProdutosDAO model, 
             ComprarProdutos view5,
             Pagamento view6,
-            Navegador navegador) {
+            Navegador navegador,
+            MostrarProdutos view3) {
         
         try {
          
-            view2.carregarProdutos(model.listarProdutos());
-            view5.carregarProdutos(model.listarProdutos());
-;            view6.carregarProdutos(model.listarProdutos());
+            
+            List<Produtos> lista = model.listarProdutos();
+            view3.carregarProdutos(lista);
+            view2.carregarProdutos(lista);
           
         } catch (Exception ex) {
             System.out.println("Erro ao listar produtos: " + ex.getMessage());
+        }
+    }
+    
+    
+    public static void carregarProdutosParaAdmin(MostrarProdutos view, ProdutosDAO model) {
+        try {
+            var lista = model.listarProdutos();
+            view.carregarProdutos(lista);
+        } catch (Exception e) {
+            System.out.println("Erro ao listar produtos: " + e.getMessage());
         }
     }
 }
