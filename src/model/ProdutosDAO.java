@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProdutosDAO {
 	public void adicionarProduto(Produtos produto) {
-        String sql = "INSERT INTO Produtos ( dataFabricacao, dataVencimento, nomeProduto, valor, quantidade, marca, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Produtos ( nomeProduto, dataFabricacao, dataVencimento, valor, quantidade, marca, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -50,9 +50,9 @@ public class ProdutosDAO {
 
 	        while (rs.next()) {
 	            Produtos p = new Produtos(
+	                rs.getString("nomeProduto"),
 	                rs.getInt("dataFabricacao"),
 	                rs.getInt("dataVencimento"),
-	                rs.getString("nomeProduto"),
 	                rs.getInt("valor"),
 	                rs.getInt("quantidade"),
 	                rs.getString("marca"),

@@ -13,7 +13,7 @@ CREATE TABLE if not exists usuarios (
 CREATE TABLE if not exists produtos (
  id INT AUTO_INCREMENT PRIMARY KEY,
   nomeProduto VARCHAR(100) NOT NULL,
-  datafabricao INT NOT NULL,
+  dataFabricacao INT NOT NULL,
   dataVencimento INT NOT NULL,
   valor INT NOT NULL,
   quantidade INT NOT NULL,
@@ -24,4 +24,5 @@ CREATE TABLE if not exists produtos (
 ALTER TABLE usuarios ADD COLUMN is_admin INTEGER DEFAULT 0;
 
 select * from usuarios;
-select * from produtos
+select * from produtos;
+ DESCRIBE produtos

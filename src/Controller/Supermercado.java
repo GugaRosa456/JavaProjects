@@ -39,7 +39,7 @@ public class Supermercado {
     		            int valor = view2.getValor();
     		            
     		            Produtos produto = new Produtos(
-    		                dataFabricacao, dataVencimento, nome, 
+    		                nome,dataFabricacao, dataVencimento, 
     		                valor, quantidade, marca, estado
     		            );
 

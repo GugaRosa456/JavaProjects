@@ -9,7 +9,7 @@ private int quantidade;
 private String marca;
 private String estado;
 
-public Produtos(int dataFabricacao, int dataVencimento, String nomeProduto, int valor, int quantidade, String marca, String estado) {
+public Produtos(String nomeProduto, int dataFabricacao, int dataVencimento,  int valor, int quantidade, String marca, String estado) {
 this.dataFabricacao = dataFabricacao;
 this.dataVencimento = dataVencimento;
 this.nomeProduto = nomeProduto;
