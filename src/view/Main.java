@@ -6,7 +6,6 @@ import model.ProdutosDAO;
 import model.UsuarioDAO;
 import Controller.CadastroProdutosController;
 import Controller.CadastroUsuarioController;
-import Controller.CadastroUsuarioController.CadastroController;
 import Controller.ListarProdutosController;
 import Controller.Navegador;
 import Controller.Supermercado;

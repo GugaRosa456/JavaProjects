@@ -9,9 +9,6 @@ import view.Janelas;
 import view.Login;
 
 public class CadastroUsuarioController {
-
-	 
-	 public class  CadastroUsuarioController {
 	 	private final CadastroUsuarios view;
 	 	private final UsuarioDAO model;
 	 	private final Navegador navegador;
@@ -46,4 +43,4 @@ public class CadastroUsuarioController {
 	 	}
 	 }
 	
-}
+
