@@ -8,8 +8,8 @@ private boolean isadmin;
 
 public Usuario(String Nome, String Senha, String CPF, boolean isadmin) {
 this.Nome = Nome;
-this.CPF = CPF;
 this.Senha = Senha;
+this.CPF = CPF;
 this.isadmin = isadmin;
 }
 

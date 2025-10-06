@@ -32,6 +32,8 @@ public class CadastroUsuarios extends JPanel {
 	private JLabel lblUmAdministrador;
 	private JButton Cadastrar;
 	private ButtonGroup admin;
+	private JRadioButton sim;
+	private JRadioButton não;
 
 	/**
 	 * Create the panel.
@@ -93,11 +95,11 @@ public class CadastroUsuarios extends JPanel {
 		lblUmAdministrador.setBounds(112, 221, 122, 14);
 		add(lblUmAdministrador);
 		
-		JRadioButton sim = new JRadioButton("sim");
+		 sim = new JRadioButton("sim");
 		sim.setBounds(112, 243, 50, 23);
 		add(sim);
-		
-		JRadioButton não = new JRadioButton("não");
+	  
+		não = new JRadioButton("não");
 		não.setBounds(202, 243, 46, 23);
 		add(não);
 		
@@ -108,7 +110,7 @@ public class CadastroUsuarios extends JPanel {
 	}
 	
 	public boolean isAdmin() {
-		return ((JRadioButton) admin.getElements().nextElement()).isSelected();
+		 return sim.isSelected();
 	}
 		
 		public String getNome() {

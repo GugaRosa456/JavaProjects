@@ -4,10 +4,10 @@ CREATE Database if not exists mercado;
 USE mercado;
 
 CREATE TABLE if not exists usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
     cpf VARCHAR(14) NOT NULL ,
-    senha VARCHAR(255) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY
 );
 
 CREATE TABLE if not exists produtos (
