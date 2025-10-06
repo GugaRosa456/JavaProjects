@@ -80,7 +80,7 @@ public class CadastroUsuarios extends JPanel {
 		lblConfirmarSenha.setBounds(172, 87, 101, 14);
 		add(lblConfirmarSenha);
 		
-		JButton Cadastrar = new JButton("Cadastrar");
+		 Cadastrar = new JButton("Cadastrar");
 		Cadastrar.setBounds(112, 273, 130, 23);
 		add(Cadastrar);
 		Cadastrar.setFocusTraversalPolicyProvider(true);
@@ -101,14 +101,14 @@ public class CadastroUsuarios extends JPanel {
 		não.setBounds(202, 243, 46, 23);
 		add(não);
 		
-		ButtonGroup admin = new ButtonGroup();
+		 admin = new ButtonGroup();
 		admin.add(sim);
 		admin.add(não);
 
 	}
 	
 	public boolean isAdmin() {
-	    return admin.isSelected(null); 
+		return ((JRadioButton) admin.getElements().nextElement()).isSelected();
 	}
 		
 		public String getNome() {
