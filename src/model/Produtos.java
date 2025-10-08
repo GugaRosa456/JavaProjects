@@ -8,8 +8,21 @@ private int valor;
 private int quantidade;
 private String marca;
 private String estado;
+private int id;
 
-public Produtos(String nomeProduto, int dataFabricacao, int dataVencimento,  int valor, int quantidade, String marca, String estado) {
+public Produtos(String nomeProduto, int dataFabricacao, int dataVencimento, int valor, int quantidade, String marca, String estado) {
+    this.nomeProduto = nomeProduto;
+    this.dataFabricacao = dataFabricacao;
+    this.dataVencimento = dataVencimento;
+    this.valor = valor;
+    this.quantidade = quantidade;
+    this.marca = marca;
+    this.estado = estado;
+}
+
+
+
+public Produtos(String nomeProduto, int dataFabricacao, int dataVencimento,  int valor, int quantidade, String marca, String estado, int id) {
 this.dataFabricacao = dataFabricacao;
 this.dataVencimento = dataVencimento;
 this.nomeProduto = nomeProduto;
@@ -17,6 +30,15 @@ this.valor = valor;
 this.quantidade = quantidade;
 this.marca = marca;
 this.estado = estado;
+this.id = id;
+}
+
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
 }
 
 public int getDataFabricacao() {

@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -17,9 +18,9 @@ import model.Produtos;
 public class Pagamento extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField Valor;
 	private JTable table;
+	private JButton pagar;
 
 	/**
 	 * Create the panel.
@@ -31,50 +32,41 @@ public class Pagamento extends JPanel {
 		menuBar.setBounds(0, 0, 450, 22);
 		add(menuBar);
 		
-		JLabel lblNewLabel = new JLabel("Total a pagar: ");
-		lblNewLabel.setBounds(30, 47, 92, 14);
-		add(lblNewLabel);
-		
-		textField = new JTextField();
-		textField.setBounds(30, 72, 212, 20);
-		add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblValorInserido = new JLabel("Valor inserido:");
-		lblValorInserido.setBounds(30, 113, 92, 14);
+		lblValorInserido.setBounds(31, 59, 92, 14);
 		add(lblValorInserido);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(30, 138, 212, 20);
-		add(textField_1);
+		Valor = new JTextField();
+		Valor.setColumns(10);
+		Valor.setBounds(31, 84, 212, 20);
+		add(Valor);
 		
-		JButton pagar = new JButton("pagar");
+		pagar = new JButton("pagar");
 		pagar.setFocusTraversalPolicyProvider(true);
 		pagar.setForeground(Color.WHITE);
 		pagar.setBackground(new Color(0, 102, 204));
-		pagar.setBounds(74, 204, 89, 23);
+		pagar.setBounds(78, 133, 89, 23);
 		add(pagar);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
 			},
 			new String[] {
-				"New column"
+				"New column", "New column"
 			}
 		));
 		table.setBounds(286, 59, 107, 205);
@@ -89,17 +81,32 @@ public class Pagamento extends JPanel {
 	  public void carregarProdutos(List<Produtos> lista) {
 		    DefaultTableModel model = new DefaultTableModel(
 		        new Object[][] {},
-		        new String[] {"Nome"}
-		    );
-
+		        new String[] {"Nome", "Valor"}
+		     ) {
+		    	@Override
+		        public boolean isCellEditable(int row, int column) {
+		         
+		            return column == 1;
+		        }
+		    };
 		    for (Produtos p : lista) {
 		        model.addRow(new Object[] {
-		            p.getNomeProduto(),
+		            p.getNomeProduto(), 
+		            p.getValor()
 		        });
 		    }
 
 		    table.setModel(model);
 		}
 	  
+	  public JTable getTable() {
+		    return table;
+		}
 	  
+	  public String getValor() {
+			return this.Valor.getText();
+		}
+	  public void Pagar(ActionListener actionListener) {
+			this.pagar.addActionListener(actionListener);
+		}
 }

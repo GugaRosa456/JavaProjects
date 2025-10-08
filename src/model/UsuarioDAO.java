@@ -53,9 +53,9 @@ public class UsuarioDAO {
             rset = pstm.executeQuery();
 
             if (rset.next()) {
-                 rset.getString("Nome");
-                 rset.getString("Senha");
-                String cpf = rset.getString("CPF");
+                rset.getString("Nome");
+                rset.getString("Senha");
+              String cpf =   rset.getString("CPF");
                 boolean is_admin = rset.getBoolean("is_admin");
                 usuario = new Usuario(nome, senha, cpf, is_admin);
             }
@@ -68,7 +68,7 @@ public class UsuarioDAO {
         return usuario;
     }
   
-
+  
   
 
     

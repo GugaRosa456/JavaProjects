@@ -42,7 +42,7 @@ public class ProdutosDAO {
 	
 	public List<Produtos> listarProdutos() {
 	    List<Produtos> produtos = new ArrayList<>();
-	    String sql = "SELECT * FROM produtos";
+	    String sql = "SELECT * FROM Produtos";
 	    
 	    try (Connection conexao = BancoDeDados.conectar();
 	         PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -88,10 +88,17 @@ public class ProdutosDAO {
 	        e.printStackTrace();
 	    }
 	}
-
+	public void diminuirQuantidade(String nomeProduto) {
+	    String sql = "UPDATE Produtos SET quantidade = quantidade - 1 WHERE nomeProduto = ? AND quantidade > 0";
+	    try (Connection conexao = BancoDeDados.conectar();
+	         PreparedStatement stmt = conexao.prepareStatement(sql)) {
+	        stmt.setString(1, nomeProduto);
+	        stmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	
 	
 	
-	
-	
+	}
 }

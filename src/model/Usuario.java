@@ -6,13 +6,13 @@ private String senha;
 private String cpf;
 private boolean isadmin;
 
-
 public Usuario(String nome, String senha, String cpf, boolean isadmin) {
 this.nome = nome;
 this.senha = senha;
 this.cpf = cpf;
 this.isadmin = isadmin;
 }
+
 
 public boolean isAdmin() {
 	return isadmin;

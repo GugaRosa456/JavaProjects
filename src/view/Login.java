@@ -25,11 +25,12 @@ public class Login extends JPanel {
     private JButton Entrar;
     private JButton Cadastro;
     private JSeparator separator;
+    private JButton Sair;
 
 	/**
 	 * Create the panel.
 	 */
-	public Login() {
+	public Login(Janelas janelas) {
 		setPreferredSize(new Dimension(350, 350));
 		setLayout(null);
 		
@@ -68,18 +69,29 @@ public class Login extends JPanel {
 		Cadastro.setForeground(Color.WHITE);
 		Cadastro.setBackground(new Color(0, 102, 204));
 		Cadastro.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		Cadastro.setBounds(200, 247, 89, 23);
+		Cadastro.setBounds(210, 233, 89, 23);
 		add(Cadastro);
 		
 		
 		JLabel lblNoTemUm = new JLabel("Não tem um conta ainda?");
 		lblNoTemUm.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNoTemUm.setBounds(27, 250, 146, 14);
+		lblNoTemUm.setBounds(50, 236, 146, 14);
 		add(lblNoTemUm);
 		
 		separator = new JSeparator();
 		separator.setBounds(10, 209, 350, 2);
 		add(separator);
+		
+	    Sair = new JButton("Sair");
+	    Sair.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	}
+	    });
+	    Sair.setFocusTraversalPolicyProvider(true);
+		Sair.setForeground(Color.WHITE);
+		Sair.setBackground(new Color(0, 102, 204));
+		Sair.setBounds(210, 267, 89, 23);
+		add(Sair);
 	}
 	
 		public String getNome() {
@@ -98,5 +110,14 @@ public class Login extends JPanel {
 		public void cadastro(ActionListener actionListener) {
 			this.Cadastro.addActionListener(actionListener);
 		}
+		public void sair(ActionListener actionListener) {
+			this.Sair.addActionListener(actionListener);
+		}
+
+		public String getCPF() {
+			return null;
+		}
+		
+		
 	}
 

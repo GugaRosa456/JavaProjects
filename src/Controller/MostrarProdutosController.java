@@ -17,6 +17,7 @@ public class MostrarProdutosController {
 			 	private final MostrarProdutos view;   
 			    private final Navegador navegador;
 			    private final CadastroProdutos view2;
+			
 			   
 			 	
 			 	public MostrarProdutosController(MostrarProdutos view, ProdutosDAO model, Navegador navegador,CadastroProdutos view2) {
@@ -25,11 +26,15 @@ public class MostrarProdutosController {
 			 		this.navegador = navegador;
 			 		this.view2 = view2;
 			 	
-			 	
 
 			 		this.view.alterar(e -> {
 			 			this.navegador.navegarPara(Janelas.CADASTROPRODUTOS_PANEL);
 			 		});
+			 		
+			 		this.view.sair(e -> {
+			 			this.navegador.navegarPara(Janelas.LOGIN_PANEL);
+			 		});
+			 	
 			 	}
 			 }
 

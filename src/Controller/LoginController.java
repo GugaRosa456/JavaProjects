@@ -61,8 +61,8 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		                supermercado.carregarProdutosParaAdmin(view3, produtosDAO);
 		                navegador.navegarPara(Janelas.MOSTRAR_PANEL);
 		            } else {
-		                navegador.navegarPara(Janelas.LISTAR_PANEL);
-		                supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador,view3);
+		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3);
+		            	navegador.navegarPara(Janelas.LISTAR_PANEL);;
 		            }
 		        } else {
 		            JOptionPane.showMessageDialog(view, "Nome ou senha incorretos!", "Erro de login", JOptionPane.ERROR_MESSAGE);
@@ -72,6 +72,11 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		    } catch (Exception ex) {
 		        JOptionPane.showMessageDialog(view, "Erro ao fazer login: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 		    }
+		  
 });  
+	this.view.sair(e -> {
+		System.exit(0);
+	});
 }
+
 }

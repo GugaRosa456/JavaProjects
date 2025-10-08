@@ -111,7 +111,7 @@ public class CadastroProdutos extends JPanel {
 		Cadastrar1.setFocusTraversalPolicyProvider(true);
 		Cadastrar1.setForeground(Color.WHITE);
 		Cadastrar1.setBackground(new Color(0, 102, 204));
-		Cadastrar1.setBounds(180, 266, 89, 23);
+		Cadastrar1.setBounds(171, 266, 108, 23);
 		add(Cadastrar1);
 		
 		separator_1 = new JSeparator();

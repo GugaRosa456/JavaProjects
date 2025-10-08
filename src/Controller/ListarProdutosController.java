@@ -30,5 +30,8 @@ public class ListarProdutosController {
     	this.view.pagar(e -> {
  			this.navegador.navegarPara(Janelas.PAGAMENTO_PANEL);
  		});
+    	this.view.sair(e -> {
+    		this.navegador.navegarPara(Janelas.LOGIN_PANEL);
+    	});
     }
 }

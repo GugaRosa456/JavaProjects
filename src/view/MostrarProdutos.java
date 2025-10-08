@@ -24,6 +24,7 @@ public class MostrarProdutos extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JButton alterar;
+	private JButton Sair;
 	
 
 	/**
@@ -73,13 +74,24 @@ public class MostrarProdutos extends JPanel {
 		alterar.setFocusTraversalPolicyProvider(true);
 		alterar.setForeground(Color.WHITE);
 		alterar.setBackground(new Color(0, 102, 204));
-		alterar.setBounds(183, 268, 89, 23);
+		alterar.setBounds(138, 268, 89, 23);
 		add(alterar);
+		
+	    Sair = new JButton("Sair");
+		Sair.setFocusTraversalPolicyProvider(true);
+		Sair.setForeground(Color.WHITE);
+		Sair.setBackground(new Color(0, 102, 204));
+		Sair.setBounds(237, 268, 89, 23);
+		add(Sair);
 // tela para mostrar os produtos já cadastrados para o admin
 	}
  public void alterar(ActionListener action) {
 	 alterar.addActionListener(action);
  } 
+ 
+ public void sair(ActionListener action) {
+	 Sair.addActionListener(action);
+ }
 
  public void carregarProdutos(List<Produtos> lista) {
 	    DefaultTableModel model = new DefaultTableModel(

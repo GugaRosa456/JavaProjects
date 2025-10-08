@@ -42,7 +42,7 @@ public class Janelas extends JFrame {
         setContentPane(contentPane);
 
     
-        login = new Login();
+        login = new Login(this);
         listarProdutos = new ListarProdutos(this);
         comprarProdutos = new ComprarProdutos(this);
         mostrarProdutos = new MostrarProdutos(this);

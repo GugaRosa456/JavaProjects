@@ -33,7 +33,7 @@ public class ComprarProdutos extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ComprarProdutos(Janelas j) {
+	public ComprarProdutos(Janelas janelas) {
 		setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -183,5 +183,8 @@ public class ComprarProdutos extends JPanel {
 			public JTable getTableCarrinho() {
 			    return table_1;
 			} 
+			public void sair(ActionListener actionListener) {
+				this.Sair.addActionListener(actionListener);
+			}
 		  
 }

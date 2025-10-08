@@ -26,6 +26,7 @@ public class ListarProdutos extends JPanel {
 	private JTable table;
 	private JButton Comprar;
 	private JButton Pagar;
+	private JButton Sair;
 
 	/**
 	 * Create the panel.
@@ -62,7 +63,7 @@ public class ListarProdutos extends JPanel {
 		table = new JTable();
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(0, 27, 450, 224);
-		add(table);
+		add(scrollPane);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(0, 2, 110, 20);
@@ -72,15 +73,22 @@ public class ListarProdutos extends JPanel {
 		Comprar.setFocusTraversalPolicyProvider(true);
 		Comprar.setForeground(Color.WHITE);
 		Comprar.setBackground(new Color(0, 102, 204));
-		Comprar.setBounds(118, 266, 89, 23);
+		Comprar.setBounds(83, 262, 89, 23);
 		add(Comprar);
 		
 		 Pagar = new JButton("Pagar");
 		 Pagar.setFocusTraversalPolicyProvider(true);
 		 Pagar.setForeground(Color.WHITE);
 		 Pagar.setBackground(new Color(0,102, 204));
-		Pagar.setBounds(232, 266, 89, 23);
+		Pagar.setBounds(279, 262, 89, 23);
 		add(Pagar);
+		
+		Sair = new JButton("Sair");
+		Sair.setFocusTraversalPolicyProvider(true);
+		Sair.setForeground(Color.WHITE);
+		Sair.setBackground(new Color(0,102, 204));
+		Sair.setBounds(180, 262, 89, 23);
+		add(Sair);
 	
 	}
 	public void comprar(ActionListener actionListener) {
@@ -90,6 +98,9 @@ public class ListarProdutos extends JPanel {
 		this.Pagar.addActionListener(actionListener);
 	}
 	
+	public void sair(ActionListener actionListener) {
+		this.Sair.addActionListener(actionListener);
+	}
 
     public void carregarProdutos(List<Produtos> lista) {
  	    DefaultTableModel model = new DefaultTableModel(

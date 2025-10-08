@@ -23,25 +23,17 @@ public class Carrinho {
     private void configurarEventos() {
        
         view.getComprarButton().addActionListener(e -> adicionarProdutoCarrinho());
-
-        
         view.getRemoverButton().addActionListener(e -> removerProdutoCarrinho());
     }
 
     private void adicionarProdutoCarrinho() {
         String nomeDigitado = view.getTextField().getText().trim();
-
         if (nomeDigitado.isEmpty()) return;
-
         Produtos produto = produtosDAO.buscarPorNome(nomeDigitado);
-
         if (produto != null && produto.getQuantidade() > 0) {
-          
             produto.setQuantidade(produto.getQuantidade() - 1);
             produtosDAO.atualizarProduto(produto);
-
             lista.add(produto);
-
             view.carregarProdutos(produtosDAO.listarProdutos());
             view.carregarCarrinho(lista);
         }
@@ -49,17 +41,11 @@ public class Carrinho {
 
     private void removerProdutoCarrinho() {
         int linhaSelecionada = view.getTableCarrinho().getSelectedRow();
-
         if (linhaSelecionada >= 0) {
             Produtos produto = lista.get(linhaSelecionada);
-
-            
             produto.setQuantidade(produto.getQuantidade() + 1);
             produtosDAO.atualizarProduto(produto);
-
          lista.remove(linhaSelecionada);
-
-         
             view.carregarProdutos(produtosDAO.listarProdutos());
             view.carregarCarrinho(lista);
         }

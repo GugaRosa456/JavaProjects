@@ -27,7 +27,8 @@ public class Supermercado {
     		            CadastroProdutos view2, 
     		            ProdutosDAO model, 
     		            MostrarProdutos view, 
-    		            Navegador navegador) {
+    		            Navegador navegador
+    		            ) {
     		        
     		        try {
     		            String nome = view2.getNomeProduto();
@@ -37,6 +38,7 @@ public class Supermercado {
     		            int dataVencimento = view2.getDataVencimento();
     		            int quantidade = view2.getQuantidade();
     		            int valor = view2.getValor();
+    		          
     		            
     		            Produtos produto = new Produtos(
     		                nome,dataFabricacao, dataVencimento, 
@@ -71,9 +73,23 @@ public class Supermercado {
          
             
             List<Produtos> lista = model.listarProdutos();
+            
             view3.carregarProdutos(lista);
             view2.carregarProdutos(lista);
+            view5.carregarProdutos(lista);
+            view6.carregarProdutos(lista);
           
+            new Carrinho(model, view5);
+
+            view2.comprar(e -> {
+                navegador.navegarPara(Janelas.COMPRAR_PANEL);
+                view5.carregarProdutos(model.listarProdutos());
+            });
+
+            view2.pagar(e -> {
+                navegador.navegarPara(Janelas.PAGAMENTO_PANEL);
+                view6.carregarProdutos(model.listarProdutos());
+            });
         } catch (Exception ex) {
             System.out.println("Erro ao listar produtos: " + ex.getMessage());
         }
