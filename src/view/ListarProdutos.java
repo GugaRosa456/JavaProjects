@@ -35,34 +35,17 @@ public class ListarProdutos extends JPanel {
 		setLayout(null);
 		// para o usuario //
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 450, 22);
+		menuBar.setBounds(0, 0, 500, 22);
 		add(menuBar);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
-			}
+			new Object[][] {},
+			new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
 		));
 		table = new JTable();
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(0, 27, 450, 224);
+		scrollPane.setBounds(0, 27, 490, 224);
 		add(scrollPane);
 		
 		JComboBox comboBox = new JComboBox();
@@ -73,21 +56,21 @@ public class ListarProdutos extends JPanel {
 		Comprar.setFocusTraversalPolicyProvider(true);
 		Comprar.setForeground(Color.WHITE);
 		Comprar.setBackground(new Color(0, 102, 204));
-		Comprar.setBounds(83, 262, 89, 23);
+		Comprar.setBounds(115, 262, 89, 23);
 		add(Comprar);
 		
 		 Pagar = new JButton("Pagar");
 		 Pagar.setFocusTraversalPolicyProvider(true);
 		 Pagar.setForeground(Color.WHITE);
 		 Pagar.setBackground(new Color(0,102, 204));
-		Pagar.setBounds(279, 262, 89, 23);
+		Pagar.setBounds(313, 262, 89, 23);
 		add(Pagar);
 		
 		Sair = new JButton("Sair");
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0,102, 204));
-		Sair.setBounds(180, 262, 89, 23);
+		Sair.setBounds(214, 262, 89, 23);
 		add(Sair);
 	
 	}

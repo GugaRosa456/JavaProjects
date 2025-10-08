@@ -35,53 +35,31 @@ public class MostrarProdutos extends JPanel {
 		setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 450, 22);
+		menuBar.setBounds(0, 0, 500, 22);
 		add(menuBar);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(0, 2, 139, 20);
-		add(comboBox);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"sair"}));
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column", "New column", "New column", "New column"
-			}
+			new Object[][] {},
+			new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
 			
 			
 		));
-		table.setBounds(0, 33, 450, 224);
+		table.setBounds(25, 33, 450, 224);
 		add(table);
 		
 		alterar = new JButton("Alterar");
 		alterar.setFocusTraversalPolicyProvider(true);
 		alterar.setForeground(Color.WHITE);
 		alterar.setBackground(new Color(0, 102, 204));
-		alterar.setBounds(138, 268, 89, 23);
+		alterar.setBounds(131, 268, 89, 23);
 		add(alterar);
 		
 	    Sair = new JButton("Sair");
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(237, 268, 89, 23);
+		Sair.setBounds(290, 268, 89, 23);
 		add(Sair);
 // tela para mostrar os produtos já cadastrados para o admin
 	}

@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
@@ -29,6 +30,7 @@ public class ComprarProdutos extends JPanel {
 	private JButton Comprar;
 	private JButton Sair;
 	private JButton Remover;
+	
 
 	/**
 	 * Create the panel.
@@ -37,7 +39,7 @@ public class ComprarProdutos extends JPanel {
 		setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 450, 22);
+		menuBar.setBounds(0, 0, 500, 22);
 		add(menuBar);
 		
 		JComboBox comboBox = new JComboBox();
@@ -59,7 +61,7 @@ public class ComprarProdutos extends JPanel {
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(333, 266, 89, 23);
+		Sair.setBounds(388, 266, 89, 23);
 		add(Sair);
 		
 		 Remover = new JButton("remover");
@@ -70,11 +72,11 @@ public class ComprarProdutos extends JPanel {
 		Remover.setFocusTraversalPolicyProvider(true);
 		Remover.setForeground(Color.WHITE);
 		Remover.setBackground(new Color(0, 102, 204));
-		Remover.setBounds(333, 216, 89, 23);
+		Remover.setBounds(370, 216, 89, 23);
 		add(Remover);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(20, 250, 430, 2);
+		separator.setBounds(20, 250, 480, 2);
 		add(separator);
 		
 		table = new JTable();
@@ -98,7 +100,7 @@ public class ComprarProdutos extends JPanel {
 				"", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
-		table.setBounds(10, 59, 294, 180);
+		table.setBounds(38, 58, 294, 180);
 		add(table);
 		
 		table_1 = new JTable();
@@ -126,16 +128,16 @@ public class ComprarProdutos extends JPanel {
 			}
 		));
 		table_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		table_1.setBounds(323, 33, 117, 173);
+		table_1.setBounds(360, 32, 117, 173);
 		add(table_1);
 		
 		JLabel lblNewLabel = new JLabel("Produtos");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(10, 33, 61, 14);
+		lblNewLabel.setBounds(38, 33, 61, 14);
 		add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(122, 267, 201, 20);
+		textField.setBounds(136, 267, 221, 20);
 		add(textField);
 		textField.setColumns(10);
 	}
@@ -160,6 +162,7 @@ public class ComprarProdutos extends JPanel {
 
 			    table.setModel(model);
 			}
+		  
 		  public void carregarCarrinho(List<Produtos> lista) {
 			    DefaultTableModel model = new DefaultTableModel(
 			        new Object[][] {},
@@ -174,7 +177,6 @@ public class ComprarProdutos extends JPanel {
 
 			    table_1.setModel(model);
 			}
-
 			
 		  public JButton getComprarButton() {
 			    return Comprar;
@@ -194,5 +196,20 @@ public class ComprarProdutos extends JPanel {
 			public void sair(ActionListener actionListener) {
 				this.Sair.addActionListener(actionListener);
 			}
-		  
+			
+			public DefaultTableModel getTableModelCarrinho() {
+			    return (DefaultTableModel) table_1.getModel();
+			}
+			public List<String> getNomesProdutosCarrinho() {
+			    List<String> nomes = new ArrayList<>();
+			    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+			    
+			    for (int i = 0; i < model.getRowCount(); i++) {
+			        Object valor = model.getValueAt(i, 0);
+			        if (valor != null) {
+			            nomes.add(valor.toString());
+			        }
+			    }
+			    return nomes;
+			}
 }

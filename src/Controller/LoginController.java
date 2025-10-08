@@ -55,7 +55,7 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		        String nome = view.getNome();    
 		        String senha = view.getSenha(); 
 		        Usuario usuario = model.buscarPorUsuarios(nome, senha);
-
+                
 		        if (usuario != null) {
 		            if (usuario.isAdmin()) {
 		                supermercado.carregarProdutosParaAdmin(view3, produtosDAO);

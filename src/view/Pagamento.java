@@ -14,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.Produtos;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 
 public class Pagamento extends JPanel {
 
@@ -27,25 +29,29 @@ public class Pagamento extends JPanel {
 	 */
 	public Pagamento(Janelas janelas) {
 		setLayout(null);
-		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 450, 22);
+		menuBar.setBounds(0, 0, 500, 22);
 		add(menuBar);
 		
 		JLabel lblValorInserido = new JLabel("Valor inserido:");
-		lblValorInserido.setBounds(31, 59, 92, 14);
+		lblValorInserido.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblValorInserido.setBounds(31, 59, 96, 14);
 		add(lblValorInserido);
 		
 		Valor = new JTextField();
 		Valor.setColumns(10);
-		Valor.setBounds(31, 84, 212, 20);
+		Valor.setBounds(31, 84, 296, 22);
 		add(Valor);
 		
 		pagar = new JButton("pagar");
+		pagar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		pagar.setFocusTraversalPolicyProvider(true);
 		pagar.setForeground(Color.WHITE);
 		pagar.setBackground(new Color(0, 102, 204));
-		pagar.setBounds(78, 133, 89, 23);
+		pagar.setBounds(132, 133, 107, 35);
 		add(pagar);
 		
 		table = new JTable();
@@ -69,11 +75,11 @@ public class Pagamento extends JPanel {
 				"New column", "New column"
 			}
 		));
-		table.setBounds(286, 59, 107, 205);
+		table.setBounds(363, 61, 107, 205);
 		add(table);
 		
 		JLabel lblNewLabel_1 = new JLabel("produtos comprados");
-		lblNewLabel_1.setBounds(286, 33, 107, 14);
+		lblNewLabel_1.setBounds(363, 36, 107, 14);
 		add(lblNewLabel_1);
 
 	}
@@ -99,6 +105,7 @@ public class Pagamento extends JPanel {
 		    table.setModel(model);
 		}
 	  
+	  
 	  public JTable getTable() {
 		    return table;
 		}
@@ -108,5 +115,17 @@ public class Pagamento extends JPanel {
 		}
 	  public void Pagar(ActionListener actionListener) {
 			this.pagar.addActionListener(actionListener);
+		}
+	  public void carregarProdutosFromNomes(List<String> nomesProdutos) {
+		    DefaultTableModel model = new DefaultTableModel(
+		        new Object[][] {},
+		        new String[] {"Nome", "Valor"}
+		    );
+		    
+		    for (String nome : nomesProdutos) {
+		        model.addRow(new Object[] {nome, "0.00"}); // Valor pode ser ajustado
+		    }
+		    
+		    table.setModel(model);
 		}
 }

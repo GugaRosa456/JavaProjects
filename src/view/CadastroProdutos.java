@@ -41,7 +41,7 @@ public class CadastroProdutos extends JPanel {
 		setLayout(null);
 		
 		DataFabricação = new JTextField();
-		DataFabricação.setBounds(245, 92, 183, 20);
+		DataFabricação.setBounds(282, 92, 183, 20);
 		add(DataFabricação);
 		DataFabricação.setColumns(10);
 		
@@ -52,7 +52,7 @@ public class CadastroProdutos extends JPanel {
 		
 		Marca = new JTextField();
 		Marca.setColumns(10);
-		Marca.setBounds(245, 210, 183, 20);
+		Marca.setBounds(282, 210, 183, 20);
 		add(Marca);
 		
 		Quantidade = new JTextField();
@@ -61,7 +61,7 @@ public class CadastroProdutos extends JPanel {
 		add(Quantidade);
 		
 		JLabel lblNewLabel = new JLabel("Data de Fabricação");
-		lblNewLabel.setBounds(245, 67, 125, 14);
+		lblNewLabel.setBounds(282, 67, 125, 14);
 		add(lblNewLabel);
 		
 		lblDataDeVencimento = new JLabel("Data de Vencimento");
@@ -73,12 +73,12 @@ public class CadastroProdutos extends JPanel {
 		add(lblMarca);
 		
 		lblMarca_1 = new JLabel("Marca");
-		lblMarca_1.setBounds(245, 185, 125, 14);
+		lblMarca_1.setBounds(282, 185, 125, 14);
 		add(lblMarca_1);
 		
 		NomeProduto = new JTextField();
 		NomeProduto.setColumns(10);
-		NomeProduto.setBounds(26, 36, 402, 20);
+		NomeProduto.setBounds(26, 36, 439, 20);
 		add(NomeProduto);
 		
 		lblNomeDoProduto = new JLabel("Nome do Produto");
@@ -87,11 +87,11 @@ public class CadastroProdutos extends JPanel {
 		
 		Estado = new JTextField();
 		Estado.setColumns(10);
-		Estado.setBounds(245, 154, 183, 20);
+		Estado.setBounds(282, 154, 183, 20);
 		add(Estado);
 		
 		lblEstado = new JLabel("Estado");
-		lblEstado.setBounds(245, 125, 125, 14);
+		lblEstado.setBounds(282, 125, 125, 14);
 		add(lblEstado);
 		
 		valor = new JTextField();
@@ -111,11 +111,11 @@ public class CadastroProdutos extends JPanel {
 		Cadastrar1.setFocusTraversalPolicyProvider(true);
 		Cadastrar1.setForeground(Color.WHITE);
 		Cadastrar1.setBackground(new Color(0, 102, 204));
-		Cadastrar1.setBounds(171, 266, 108, 23);
+		Cadastrar1.setBounds(201, 266, 108, 23);
 		add(Cadastrar1);
 		
 		separator_1 = new JSeparator();
-		separator_1.setBounds(26, 241, 400, 2);
+		separator_1.setBounds(0, 241, 510, 2);
 		add(separator_1);
 
 	}
@@ -143,5 +143,17 @@ public int getValor() {
 }
 	public void cadastrar1(ActionListener actionListener) {
 		this.Cadastrar1.addActionListener(actionListener);
+	}
+	
+	
+	public void limparCampos() {
+	    NomeProduto.setText("");
+	    DataFabricação.setText("");
+	    DataVenciemento.setText("");
+	    Marca.setText("");
+	    Quantidade.setText("");
+	    Estado.setText("");
+	    valor.setText("");
+	   
 	}
 }

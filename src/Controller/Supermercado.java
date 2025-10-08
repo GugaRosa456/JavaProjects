@@ -78,9 +78,10 @@ public class Supermercado {
             view2.carregarProdutos(lista);
             view5.carregarProdutos(lista);
             view6.carregarProdutos(lista);
+            
           
             new Carrinho(model, view5);
-
+            
             view2.comprar(e -> {
                 navegador.navegarPara(Janelas.COMPRAR_PANEL);
                 view5.carregarProdutos(model.listarProdutos());

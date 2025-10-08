@@ -31,27 +31,27 @@ public class Login extends JPanel {
 	 * Create the panel.
 	 */
 	public Login(Janelas janelas) {
-		setPreferredSize(new Dimension(350, 350));
+		setPreferredSize(new Dimension(500, 350));
 		setLayout(null);
 		
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(20, 49, 301, 20);
+		textFieldNome.setBounds(33, 49, 434, 20);
 		add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
 		textFieldSenha = new JTextField();
 		textFieldSenha.setColumns(10);
-		textFieldSenha.setBounds(20, 105, 301, 20);
+		textFieldSenha.setBounds(33, 105, 434, 20);
 		add(textFieldSenha);
 		
 		JLabel lblNewLabel = new JLabel("Nome");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(153, 24, 43, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel.setBounds(228, 26, 43, 14);
 		add(lblNewLabel);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSenha.setBounds(153, 80, 43, 14);
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSenha.setBounds(228, 80, 43, 14);
 		add(lblSenha);
 		
 		Entrar = new JButton("Entrar");
@@ -59,7 +59,7 @@ public class Login extends JPanel {
 		Entrar.setForeground(Color.WHITE);
 		Entrar.setBackground(new Color(0, 102, 204));
 		Entrar.setFont(Entrar.getFont().deriveFont(Entrar.getFont().getStyle() | Font.BOLD));
-		Entrar.setBounds(128, 151, 89, 20);
+		Entrar.setBounds(205, 154, 89, 29);
 		add(Entrar);
 		
 		
@@ -69,17 +69,17 @@ public class Login extends JPanel {
 		Cadastro.setForeground(Color.WHITE);
 		Cadastro.setBackground(new Color(0, 102, 204));
 		Cadastro.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		Cadastro.setBounds(210, 233, 89, 23);
+		Cadastro.setBounds(378, 233, 89, 23);
 		add(Cadastro);
 		
 		
 		JLabel lblNoTemUm = new JLabel("Não tem um conta ainda?");
-		lblNoTemUm.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNoTemUm.setBounds(50, 236, 146, 14);
+		lblNoTemUm.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNoTemUm.setBounds(198, 235, 170, 14);
 		add(lblNoTemUm);
 		
 		separator = new JSeparator();
-		separator.setBounds(10, 209, 350, 2);
+		separator.setBounds(10, 209, 480, 2);
 		add(separator);
 		
 	    Sair = new JButton("Sair");
@@ -90,8 +90,13 @@ public class Login extends JPanel {
 	    Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(210, 267, 89, 23);
+		Sair.setBounds(378, 267, 89, 23);
 		add(Sair);
+		
+		JLabel lblDesejaSair = new JLabel("Deseja sair?");
+		lblDesejaSair.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblDesejaSair.setBounds(279, 269, 89, 14);
+		add(lblDesejaSair);
 	}
 	
 		public String getNome() {
@@ -117,7 +122,5 @@ public class Login extends JPanel {
 		public String getCPF() {
 			return null;
 		}
-		
-		
 	}
 

@@ -7,6 +7,7 @@ import model.Produtos;
 import model.ProdutosDAO;
 import view.ComprarProdutos;
 
+
 public class Carrinho {
     private final ProdutosDAO produtosDAO; 
     private final ComprarProdutos view;    
@@ -50,4 +51,6 @@ public class Carrinho {
             view.carregarCarrinho(lista);
         }
     }
+    public List<Produtos> getListaCarrinho() { return lista; }
+   
 }

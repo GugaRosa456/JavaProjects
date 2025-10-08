@@ -24,8 +24,9 @@ public class Main {
 	        ProdutosDAO produtosDAO = new ProdutosDAO();
 	        Supermercado supermercado = new Supermercado();
 	        Usuario usuario = new Usuario(null, null, null, false);
+	
 	        
-	        PagamentoController pagamentoController = new PagamentoController(produtosDAO, janela.getPagamento(),usuario, usuarioDAO);
+	        PagamentoController pagamentoController = new PagamentoController(produtosDAO, janela.getPagamento(),usuario, usuarioDAO, janela.getComprarProdutos());
 	        
 	        ComprarProdutosController comprarProdutosController = new ComprarProdutosController(janela.getListarProdutos(), produtosDAO, navegador, janela.getComprarProdutos());
             

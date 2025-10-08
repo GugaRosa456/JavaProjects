@@ -45,36 +45,36 @@ public class CadastroUsuarios extends JPanel {
 		setLayout(null);
 	
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(10, 43, 314, 20);
+		textFieldNome.setBounds(10, 43, 480, 20);
 		add(textFieldNome);
 
 		
 		textFieldSenha = new JTextField();
-		textFieldSenha.setBounds(10, 112, 152, 20);
+		textFieldSenha.setBounds(10, 112, 221, 20);
 		add(textFieldSenha);
 
 		textFieldConfirmarSenha = new JTextField();
-		textFieldConfirmarSenha.setBounds(172, 112, 154, 20);
+		textFieldConfirmarSenha.setBounds(241, 112, 249, 20);
 		add(textFieldConfirmarSenha);
 
 		
 		textFieldCPF = new JTextField();
-		textFieldCPF.setBounds(10, 170, 314, 20);
+		textFieldCPF.setBounds(10, 170, 480, 20);
 		add(textFieldCPF);
 
 		
 		lblSenha = new JLabel("Senha");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSenha.setBounds(10, 87, 36, 14);
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSenha.setBounds(10, 87, 60, 14);
 		add(lblSenha);
 		
 		lblConfirmarSenha = new JLabel("Confirmar Senha");
-		lblConfirmarSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblConfirmarSenha.setBounds(172, 87, 101, 14);
+		lblConfirmarSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblConfirmarSenha.setBounds(241, 87, 122, 14);
 		add(lblConfirmarSenha);
 		
 		 Cadastrar = new JButton("Cadastrar");
-		Cadastrar.setBounds(112, 273, 130, 23);
+		Cadastrar.setBounds(279, 243, 152, 23);
 		add(Cadastrar);
 		Cadastrar.setFocusTraversalPolicyProvider(true);
 		Cadastrar.setForeground(Color.WHITE);
@@ -82,16 +82,16 @@ public class CadastroUsuarios extends JPanel {
 		
 		
 		lblUmAdministrador = new JLabel("É um administrador ?");
-		lblUmAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblUmAdministrador.setBounds(112, 221, 122, 14);
+		lblUmAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblUmAdministrador.setBounds(34, 212, 147, 14);
 		add(lblUmAdministrador);
 		
 		 sim = new JRadioButton("sim");
-		sim.setBounds(112, 243, 50, 23);
+		sim.setBounds(34, 243, 50, 23);
 		add(sim);
 	  
 		não = new JRadioButton("não");
-		não.setBounds(202, 243, 46, 23);
+		não.setBounds(106, 243, 46, 23);
 		add(não);
 		
 		 admin = new ButtonGroup();
@@ -99,8 +99,8 @@ public class CadastroUsuarios extends JPanel {
 		admin.add(não);
 		
 		lblNome = new JLabel("Nome");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNome.setBounds(10, 18, 36, 14);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNome.setBounds(10, 18, 60, 14);
 		add(lblNome);
 		
 		lblCpf_1 = new JLabel("CPF");
