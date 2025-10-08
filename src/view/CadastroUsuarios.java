@@ -128,8 +128,19 @@ public class CadastroUsuarios extends JPanel {
 			return this.textFieldCPF.getText();
 		}
 		
+		public String getConfirmarSenha() {
+			return this.textFieldConfirmarSenha.getText();
+		}
 		public void cadastrar(ActionListener actionListener) {
 			this.Cadastrar.addActionListener(actionListener);
 		}
+		public void limparCampos() {
+		    textFieldNome.setText("");
+		    textFieldSenha.setText("");
+		    textFieldConfirmarSenha.setText("");
+		    textFieldCPF.setText("");
+		    admin.setSelected(null, false);
+		}
+		
 	}
 

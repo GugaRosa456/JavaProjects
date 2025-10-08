@@ -79,7 +79,7 @@ public class ProdutosDAO {
 
 	public void atualizarProduto(Produtos produto) {
 	    try (Connection conexao = BancoDeDados.conectar()) {
-	        String sql = "UPDATE produtos SET quantidade=? WHERE id=?";
+	        String sql = "UPDATE produtos SET quantidade=? WHERE nomeProduto=?";
 	        PreparedStatement stmt = conexao.prepareStatement(sql);
 	        stmt.setInt(1, produto.getQuantidade());
 	        stmt.setString(2, produto.getNomeProduto());

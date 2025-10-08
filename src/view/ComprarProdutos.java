@@ -52,21 +52,29 @@ public class ComprarProdutos extends JPanel {
 		add(Comprar);
 		
 		 Sair = new JButton("sair");
+		 Sair.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 	}
+		 });
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(351, 266, 89, 23);
+		Sair.setBounds(333, 266, 89, 23);
 		add(Sair);
 		
 		 Remover = new JButton("remover");
+		 Remover.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 	}
+		 });
 		Remover.setFocusTraversalPolicyProvider(true);
 		Remover.setForeground(Color.WHITE);
 		Remover.setBackground(new Color(0, 102, 204));
-		Remover.setBounds(122, 266, 89, 23);
+		Remover.setBounds(333, 216, 89, 23);
 		add(Remover);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 253, 430, 2);
+		separator.setBounds(20, 250, 430, 2);
 		add(separator);
 		
 		table = new JTable();
@@ -118,7 +126,7 @@ public class ComprarProdutos extends JPanel {
 			}
 		));
 		table_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		table_1.setBounds(323, 59, 117, 173);
+		table_1.setBounds(323, 33, 117, 173);
 		add(table_1);
 		
 		JLabel lblNewLabel = new JLabel("Produtos");
@@ -127,7 +135,7 @@ public class ComprarProdutos extends JPanel {
 		add(lblNewLabel);
 		
 		textField = new JTextField();
-		textField.setBounds(218, 267, 123, 20);
+		textField.setBounds(122, 267, 201, 20);
 		add(textField);
 		textField.setColumns(10);
 	}
