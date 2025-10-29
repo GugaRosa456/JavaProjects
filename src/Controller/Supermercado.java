@@ -17,11 +17,6 @@ import view.MostrarProdutos;
 import view.Pagamento;
 
 public class Supermercado {
-// lista de todos os produtos que forem cadastrados//
-
-	
-	
-	
     public static void CadastroProdutos(
     		
     		            CadastroProdutos view2, 
@@ -34,28 +29,44 @@ public class Supermercado {
     		            String nome = view2.getNomeProduto();
     		            String marca = view2.getMarca();
     		            String estado = view2.getEstado();
-    		            int dataFabricacao = view2.getDataFabricação();
-    		            int dataVencimento = view2.getDataVencimento();
-    		            int quantidade = view2.getQuantidade();
-    		            int valor = view2.getValor();
-    		          
-    		            
+    		            String dataFabricacao = view2.getDataFabricacao();
+    		            String dataVencimento = view2.getDataVencimento();
+    		            int quantidade;
+    		            double valor;
+
+    		            // Validate numeric fields
+    		            try {
+    		                quantidade = view2.getQuantidade();
+    		                valor = view2.getValor();
+    		            } catch (NumberFormatException e) {
+    		                JOptionPane.showMessageDialog(null, "Quantidade e Valor devem ser numéricos.", "Erro", JOptionPane.ERROR_MESSAGE);
+    		                return;
+    		            }
+
+    		            // Validate other fields
+    		            if (nome.isEmpty() || marca.isEmpty() || estado.isEmpty() ||
+    		                dataFabricacao.isEmpty() || dataVencimento.isEmpty() ||
+    		                quantidade <= 0 || valor <= 0) {
+    		                JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos corretamente!", "Erro", JOptionPane.ERROR_MESSAGE);
+    		                return;
+    		            }
+
     		            Produtos produto = new Produtos(
-    		                nome,dataFabricacao, dataVencimento, 
+    		                nome, dataFabricacao, dataVencimento, 
     		                valor, quantidade, marca, estado
     		            );
 
+    		  
     		            model.adicionarProduto(produto);
 
-    		           
+    		         
+    		            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-    		            JOptionPane.showMessageDialog(view, "Produto cadastrado com sucesso!");
+    		         
+    		            view2.limparCampos();
     		            navegador.navegarPara(Janelas.MOSTRAR_PANEL);
-
-    		        } catch (NumberFormatException ex) {
-    		            System.out.println("Erro: Data de fabricação, data de vencimento, valor e quantidade devem ser números.");
-    		        } catch (Exception ex) {
-    		            System.out.println("Erro ao cadastrar produto:" + ex.getMessage());
+    		        } catch (Exception e) {
+    		            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
     		        }
     		    }
 
@@ -70,16 +81,12 @@ public class Supermercado {
             MostrarProdutos view3) {
         
         try {
-         
-            
             List<Produtos> lista = model.listarProdutos();
             
             view3.carregarProdutos(lista);
             view2.carregarProdutos(lista);
             view5.carregarProdutos(lista);
-            view6.carregarProdutos(lista);
             
-          
             new Carrinho(model, view5);
             
             view2.comprar(e -> {
@@ -89,7 +96,8 @@ public class Supermercado {
 
             view2.pagar(e -> {
                 navegador.navegarPara(Janelas.PAGAMENTO_PANEL);
-                view6.carregarProdutos(model.listarProdutos());
+                // Carregar apenas os produtos do carrinho na tela de pagamento
+                view6.carregarProdutos(view5.getListaCarrinho());
             });
         } catch (Exception ex) {
             System.out.println("Erro ao listar produtos: " + ex.getMessage());
@@ -106,4 +114,3 @@ public class Supermercado {
         }
     }
 }
-

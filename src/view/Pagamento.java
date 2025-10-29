@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Produtos;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
 public class Pagamento extends JPanel {
 
@@ -23,6 +24,7 @@ public class Pagamento extends JPanel {
 	private JTextField Valor;
 	private JTable table;
 	private JButton pagar;
+	private JButton voltar;
 
 	/**
 	 * Create the panel.
@@ -46,6 +48,27 @@ public class Pagamento extends JPanel {
 		pagar = new JButton("pagar");
 		pagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					double valorInserido = Double.parseDouble(Valor.getText().trim());
+				
+
+					double total = 0.0;
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					for (int i = 0; i < model.getRowCount(); i++) {
+						total += Double.parseDouble(model.getValueAt(i, 2).toString());
+					}
+
+					if (valorInserido < total) {
+						throw new IllegalArgumentException("Valor inserido é insuficiente.");
+					}
+
+
+					model.setRowCount(0); 
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null, "Valor inserido deve ser numérico.", "Erro", JOptionPane.ERROR_MESSAGE);
+				} catch (IllegalArgumentException ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		pagar.setFocusTraversalPolicyProvider(true);
@@ -81,7 +104,13 @@ public class Pagamento extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel("produtos comprados");
 		lblNewLabel_1.setBounds(363, 36, 107, 14);
 		add(lblNewLabel_1);
-
+		
+		voltar = new JButton("Voltar");
+		voltar.setForeground(Color.WHITE);
+		voltar.setFocusTraversalPolicyProvider(true);
+		voltar.setBackground(new Color(0, 102, 204));
+		voltar.setBounds(132, 179, 107, 35);
+		add(voltar);
 	}
 	
 	  public void carregarProdutos(List<Produtos> lista) {
@@ -116,6 +145,9 @@ public class Pagamento extends JPanel {
 	  public void Pagar(ActionListener actionListener) {
 			this.pagar.addActionListener(actionListener);
 		}
+	  public void Voltar(ActionListener actionListener) {
+		  this.voltar.addActionListener(actionListener);
+	  }
 	  public void carregarProdutosFromNomes(List<String> nomesProdutos) {
 		    DefaultTableModel model = new DefaultTableModel(
 		        new Object[][] {},

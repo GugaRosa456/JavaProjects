@@ -36,6 +36,7 @@ public class CadastroUsuarios extends JPanel {
 	private JRadioButton não;
 	private JLabel lblNome;
 	private JLabel lblCpf_1;
+	private JButton voltar;
 
 	/**
 	 * Create the panel.
@@ -45,7 +46,7 @@ public class CadastroUsuarios extends JPanel {
 		setLayout(null);
 	
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(10, 43, 480, 20);
+		textFieldNome.setBounds(10, 43, 469, 20);
 		add(textFieldNome);
 
 		
@@ -54,12 +55,12 @@ public class CadastroUsuarios extends JPanel {
 		add(textFieldSenha);
 
 		textFieldConfirmarSenha = new JTextField();
-		textFieldConfirmarSenha.setBounds(241, 112, 249, 20);
+		textFieldConfirmarSenha.setBounds(241, 112, 238, 20);
 		add(textFieldConfirmarSenha);
 
 		
 		textFieldCPF = new JTextField();
-		textFieldCPF.setBounds(10, 170, 480, 20);
+		textFieldCPF.setBounds(10, 170, 469, 20);
 		add(textFieldCPF);
 
 		
@@ -74,7 +75,7 @@ public class CadastroUsuarios extends JPanel {
 		add(lblConfirmarSenha);
 		
 		 Cadastrar = new JButton("Cadastrar");
-		Cadastrar.setBounds(279, 243, 152, 23);
+		Cadastrar.setBounds(265, 210, 152, 23);
 		add(Cadastrar);
 		Cadastrar.setFocusTraversalPolicyProvider(true);
 		Cadastrar.setForeground(Color.WHITE);
@@ -107,6 +108,13 @@ public class CadastroUsuarios extends JPanel {
 		lblCpf_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblCpf_1.setBounds(10, 145, 36, 14);
 		add(lblCpf_1);
+		
+		voltar = new JButton("Voltar");
+		voltar.setForeground(Color.WHITE);
+		voltar.setFocusTraversalPolicyProvider(true);
+		voltar.setBackground(new Color(0, 102, 204));
+		voltar.setBounds(265, 244, 152, 23);
+		add(voltar);
 
 	}
 	
@@ -133,6 +141,9 @@ public class CadastroUsuarios extends JPanel {
 		}
 		public void cadastrar(ActionListener actionListener) {
 			this.Cadastrar.addActionListener(actionListener);
+		}
+		public void Voltar(ActionListener actionListener) {
+			this.voltar.addActionListener(actionListener);
 		}
 		public void limparCampos() {
 		    textFieldNome.setText("");

@@ -122,5 +122,11 @@ public class Login extends JPanel {
 		public String getCPF() {
 			return null;
 		}
+		
+		// Add an entrarAdmin method
+		public void entrarAdmin(ActionListener actionListener) {
+		    JButton adminButton = new JButton("Admin Login");
+		    adminButton.addActionListener(actionListener);
+		    add(adminButton);
+		}
 	}
-

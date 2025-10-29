@@ -64,7 +64,9 @@ public class CadastroUsuarioController {
 	 			
 	 		});
 	 		
-	 		
+	 		this.view.Voltar(e -> {
+ 				this.navegador.navegarPara(Janelas.LOGIN_PANEL);
+ 			});
 	 	}
 	 	
 	 }

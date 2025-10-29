@@ -10,9 +10,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.Produtos;
+import model.ProdutosDAO;
 
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,17 +20,17 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
 public class ComprarProdutos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTable table_1;
-	private JTextField textField;
-	private JButton Comprar;
 	private JButton Sair;
 	private JButton Remover;
-	
+	private List<Produtos> carrinho = new ArrayList<>();
 
 	/**
 	 * Create the panel.
@@ -39,21 +39,10 @@ public class ComprarProdutos extends JPanel {
 		setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 500, 22);
+		menuBar.setBounds(0, -1, 500, 22);
 		add(menuBar);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(0, 2, 110, 20);
-		add(comboBox);
-		
-		 Comprar = new JButton("Comprar");
-		Comprar.setFocusTraversalPolicyProvider(true);
-		Comprar.setForeground(Color.WHITE);
-		Comprar.setBackground(new Color(0, 102, 204));
-		Comprar.setBounds(23, 266, 89, 23);
-		add(Comprar);
-		
-		 Sair = new JButton("sair");
+		 Sair = new JButton("Voltar");
 		 Sair.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
 		 	}
@@ -61,12 +50,21 @@ public class ComprarProdutos extends JPanel {
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(388, 266, 89, 23);
+		Sair.setBounds(267, 266, 89, 23);
 		add(Sair);
 		
 		 Remover = new JButton("remover");
 		 Remover.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
+		 		int linhaSelecionada = table_1.getSelectedRow();
+		        if (linhaSelecionada >= 0) {
+		            DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+		            String nomeProduto = model.getValueAt(linhaSelecionada, 0).toString();
+		            // Remove da lista do carrinho
+		            carrinho.removeIf(p -> p.getNomeProduto().equals(nomeProduto));
+		            // Remove da tabela visual
+		            model.removeRow(linhaSelecionada);
+		        }
 		 	}
 		 });
 		Remover.setFocusTraversalPolicyProvider(true);
@@ -82,6 +80,7 @@ public class ComprarProdutos extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
@@ -136,80 +135,87 @@ public class ComprarProdutos extends JPanel {
 		lblNewLabel.setBounds(38, 33, 61, 14);
 		add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(136, 267, 221, 20);
-		add(textField);
-		textField.setColumns(10);
+		
+		table.addMouseListener(new java.awt.event.MouseAdapter() {
+	        public void mouseClicked(java.awt.event.MouseEvent evt) {
+	            int row = table.getSelectedRow();
+	            if (row >= 0) {
+	                String nomeProduto = table.getValueAt(row, 0).toString();
+	                Produtos produto = new ProdutosDAO().buscarPorNome(nomeProduto);
+	                if (produto != null && produto.getQuantidade() > 0) {
+	                    produto.setQuantidade(produto.getQuantidade() - 1);
+	                    new ProdutosDAO().atualizarProduto(produto);
+	                    carrinho.add(produto);
+	                    carregarCarrinho();
+	                }
+	            }
+	        }
+	    });
 	}
-		  public void carregarProdutos(List<Produtos> lista) {
-			    DefaultTableModel model = new DefaultTableModel(
-			        new Object[][] {},
-			        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
-			        );
-			   
+	
+	public void carregarProdutos(List<Produtos> lista) {
+	    DefaultTableModel model = new DefaultTableModel(
+	        new Object[][] {},
+	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
+	        );
+	   
 
-			    for (Produtos p : lista) {
-			        model.addRow(new Object[] {
-			            p.getNomeProduto(),
-			            p.getMarca(),
-			            p.getEstado(),
-			            p.getDataFabricacao(),
-			            p.getDataVencimento(),
-			            p.getQuantidade(),
-			            p.getValor()
-			        });
-			    }
+	    for (Produtos p : lista) {
+	        model.addRow(new Object[] {
+	            p.getNomeProduto(),
+	            p.getMarca(),
+	            p.getEstado(),
+	            p.getDataFabricacao(),
+	            p.getDataVencimento(),
+	            p.getQuantidade(),
+	            p.getValor()
+	        });
+	    }
 
-			    table.setModel(model);
-			}
-		  
-		  public void carregarCarrinho(List<Produtos> lista) {
-			    DefaultTableModel model = new DefaultTableModel(
-			        new Object[][] {},
-			        new String[] {"Nome do Produto"}
-			    );
+	    table.setModel(model);
+	}
+	
+	public void carregarCarrinho() {
+	    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+	    model.setRowCount(0);
+	    for (Produtos produto : carrinho) {
+	        model.addRow(new Object[]{produto.getNomeProduto(), produto.getQuantidade(), produto.getValor()});
+	    }
+	}
+	
 
-			    for (Produtos p : lista) {
-			        model.addRow(new Object[] {
-			            p.getNomeProduto()
-			        });
-			    }
+		public JButton getRemoverButton() {
+		    return Remover;
+		}
 
-			    table_1.setModel(model);
-			}
-			
-		  public JButton getComprarButton() {
-			    return Comprar;
-			}
+		public JTable getTable1() {
+            return table;
+		}
+		public JTable getTableCarrinho() {
+		    return table_1;
+		} 
+		public void sair(ActionListener actionListener) {
+			this.Sair.addActionListener(actionListener);
+		}
+		
+		public DefaultTableModel getTableModelCarrinho() {
+		    return (DefaultTableModel) table_1.getModel();
+		}
+		public List<String> getNomesProdutosCarrinho() {
+		    List<String> nomes = new ArrayList<>();
+		    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
+		    
+		    for (int i = 0; i < model.getRowCount(); i++) {
+		        Object valor = model.getValueAt(i, 0);
+		        if (valor != null) {
+		            nomes.add(valor.toString());
+		        }
+		    }
+		    return nomes;
+		}
+		public List<Produtos> getListaCarrinho() {
+		    return carrinho;
+		}
 
-			public JButton getRemoverButton() {
-			    return Remover;
-			}
-
-			public JTextField getTextField() {
-			    return textField;
-			}
-
-			public JTable getTableCarrinho() {
-			    return table_1;
-			} 
-			public void sair(ActionListener actionListener) {
-				this.Sair.addActionListener(actionListener);
-			}
-			
-			public DefaultTableModel getTableModelCarrinho() {
-			    return (DefaultTableModel) table_1.getModel();
-			}
-			public List<String> getNomesProdutosCarrinho() {
-			    List<String> nomes = new ArrayList<>();
-			    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
-			    
-			    for (int i = 0; i < model.getRowCount(); i++) {
-			        Object valor = model.getValueAt(i, 0);
-			        if (valor != null) {
-			            nomes.add(valor.toString());
-			        }
-			    }
-			    return nomes;
-			}
+	
 }

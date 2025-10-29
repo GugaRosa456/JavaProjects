@@ -33,6 +33,16 @@ this.estado = estado;
 this.id = id;
 }
 
+public Produtos(String nomeProduto, String dataFabricacao, String dataVencimento, double valor, int quantidade, String marca, String estado) {
+    this.nomeProduto = nomeProduto;
+    this.dataFabricacao = Integer.parseInt(dataFabricacao);
+    this.dataVencimento = Integer.parseInt(dataVencimento);
+    this.valor = (int) valor;
+    this.quantidade = quantidade;
+    this.marca = marca;
+    this.estado = estado;
+}
+
 public int getId() {
 	return id;
 }

@@ -74,6 +74,10 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		    }
 		  
 });  
+	this.view.entrarAdmin(e -> {
+        this.view3.limparTabela();
+        this.navegador.navegarPara(Janelas.MOSTRAR_PANEL);
+    });
 	this.view.sair(e -> {
 		System.exit(0);
 	});

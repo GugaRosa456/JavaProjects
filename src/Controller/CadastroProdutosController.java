@@ -28,9 +28,15 @@ public class CadastroProdutosController{
     this.view2.cadastrar1(e -> {
     	 supermercado.CadastroProdutos(view2, model, view, navegador);
 		});
-	
+	this.view2.Voltar(e -> {
+	this.navegador.navegarPara(Janelas.MOSTRAR_PANEL);
+	});
 	
 	}
+	
+	public void cadastrarProduto() {
+        supermercado.CadastroProdutos(view2, model, view, navegador);
+    }
 	
 	
 }
