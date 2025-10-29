@@ -79,22 +79,22 @@ public class MostrarProdutos extends JPanel {
 	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
 	    );
 
-	    if (lista != null && !lista.isEmpty()) {
-	        for (Produtos p : lista) {
-	            model.addRow(new Object[] {
-	                p.getNomeProduto(),
-	                p.getMarca(),
-	                p.getEstado(),
-	                p.getDataFabricacao(),
-	                p.getDataVencimento(),
-	                p.getQuantidade(),
-	                p.getValor()
-	            });
-	        }
+	    for (Produtos p : lista) {
+	        model.addRow(new Object[] {
+	            p.getNomeProduto(),
+	            p.getMarca(),
+	            p.getEstado(),
+	            p.getDataFabricacao(),
+	            p.getDataVencimento(),
+	            p.getQuantidade(),
+	            p.getValor()
+	        });
 	    }
 
-	    table.setModel(model);
+	 table.setModel(model);
 	}
+
+	   
  public void limparTabela() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);

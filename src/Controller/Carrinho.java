@@ -47,7 +47,6 @@ public class Carrinho {
         view.carregarCarrinho();
     }
 
-    // Ajuste para não exibir mensagem se o produto já está no carrinho.
     private void adicionarProdutoCarrinho() {
         int linhaSelecionada = view.getTable1().getSelectedRow(); 
         if (linhaSelecionada >= 0) {
@@ -71,14 +70,6 @@ public class Carrinho {
     }
     public List<Produtos> getListaCarrinho() { return lista; }
    
-    // Adicionando mensagem de "Produtos comprados" ao finalizar a compra.
-    private void finalizarCompra() {
-        if (!lista.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Produtos comprados com sucesso!", "Compra", JOptionPane.INFORMATION_MESSAGE);
-            lista.clear(); // Limpa o carrinho após a compra
-            atualizarTabelas(); // Atualiza as tabelas para refletir o estado atual
-        } else {
-            JOptionPane.showMessageDialog(null, "Nenhum produto no carrinho para comprar.", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+
+    
 }

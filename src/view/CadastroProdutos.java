@@ -79,21 +79,6 @@ public class CadastroProdutos extends JPanel {
 		valor.setColumns(10);
 
 		Cadastrar1 = new JButton("Cadastrar");
-		Cadastrar1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					if (nomeProduto.getText().isEmpty() || marca.getText().isEmpty() || estado.getText().isEmpty() ||
-							dataFabricacao.getText().isEmpty() || dataVencimento.getText().isEmpty() ||
-							quantidade.getText().isEmpty() || valor.getText().isEmpty())  {
-						JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
-					} else {
-						janela.getCadastroProdutosController().cadastrarProduto();
-					}
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Por favor, insira valores numéricos válidos nos campos apropriados!", "Erro", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
 		Cadastrar1.setFocusTraversalPolicyProvider(true);
 		Cadastrar1.setForeground(Color.WHITE);
 		Cadastrar1.setBackground(new Color(0, 102, 204));

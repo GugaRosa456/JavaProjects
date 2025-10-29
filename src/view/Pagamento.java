@@ -55,7 +55,8 @@ public class Pagamento extends JPanel {
 					double total = 0.0;
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
 					for (int i = 0; i < model.getRowCount(); i++) {
-						total += Double.parseDouble(model.getValueAt(i, 2).toString());
+						total += Double.parseDouble(model.getValueAt(i, 1).toString());
+
 					}
 
 					if (valorInserido < total) {
@@ -79,25 +80,9 @@ public class Pagamento extends JPanel {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"New column", "New column"
-			}
-		));
+			    new Object[][] {},
+			    new String[] {"Produto", "Valor"}
+			));
 		table.setBounds(363, 61, 107, 205);
 		add(table);
 		

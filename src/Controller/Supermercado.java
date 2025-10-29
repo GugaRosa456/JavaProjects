@@ -34,22 +34,16 @@ public class Supermercado {
     		            int quantidade;
     		            double valor;
 
-    		            // Validate numeric fields
+    		       
     		            try {
     		                quantidade = view2.getQuantidade();
     		                valor = view2.getValor();
     		            } catch (NumberFormatException e) {
-    		                JOptionPane.showMessageDialog(null, "Quantidade e Valor devem ser numéricos.", "Erro", JOptionPane.ERROR_MESSAGE);
     		                return;
     		            }
 
-    		            // Validate other fields
-    		            if (nome.isEmpty() || marca.isEmpty() || estado.isEmpty() ||
-    		                dataFabricacao.isEmpty() || dataVencimento.isEmpty() ||
-    		                quantidade <= 0 || valor <= 0) {
-    		                JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos corretamente!", "Erro", JOptionPane.ERROR_MESSAGE);
-    		                return;
-    		            }
+    		       
+    		          
 
     		            Produtos produto = new Produtos(
     		                nome, dataFabricacao, dataVencimento, 
@@ -66,7 +60,6 @@ public class Supermercado {
     		            view2.limparCampos();
     		            navegador.navegarPara(Janelas.MOSTRAR_PANEL);
     		        } catch (Exception e) {
-    		            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
     		        }
     		    }
 
@@ -96,7 +89,6 @@ public class Supermercado {
 
             view2.pagar(e -> {
                 navegador.navegarPara(Janelas.PAGAMENTO_PANEL);
-                // Carregar apenas os produtos do carrinho na tela de pagamento
                 view6.carregarProdutos(view5.getListaCarrinho());
             });
         } catch (Exception ex) {

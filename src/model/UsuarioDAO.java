@@ -4,15 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-
 
 public class UsuarioDAO {
-	 
+
     public void adicionarUsuario(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (nome, senha, cpf, is_admin) VALUES (?, ?, ? , ?)";
+        String sql = "INSERT INTO usuarios (nome, senha, cpf, is_admin) VALUES (?, ?, ?, ?)";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -23,12 +19,11 @@ public class UsuarioDAO {
             pstm.setString(2, usuario.getSenha());
             pstm.setString(3, usuario.getCPF());
             pstm.setBoolean(4, usuario.isAdmin());
-          
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-        	BancoDeDados.desconectar(conexao);
+            BancoDeDados.desconectar(conexao);
             if (pstm != null) {
                 try {
                     pstm.close();
@@ -38,40 +33,40 @@ public class UsuarioDAO {
             }
         }
     }
+
     public Usuario buscarPorUsuarios(String nome, String senha) {
-        String sql = "SELECT * FROM usuarios WHERE Nome = ? AND Senha = ?";
-        Connection conexao = null;
-        PreparedStatement pstm = null;
-        ResultSet rset = null;
+        String sql = "SELECT nome, senha, cpf, is_admin FROM usuarios WHERE nome = ? AND senha = ?";
         Usuario usuario = null;
 
-        try {
-            conexao = BancoDeDados.conectar();
-            pstm = conexao.prepareStatement(sql);
+        try (Connection conexao = BancoDeDados.conectar();
+             PreparedStatement pstm = conexao.prepareStatement(sql)) {
+
             pstm.setString(1, nome);
             pstm.setString(2, senha);
-            rset = pstm.executeQuery();
 
-            if (rset.next()) {
-                rset.getString("Nome");
-                rset.getString("Senha");
-              String cpf =   rset.getString("CPF");
-                boolean is_admin = rset.getBoolean("is_admin");
-                
-                usuario = new Usuario(nome, senha, cpf, is_admin);
+            try (ResultSet rset = pstm.executeQuery()) {
+                if (rset.next()) {
+                    String nomeDB = rset.getString("nome");
+                    String senhaDB = rset.getString("senha");
+                    String cpf = rset.getString("cpf");
+                    boolean isAdmin = rset.getBoolean("is_admin");
+
+                   
+                    usuario = new Usuario(nomeDB, senhaDB, cpf, isAdmin);
+
+                    // Opção B: se sua classe Usuario NÃO tem esse construtor, use setters:
+                    // Usuario usuario = new Usuario();
+                    // usuario.setNome(nomeDB);
+                    // usuario.setSenha(senhaDB);
+                    // usuario.setCPF(cpf);
+                    // usuario.setAdmin(isAdmin);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            BancoDeDados.desconectar(conexao);
         }
 
         return usuario;
     }
-  
-  
-  
 
-    
 }
-

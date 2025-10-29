@@ -62,7 +62,7 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		                navegador.navegarPara(Janelas.MOSTRAR_PANEL);
 		            } else {
 		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3);
-		            	navegador.navegarPara(Janelas.LISTAR_PANEL);;
+		            	navegador.navegarPara(Janelas.LISTAR_PANEL);
 		            }
 		        } else {
 		            JOptionPane.showMessageDialog(view, "Nome ou senha incorretos!", "Erro de login", JOptionPane.ERROR_MESSAGE);
@@ -82,5 +82,6 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		System.exit(0);
 	});
 }
+
 
 }
