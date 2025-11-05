@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
@@ -27,7 +28,7 @@ public class MostrarProdutos extends JPanel {
 	private JTable table;
 	private JButton alterar;
 	private JButton Sair;
-	
+	private DefaultTableModel model;
 
 	/**
 	 * Create the panel.
@@ -41,16 +42,22 @@ public class MostrarProdutos extends JPanel {
 		add(menuBar);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {},
-			new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
-			
-			
-		));
-		table.setBounds(25, 33, 450, 224);
-		add(table);
+		this.model = new DefaultTableModel(
+				new Object[][] {},
+				new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
+				
+			);
 		
-		alterar = new JButton("Alterar");
+		table.setBounds(0, 33, 450, 224);
+		table.setModel(model);
+
+		
+		 JScrollPane scrollPane = new JScrollPane(table);
+	        scrollPane.setBounds(0, 33, 450, 224);  // Definindo o tamanho do painel de rolagem
+	        
+	        add(scrollPane);
+		
+		alterar = new JButton("Adicionar");
 		alterar.setFocusTraversalPolicyProvider(true);
 		alterar.setForeground(Color.WHITE);
 		alterar.setBackground(new Color(0, 102, 204));
@@ -74,11 +81,10 @@ public class MostrarProdutos extends JPanel {
  }
 
  public void carregarProdutos(List<Produtos> lista) {
-	    DefaultTableModel model = new DefaultTableModel(
-	        new Object[][] {},
-	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
-	    );
+	
+	   System.out.println("entrei");
 
+	  
 	    for (Produtos p : lista) {
 	        model.addRow(new Object[] {
 	            p.getNomeProduto(),
@@ -90,30 +96,6 @@ public class MostrarProdutos extends JPanel {
 	            p.getValor()
 	        });
 	    }
-
-	 table.setModel(model);
 	}
-
-	   
- public void limparTabela() {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.setRowCount(0);
-    }
- 
- public void exibirMensagemVazia() {
-	    if (table.getRowCount() == 0) {
-	        JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-	    }
-	}
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
    
 }

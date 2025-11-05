@@ -76,6 +76,10 @@ public class Supermercado {
         try {
             List<Produtos> lista = model.listarProdutos();
             
+            if(lista != null) {
+            	System.out.println(lista.get(0).getNomeProduto());
+            }
+            
             view3.carregarProdutos(lista);
             view2.carregarProdutos(lista);
             view5.carregarProdutos(lista);
@@ -97,12 +101,6 @@ public class Supermercado {
     }
     
     
-    public static void carregarProdutosParaAdmin(MostrarProdutos view, ProdutosDAO model) {
-        try {
-            var lista = model.listarProdutos();
-            view.carregarProdutos(lista);
-        } catch (Exception e) {
-            System.out.println("Erro ao listar produtos: " + e.getMessage());
-        }
-    }
+
+    
 }

@@ -58,7 +58,7 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
                 
 		        if (usuario != null) {
 		            if (usuario.isAdmin()) {
-		                supermercado.carregarProdutosParaAdmin(view3, produtosDAO);
+		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3);
 		                navegador.navegarPara(Janelas.MOSTRAR_PANEL);
 		            } else {
 		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3);
@@ -74,10 +74,7 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		    }
 		  
 });  
-	this.view.entrarAdmin(e -> {
-        this.view3.limparTabela();
-        this.navegador.navegarPara(Janelas.MOSTRAR_PANEL);
-    });
+	
 	this.view.sair(e -> {
 		System.exit(0);
 	});
