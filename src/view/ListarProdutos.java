@@ -34,7 +34,7 @@ public class ListarProdutos extends JPanel {
 	 */
 	public ListarProdutos(Janelas janelas) {
 		setLayout(null);
-		// para o usuario //
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 500, 22);
 		add(menuBar);

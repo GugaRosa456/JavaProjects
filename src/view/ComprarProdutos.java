@@ -1,6 +1,8 @@
 package view;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -50,7 +52,7 @@ public class ComprarProdutos extends JPanel {
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(267, 266, 89, 23);
+		Sair.setBounds(180, 266, 89, 23);
 		add(Sair);
 		
 		 Remover = new JButton("remover");
@@ -99,8 +101,10 @@ public class ComprarProdutos extends JPanel {
 				"", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
-		table.setBounds(38, 58, 294, 180);
-		add(table);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(38, 58, 294, 180);
+		add(scrollPane);
 		
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(

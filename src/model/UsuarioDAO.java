@@ -54,12 +54,7 @@ public class UsuarioDAO {
                    
                     usuario = new Usuario(nomeDB, senhaDB, cpf, isAdmin);
 
-                    // Opção B: se sua classe Usuario NÃO tem esse construtor, use setters:
-                    // Usuario usuario = new Usuario();
-                    // usuario.setNome(nomeDB);
-                    // usuario.setSenha(senhaDB);
-                    // usuario.setCPF(cpf);
-                    // usuario.setAdmin(isAdmin);
+                
                 }
             }
         } catch (SQLException e) {

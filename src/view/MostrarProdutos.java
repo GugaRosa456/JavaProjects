@@ -53,7 +53,7 @@ public class MostrarProdutos extends JPanel {
 
 		
 		 JScrollPane scrollPane = new JScrollPane(table);
-	        scrollPane.setBounds(0, 33, 450, 224);  // Definindo o tamanho do painel de rolagem
+	        scrollPane.setBounds(0, 33, 450, 224);  
 	        
 	        add(scrollPane);
 		
@@ -84,18 +84,20 @@ public class MostrarProdutos extends JPanel {
 	
 	   System.out.println("entrei");
 
-	  
-	    for (Produtos p : lista) {
-	        model.addRow(new Object[] {
-	            p.getNomeProduto(),
-	            p.getMarca(),
-	            p.getEstado(),
-	            p.getDataFabricacao(),
-	            p.getDataVencimento(),
-	            p.getQuantidade(),
-	            p.getValor()
-	        });
-	    }
-	}
+	
+       model.setRowCount(0);
+
+        for (Produtos p : lista) {
+            model.addRow(new Object[] {
+                p.getNomeProduto(),
+                p.getMarca(),
+                p.getEstado(),
+                p.getDataFabricacao(),
+                p.getDataVencimento(),
+                p.getQuantidade(),
+                p.getValor()
+            });
+        }
+    }
    
 }

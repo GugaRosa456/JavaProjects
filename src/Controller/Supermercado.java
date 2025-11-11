@@ -17,51 +17,38 @@ import view.MostrarProdutos;
 import view.Pagamento;
 
 public class Supermercado {
-    public static void CadastroProdutos(
-    		
-    		            CadastroProdutos view2, 
-    		            ProdutosDAO model, 
-    		            MostrarProdutos view, 
-    		            Navegador navegador
-    		            ) {
-    		        
-    		        try {
-    		            String nome = view2.getNomeProduto();
-    		            String marca = view2.getMarca();
-    		            String estado = view2.getEstado();
-    		            String dataFabricacao = view2.getDataFabricacao();
-    		            String dataVencimento = view2.getDataVencimento();
-    		            int quantidade;
-    		            double valor;
+	    public static void CadastroProdutos(
+	            CadastroProdutos view2, 
+	            ProdutosDAO model, 
+	            MostrarProdutos view, 
+	            Navegador navegador
+	    ) {
+	        try {
+	            String nome = view2.getNomeProduto();
+	            String marca = view2.getMarca();
+	            String estado = view2.getEstado();
+	            String dataFabricacao = view2.getDataFabricacao();
+	            String dataVencimento = view2.getDataVencimento();
+	            int quantidade = view2.getQuantidade();
+	            double valor = view2.getValor();
 
-    		       
-    		            try {
-    		                quantidade = view2.getQuantidade();
-    		                valor = view2.getValor();
-    		            } catch (NumberFormatException e) {
-    		                return;
-    		            }
+	            Produtos produto = new Produtos(
+	                nome, dataFabricacao, dataVencimento, 
+	                valor, quantidade, marca, estado
+	            );
 
-    		       
-    		          
+	            model.adicionarProduto(produto);
 
-    		            Produtos produto = new Produtos(
-    		                nome, dataFabricacao, dataVencimento, 
-    		                valor, quantidade, marca, estado
-    		            );
+	            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+	           
+	            view2.limparCampos();
 
-    		  
-    		            model.adicionarProduto(produto);
+	        } catch (NumberFormatException e) {
+	            JOptionPane.showMessageDialog(null, "Erro ao cadastrar produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+	        }
+	    }
+	
 
-    		         
-    		            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-    		         
-    		            view2.limparCampos();
-    		            navegador.navegarPara(Janelas.MOSTRAR_PANEL);
-    		        } catch (Exception e) {
-    		        }
-    		    }
 
     
     

@@ -20,13 +20,9 @@ public class CadastroUsuarioController {
 	 		this.navegador = navegador;
 	 		this.view1 = view1;
 	 		
-	 		
-	 		
-	 		
 	 		this.view.cadastrar(e -> {
 	 			
 	 			try {
-	 				
 	 				 if (view.getNome() == null || view.getNome().trim().isEmpty() ||
 	 	 		            view.getSenha() == null || view.getSenha().trim().isEmpty() ||
 	 	 		            view.getCPF() == null || view.getCPF().trim().isEmpty()) {
@@ -34,7 +30,6 @@ public class CadastroUsuarioController {
 	 	 		            JOptionPane.showMessageDialog(view, "Por favor, preencha todos os campos obrigatórios.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
 	 	 		            return; 
 	 	 		        }
-	 				 
 	 			    if(!view.getSenha().equals(view.getConfirmarSenha())) {
                     	JOptionPane.showMessageDialog(view, "Erro: Senha incorreta, tente novamente ");
                     	return;
@@ -46,21 +41,15 @@ public class CadastroUsuarioController {
                     Usuario novoUsuario = new Usuario(nome, senha, cpf, admin );
               
                     model.adicionarUsuario(novoUsuario);
-                    
-                
-
                     JOptionPane.showMessageDialog(view, "Usuário cadastrado com sucesso!");
                     
                     view.limparCampos();
-                    
                     navegador.navegarPara(Janelas.LOGIN_PANEL); 
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(view, "Erro: CPF e senha devem ser números.", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(view, "Erro ao cadastrar usuário: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
-	 			
-	 			
 	 			
 	 		});
 	 		

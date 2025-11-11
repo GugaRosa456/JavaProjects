@@ -46,31 +46,7 @@ public class Pagamento extends JPanel {
 		add(Valor);
 
 		pagar = new JButton("pagar");
-		pagar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					double valorInserido = Double.parseDouble(Valor.getText().trim());
-
-					double total = 0.0;
-					DefaultTableModel model = (DefaultTableModel) table.getModel();
-					for (int i = 0; i < model.getRowCount(); i++) {
-						total += Double.parseDouble(model.getValueAt(i, 1).toString());
-
-					}
-
-					if (valorInserido < total) {
-						throw new IllegalArgumentException("Valor inserido é insuficiente.");
-					}
-
-					model.setRowCount(0);
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null, "Valor inserido deve ser numérico.", "Erro",
-							JOptionPane.ERROR_MESSAGE);
-				} catch (IllegalArgumentException ex) {
-					JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		// Controller will attach listener via Pagar(ActionListener). No internal logic here.
 		pagar.setFocusTraversalPolicyProvider(true);
 		pagar.setForeground(Color.WHITE);
 		pagar.setBackground(new Color(0, 102, 204));
@@ -133,5 +109,9 @@ public class Pagamento extends JPanel {
 		}
 
 		table.setModel(model);
+	}
+
+	public void clearValorField() {
+		this.Valor.setText("");
 	}
 }

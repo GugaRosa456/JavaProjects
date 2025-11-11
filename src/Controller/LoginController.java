@@ -29,10 +29,11 @@ private final ProdutosDAO produtosDAO;
 private final CadastroProdutos view4;
 private final ComprarProdutos view5;
 private final Pagamento view6;
+private final PagamentoController pagamentoController;
 
 
 public LoginController(Login view, UsuarioDAO model, Navegador navegador, CadastroUsuarios view1, ListarProdutos view2, MostrarProdutos view3, Supermercado supermercado,ProdutosDAO produtosDAO, 
-		CadastroProdutos view4, ComprarProdutos view5, Pagamento view6
+		CadastroProdutos view4, ComprarProdutos view5, Pagamento view6, PagamentoController pagamentoController
 		) {
 	this.view = view;
 	this.model = model;
@@ -45,6 +46,7 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 	this.view6 = view6;
 	this.supermercado = supermercado;
 	this.produtosDAO = produtosDAO;
+	this.pagamentoController = pagamentoController;
 	
 	this.view.cadastro(e -> {
 		this.navegador.navegarPara(Janelas.USUARIOS_PANEL);
@@ -57,6 +59,14 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		        Usuario usuario = model.buscarPorUsuarios(nome, senha);
                 
 		        if (usuario != null) {
+		        	// inform the pagamento controller about the logged-in user
+					try {
+						if (pagamentoController != null) {
+							pagamentoController.setUsuario(usuario);
+						}
+					} catch (Exception ex) {
+						// ignore if not available
+					}
 		            if (usuario.isAdmin()) {
 		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3);
 		                navegador.navegarPara(Janelas.MOSTRAR_PANEL);

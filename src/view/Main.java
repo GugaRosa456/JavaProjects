@@ -33,13 +33,12 @@ public class Main {
 	        CadastroUsuarioController cadastroUsuarioController = new CadastroUsuarioController(janela.getCadastroUsuarios(), usuarioDAO, navegador, janela.getLogin());
           
 	        LoginController loginController = new LoginController(janela.login, usuarioDAO, navegador, janela.getCadastroUsuarios(), janela.getListarProdutos(), janela.getMostrarProdutos(),supermercado, produtosDAO,
-	        		janela.getCadastroProdutos(), janela.getComprarProdutos(), janela.getPagamento());
+	        		janela.getCadastroProdutos(), janela.getComprarProdutos(), janela.getPagamento(), pagamentoController);
 
 	        MostrarProdutosController mostrarprodutos = new MostrarProdutosController(janela.getMostrarProdutos(), produtosDAO, navegador,janela.getCadastroProdutos());
 
 	        ListarProdutosController listarProdutos = new ListarProdutosController(janela.getListarProdutos(), produtosDAO, navegador, janela.getComprarProdutos(), janela.getPagamento());
-	        
-	        CadastroProdutosController cadastroProdutos = new  CadastroProdutosController( janela.getCadastroProdutos(), produtosDAO, janela.getMostrarProdutos(), navegador, supermercado);
+	      
 	        
 	        janela.setLocationRelativeTo(null);
 	        janela.setVisible(true);
