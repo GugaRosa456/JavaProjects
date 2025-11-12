@@ -1,97 +1,89 @@
 package model;
 
 public class Produtos {
-private int dataFabricacao;
-private int dataVencimento;
+private String dataFabricacao;
+private String dataVencimento;
 private String nomeProduto;
-private int valor;
+private double valor;
 private int quantidade;
 private String marca;
 private String estado;
 private int id;
 
-public Produtos(String nomeProduto, int dataFabricacao, int dataVencimento, int valor, int quantidade, String marca, String estado) {
-    this.nomeProduto = nomeProduto;
+
+public Produtos(String nomeProduto, String dataFabricacao, String dataVencimento, double valor, int quantidade, String marca, String estado) {
+    this(nomeProduto, dataFabricacao, dataVencimento, valor, quantidade, marca, estado, 0);
+}
+
+
+public Produtos(String nomeProduto, String dataFabricacao, String dataVencimento, double valor, int quantidade, String marca, String estado, int id) {
     this.dataFabricacao = dataFabricacao;
     this.dataVencimento = dataVencimento;
+    this.nomeProduto = nomeProduto;
     this.valor = valor;
     this.quantidade = quantidade;
     this.marca = marca;
     this.estado = estado;
-}
-
-
-
-public Produtos(String nomeProduto, int dataFabricacao, int dataVencimento,  int valor, int quantidade, String marca, String estado, int id) {
-this.dataFabricacao = dataFabricacao;
-this.dataVencimento = dataVencimento;
-this.nomeProduto = nomeProduto;
-this.valor = valor;
-this.quantidade = quantidade;
-this.marca = marca;
-this.estado = estado;
-this.id = id;
-}
-
-public Produtos(String nomeProduto, String dataFabricacao, String dataVencimento, double valor, int quantidade, String marca, String estado) {
-    this.nomeProduto = nomeProduto;
-    this.dataFabricacao = Integer.parseInt(dataFabricacao);
-    this.dataVencimento = Integer.parseInt(dataVencimento);
-    this.valor = (int) valor;
-    this.quantidade = quantidade;
-    this.marca = marca;
-    this.estado = estado;
+    this.id = id;
 }
 
 public int getId() {
-	return id;
+    return id;
 }
 
 public void setId(int id) {
-	this.id = id;
+    this.id = id;
 }
 
-public int getDataFabricacao() {
-	return dataFabricacao;
+public String getDataFabricacao() {
+    return dataFabricacao;
 }
-public void setDataFabricacao(int dataFabricacao) {
-	this.dataFabricacao = dataFabricacao;
+public void setDataFabricacao(String dataFabricacao) {
+    this.dataFabricacao = dataFabricacao;
 }
-public int getDataVencimento() {
-	return dataVencimento;
+public String getDataVencimento() {
+    return dataVencimento;
 }
-public void setDataVencimento(int dataVencimento) {
-	this.dataVencimento = dataVencimento;
+public void setDataVencimento(String dataVencimento) {
+    this.dataVencimento = dataVencimento;
 }
 public String getNomeProduto() {
-	return nomeProduto;
+    return nomeProduto;
 }
 public void setNomeProduto(String nomeProduto) {
-	this.nomeProduto = nomeProduto;
+    this.nomeProduto = nomeProduto;
 }
-public int getValor() {
-	return valor;
+public double getValor() {
+    return valor;
 }
-public void setValor(int valor) {
-	this.valor = valor;
+public void setValor(double valor) {
+    this.valor = valor;
 }
 public int getQuantidade() {
-	return quantidade;
+    return quantidade;
 }
 public void setQuantidade(int quantidade) {
-	this.quantidade = quantidade;
+    this.quantidade = quantidade;
 }
 public String getMarca() {
-	return marca;
+    return marca;
 }
 public void setMarca(String marca) {
-	this.marca = marca;
+    this.marca = marca;
 }
 public String getEstado() {
-	return estado;
+    return estado;
 }
 public void setEstado(String estado) {
-	this.estado = estado;
+    this.estado = estado;
+}
+
+// Convenience formatted getters in case callers expect formatted display
+public String getDataFabricacaoFormatada() {
+    return (dataFabricacao == null) ? "" : dataFabricacao;
+}
+public String getDataVencimentoFormatada() {
+    return (dataVencimento == null) ? "" : dataVencimento;
 }
 
 }

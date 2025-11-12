@@ -3,9 +3,7 @@ package view;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.List;
 
@@ -21,6 +19,8 @@ import model.UsuarioDAO;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 
+import net.miginfocom.swing.MigLayout;
+
 public class ListarProdutos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -33,51 +33,39 @@ public class ListarProdutos extends JPanel {
 	 * Create the panel.
 	 */
 	public ListarProdutos(Janelas janelas) {
-		setLayout(null);
+		setLayout(new MigLayout("fill, insets 10", "[grow]", "[][grow][]"));
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 500, 22);
-		add(menuBar);
+		add(menuBar, "dock north, spanx");
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {},
 			new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
 		));
-		table = new JTable();
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(0, 27, 470, 224);
-		add(scrollPane);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(0, 2, 110, 20);
-		add(comboBox);
+		JScrollPane scrollPane = new JScrollPane(table);
+		add(scrollPane, "grow, wrap");
 		
 		Comprar = new JButton("Comprar");
-		Comprar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		Comprar.setFocusTraversalPolicyProvider(true);
 		Comprar.setForeground(Color.WHITE);
 		Comprar.setBackground(new Color(0, 102, 204));
-		Comprar.setBounds(92, 262, 89, 23);
-		add(Comprar);
 		
-		 Pagar = new JButton("Pagar");
-		 Pagar.setFocusTraversalPolicyProvider(true);
-		 Pagar.setForeground(Color.WHITE);
-		 Pagar.setBackground(new Color(0,102, 204));
-		Pagar.setBounds(286, 262, 89, 23);
-		add(Pagar);
+		Pagar = new JButton("Pagar");
+		Pagar.setFocusTraversalPolicyProvider(true);
+		Pagar.setForeground(Color.WHITE);
+		Pagar.setBackground(new Color(0,102, 204));
 		
 		Sair = new JButton("Sair");
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0,102, 204));
-		Sair.setBounds(187, 262, 89, 23);
+		
+		add(Comprar, "split 3, center");
 		add(Sair);
-	
+		add(Pagar, "wrap");
+		
 	}
 	public void comprar(ActionListener actionListener) {
 		this.Comprar.addActionListener(actionListener);
@@ -112,6 +100,5 @@ public class ListarProdutos extends JPanel {
  	}
 
 
-	
-	
+    
 }

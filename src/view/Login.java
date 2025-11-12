@@ -24,7 +24,6 @@ public class Login extends JPanel {
 	private JTextField textFieldSenha;
     private JButton Entrar;
     private JButton Cadastro;
-    private JSeparator separator;
     private JButton Sair;
 
 	/**
@@ -32,71 +31,62 @@ public class Login extends JPanel {
 	 */
 	public Login(Janelas janelas) {
 		setPreferredSize(new Dimension(500, 350));
-		setLayout(null);
-		
-		textFieldNome = new JTextField();
-		textFieldNome.setBounds(33, 49, 434, 20);
-		add(textFieldNome);
-		textFieldNome.setColumns(10);
-		
-		textFieldSenha = new JTextField();
-		textFieldSenha.setColumns(10);
-		textFieldSenha.setBounds(33, 105, 434, 20);
-		add(textFieldSenha);
+		setLayout(new MigLayout("", "[261px][261px][261px][261px][261px]", "[14px][][][20px][][][14px][20px][29px][2px][23px][]"));
 		
 		JLabel lblNewLabel = new JLabel("Nome");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(228, 26, 43, 14);
-		add(lblNewLabel);
+		add(lblNewLabel, "cell 2 1,alignx center,growy");
+		
+		textFieldNome = new JTextField();
+		add(textFieldNome, "cell 0 2 5 1,growx,aligny top");
+		textFieldNome.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSenha.setBounds(228, 80, 43, 14);
-		add(lblSenha);
+		add(lblSenha, "cell 2 4,alignx center,growy");
+		
+		textFieldSenha = new JTextField();
+		textFieldSenha.setColumns(10);
+		add(textFieldSenha, "cell 0 5 5 1,growx,aligny top");
 		
 		Entrar = new JButton("Entrar");
 		Entrar.setFocusTraversalPolicyProvider(true);
 		Entrar.setForeground(Color.WHITE);
 		Entrar.setBackground(new Color(0, 102, 204));
 		Entrar.setFont(Entrar.getFont().deriveFont(Entrar.getFont().getStyle() | Font.BOLD));
-		Entrar.setBounds(205, 154, 89, 29);
-		add(Entrar);
-		
-		
-		
-		Cadastro = new JButton("Cadastre-se");
-		Cadastro.setFocusTraversalPolicyProvider(true);
-		Cadastro.setForeground(Color.WHITE);
-		Cadastro.setBackground(new Color(0, 102, 204));
-		Cadastro.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		Cadastro.setBounds(378, 233, 89, 23);
-		add(Cadastro);
+		add(Entrar, "cell 2 7,grow");
 		
 		
 		JLabel lblNoTemUm = new JLabel("Não tem um conta ainda?");
 		lblNoTemUm.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNoTemUm.setBounds(198, 235, 170, 14);
-		add(lblNoTemUm);
-		
-		separator = new JSeparator();
-		separator.setBounds(10, 209, 480, 2);
-		add(separator);
+		add(lblNoTemUm, "cell 2 10 2 1,alignx center,aligny center");
+	    
+	    
+	    
+	    Cadastro = new JButton("Cadastre-se");
+	    Cadastro.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    	}
+	    });
+	    Cadastro.setFocusTraversalPolicyProvider(true);
+	    Cadastro.setForeground(Color.WHITE);
+	    Cadastro.setBackground(new Color(0, 102, 204));
+	    Cadastro.setFont(new Font("Tahoma", Font.PLAIN, 10));
+	    add(Cadastro, "cell 4 10,grow");
 		
 	    Sair = new JButton("Sair");
 	    Sair.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    	}
 	    });
+	    
+	    JLabel lblDesejaSair = new JLabel("Deseja sair?");
+	    lblDesejaSair.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    add(lblDesejaSair, "cell 2 11 2 1,alignx center,aligny center");
 	    Sair.setFocusTraversalPolicyProvider(true);
-		Sair.setForeground(Color.WHITE);
-		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(378, 267, 89, 23);
-		add(Sair);
-		
-		JLabel lblDesejaSair = new JLabel("Deseja sair?");
-		lblDesejaSair.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblDesejaSair.setBounds(279, 269, 89, 14);
-		add(lblDesejaSair);
+	    Sair.setForeground(Color.WHITE);
+	    Sair.setBackground(new Color(0, 102, 204));
+	    add(Sair, "cell 4 11,growx,aligny top");
 	}
 	
 		public String getNome() {

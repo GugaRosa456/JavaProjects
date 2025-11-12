@@ -14,6 +14,7 @@ import Controller.PagamentoController;
 import Controller.Supermercado;
 import Controller.LoginController;
 import Controller.MostrarProdutosController;
+import Controller.Carrinho;
 
 public class Main {
 	public static void main(String[] args) {
@@ -24,16 +25,18 @@ public class Main {
 	        ProdutosDAO produtosDAO = new ProdutosDAO();
 	        Supermercado supermercado = new Supermercado();
 	        Usuario usuario = new Usuario(null, null, null, false);
+
+	       
+	        Carrinho carrinho = new Carrinho(produtosDAO, janela.getComprarProdutos());
 	
-	        
-	        PagamentoController pagamentoController = new PagamentoController(produtosDAO, janela.getPagamento(),usuario, usuarioDAO, janela.getComprarProdutos(), navegador, janela.getListarProdutos());
+	        PagamentoController pagamentoController = new PagamentoController(produtosDAO, janela.getPagamento(),usuario, usuarioDAO, carrinho, navegador, janela.getListarProdutos());
 	        
 	        ComprarProdutosController comprarProdutosController = new ComprarProdutosController(janela.getListarProdutos(), produtosDAO, navegador, janela.getComprarProdutos() , janela.getListarProdutos());
             
 	        CadastroUsuarioController cadastroUsuarioController = new CadastroUsuarioController(janela.getCadastroUsuarios(), usuarioDAO, navegador, janela.getLogin());
           
 	        LoginController loginController = new LoginController(janela.login, usuarioDAO, navegador, janela.getCadastroUsuarios(), janela.getListarProdutos(), janela.getMostrarProdutos(),supermercado, produtosDAO,
-	        		janela.getCadastroProdutos(), janela.getComprarProdutos(), janela.getPagamento(), pagamentoController);
+						janela.getCadastroProdutos(), janela.getComprarProdutos(), janela.getPagamento(), pagamentoController);
 
 	        MostrarProdutosController mostrarprodutos = new MostrarProdutosController(janela.getMostrarProdutos(), produtosDAO, navegador,janela.getCadastroProdutos());
 

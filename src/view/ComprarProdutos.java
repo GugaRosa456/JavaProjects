@@ -3,27 +3,22 @@ package view;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
-import javax.swing.JMenuBar;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import model.Produtos;
-import model.ProdutosDAO;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
-import javax.swing.JSeparator;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+
+import model.Produtos;
+import model.ProdutosDAO;
+
+import net.miginfocom.swing.MigLayout;
 
 public class ComprarProdutos extends JPanel {
 
@@ -32,129 +27,54 @@ public class ComprarProdutos extends JPanel {
 	private JTable table_1;
 	private JButton Sair;
 	private JButton Remover;
-	private List<Produtos> carrinho = new ArrayList<>();
-
+	
 	/**
 	 * Create the panel.
 	 */
 	public ComprarProdutos(Janelas janelas) {
-		setLayout(null);
+
+		setLayout(new MigLayout("fill, insets 10", "[grow][200]", "[][grow][]"));
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, -1, 500, 22);
-		add(menuBar);
-		
-		 Sair = new JButton("Voltar");
-		 Sair.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 	}
-		 });
-		Sair.setFocusTraversalPolicyProvider(true);
-		Sair.setForeground(Color.WHITE);
-		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(180, 266, 89, 23);
-		add(Sair);
-		
-		 Remover = new JButton("remover");
-		 Remover.addActionListener(new ActionListener() {
-		 	public void actionPerformed(ActionEvent e) {
-		 		int linhaSelecionada = table_1.getSelectedRow();
-		        if (linhaSelecionada >= 0) {
-		            DefaultTableModel model = (DefaultTableModel) table_1.getModel();
-		            String nomeProduto = model.getValueAt(linhaSelecionada, 0).toString();
-		            // Remove da lista do carrinho
-		            carrinho.removeIf(p -> p.getNomeProduto().equals(nomeProduto));
-		            // Remove da tabela visual
-		            model.removeRow(linhaSelecionada);
-		        }
-		 	}
-		 });
-		Remover.setFocusTraversalPolicyProvider(true);
-		Remover.setForeground(Color.WHITE);
-		Remover.setBackground(new Color(0, 102, 204));
-		Remover.setBounds(370, 216, 89, 23);
-		add(Remover);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(20, 250, 480, 2);
-		add(separator);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"", "New column", "New column", "New column", "New column", "New column", "New column"
-			}
-		));
-		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(38, 58, 294, 180);
-		add(scrollPane);
-		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"New column"
-			}
-		));
-		table_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		table_1.setBounds(360, 32, 117, 173);
-		add(table_1);
+		add(menuBar, "dock north, spanx");
 		
 		JLabel lblNewLabel = new JLabel("Produtos");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(38, 33, 61, 14);
-		add(lblNewLabel);
+		add(lblNewLabel, "cell 0 0, wrap");
 		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {},
+			new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
+		));
+		JScrollPane scrollPane = new JScrollPane(table);
+		add(scrollPane, "cell 0 1, growy");
 		
-		table.addMouseListener(new java.awt.event.MouseAdapter() {
-	        public void mouseClicked(java.awt.event.MouseEvent evt) {
-	            int row = table.getSelectedRow();
-	            if (row >= 0) {
-	                String nomeProduto = table.getValueAt(row, 0).toString();
-	                Produtos produto = new ProdutosDAO().buscarPorNome(nomeProduto);
-	                if (produto != null && produto.getQuantidade() > 0) {
-	                    produto.setQuantidade(produto.getQuantidade() - 1);
-	                    new ProdutosDAO().atualizarProduto(produto);
-	                    carrinho.add(produto);
-	                    carregarCarrinho();
-	                }
-	            }
-	        }
-	    });
+		table_1 = new JTable();
+
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {},
+			new String[] {"Nome", "Valor"}
+		));
+		table_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		JScrollPane scrollPaneCarrinho = new JScrollPane(table_1);
+		add(scrollPaneCarrinho, "cell 1 1, growy");
+		
+		Remover = new JButton("remover");
+		Remover.setFocusTraversalPolicyProvider(true);
+		Remover.setForeground(Color.WHITE);
+		Remover.setBackground(new Color(0, 102, 204));
+		add(Remover, "cell 1 2, alignx right");
+		
+		Sair = new JButton("Voltar");
+		Sair.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+			}
+		});
+		Sair.setFocusTraversalPolicyProvider(true);
+		Sair.setForeground(Color.WHITE);
+		Sair.setBackground(new Color(0, 102, 204));
+		add(Sair, "cell 0 2, center");
 	}
 	
 	public void carregarProdutos(List<Produtos> lista) {
@@ -162,7 +82,6 @@ public class ComprarProdutos extends JPanel {
 	        new Object[][] {},
 	        new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
 	        );
-	   
 
 	    for (Produtos p : lista) {
 	        model.addRow(new Object[] {
@@ -179,12 +98,12 @@ public class ComprarProdutos extends JPanel {
 	    table.setModel(model);
 	}
 	
-	public void carregarCarrinho() {
-	    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
-	    model.setRowCount(0);
+	public void carregarCarrinho(List<Produtos> carrinho) {
+	    DefaultTableModel model = new DefaultTableModel(new Object[][] {}, new String[] {"Nome", "Valor"});
 	    for (Produtos produto : carrinho) {
-	        model.addRow(new Object[]{produto.getNomeProduto(), produto.getQuantidade(), produto.getValor()});
+	        model.addRow(new Object[]{produto.getNomeProduto(), produto.getValor()});
 	    }
+	    table_1.setModel(model);
 	}
 	
 
@@ -205,21 +124,22 @@ public class ComprarProdutos extends JPanel {
 		public DefaultTableModel getTableModelCarrinho() {
 		    return (DefaultTableModel) table_1.getModel();
 		}
-		public List<String> getNomesProdutosCarrinho() {
-		    List<String> nomes = new ArrayList<>();
+		
+		public List<Produtos> getListaCarrinhoFromTable() {
+		    List<Produtos> lista = new ArrayList<>();
 		    DefaultTableModel model = (DefaultTableModel) table_1.getModel();
-		    
 		    for (int i = 0; i < model.getRowCount(); i++) {
-		        Object valor = model.getValueAt(i, 0);
-		        if (valor != null) {
-		            nomes.add(valor.toString());
-		        }
+		        Object nomeObj = model.getValueAt(i, 0);
+		        Object valorObj = model.getValueAt(i, 1);
+		        String nome = nomeObj != null ? nomeObj.toString() : "";
+		        double valor = 0.0;
+		        try {
+		            if (valorObj != null) valor = Double.parseDouble(valorObj.toString());
+		        } catch (Exception ignore) {}
+		    
+		        Produtos p = new Produtos(nome, "", "", valor, 1, "", "", 0);
+		        lista.add(p);
 		    }
-		    return nomes;
+		    return lista;
 		}
-		public List<Produtos> getListaCarrinho() {
-		    return carrinho;
-		}
-
-	
 }

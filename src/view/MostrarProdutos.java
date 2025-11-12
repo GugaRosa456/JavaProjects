@@ -22,6 +22,8 @@ import model.UsuarioDAO;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import net.miginfocom.swing.MigLayout;
+
 public class MostrarProdutos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -35,11 +37,11 @@ public class MostrarProdutos extends JPanel {
 	 * @param janelas 
 	 */
 	public MostrarProdutos(Janelas janelas) {
-		setLayout(null);
+	
+		setLayout(new MigLayout("fill, insets 10", "[grow]", "[][grow][]"));
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 500, 22);
-		add(menuBar);
+		add(menuBar, "dock north");
 		
 		table = new JTable();
 		this.model = new DefaultTableModel(
@@ -48,29 +50,22 @@ public class MostrarProdutos extends JPanel {
 				
 			);
 		
-		table.setBounds(0, 33, 450, 224);
 		table.setModel(model);
 
-		
-		 JScrollPane scrollPane = new JScrollPane(table);
-	        scrollPane.setBounds(0, 33, 450, 224);  
-	        
-	        add(scrollPane);
+		JScrollPane scrollPane = new JScrollPane(table);
+		add(scrollPane, "grow, wrap");
 		
 		alterar = new JButton("Adicionar");
 		alterar.setFocusTraversalPolicyProvider(true);
 		alterar.setForeground(Color.WHITE);
 		alterar.setBackground(new Color(0, 102, 204));
-		alterar.setBounds(131, 268, 89, 23);
-		add(alterar);
+		add(alterar, "split 2, center");
 		
-	    Sair = new JButton("Sair");
+		Sair = new JButton("Sair");
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		Sair.setBounds(290, 268, 89, 23);
-		add(Sair);
-// tela para mostrar os produtos já cadastrados para o admin
+		add(Sair, "wrap");
 	}
  public void alterar(ActionListener action) {
 	 alterar.addActionListener(action);

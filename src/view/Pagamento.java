@@ -18,6 +18,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JScrollPane;
+
 public class Pagamento extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -30,44 +33,40 @@ public class Pagamento extends JPanel {
 	 * Create the panel.
 	 */
 	public Pagamento(Janelas janelas) {
-		setLayout(null);
+	
+		setLayout(new MigLayout("fill, insets 10", "[grow,fill][200]", "[][]20[]20[]20[]20[][grow][]"));
+
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 500, 22);
-		add(menuBar);
+		add(menuBar, "dock north, spanx");
+		
+				JLabel lblNewLabel_1 = new JLabel("produtos comprados");
+				add(lblNewLabel_1, "cell 1 0,alignx center");
 
 		JLabel lblValorInserido = new JLabel("Valor inserido:");
 		lblValorInserido.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblValorInserido.setBounds(31, 59, 96, 14);
-		add(lblValorInserido);
-
-		Valor = new JTextField();
-		Valor.setColumns(10);
-		Valor.setBounds(31, 84, 296, 22);
-		add(Valor);
-
-		pagar = new JButton("pagar");
-		// Controller will attach listener via Pagar(ActionListener). No internal logic here.
-		pagar.setFocusTraversalPolicyProvider(true);
-		pagar.setForeground(Color.WHITE);
-		pagar.setBackground(new Color(0, 102, 204));
-		pagar.setBounds(132, 133, 107, 35);
-		add(pagar);
+		add(lblValorInserido, "cell 0 1,aligny top");
+		
+				Valor = new JTextField();
+				Valor.setColumns(10);
+				add(Valor, "cell 0 2,growx");
+		
+				pagar = new JButton("pagar");
+				// Controller will attach listener via Pagar(ActionListener). No internal logic here.
+				pagar.setFocusTraversalPolicyProvider(true);
+				pagar.setForeground(Color.WHITE);
+				pagar.setBackground(new Color(0, 102, 204));
+				add(pagar, "cell 0 4,alignx center");
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Produto", "Valor" }));
-		table.setBounds(363, 61, 107, 205);
-		add(table);
-
-		JLabel lblNewLabel_1 = new JLabel("produtos comprados");
-		lblNewLabel_1.setBounds(363, 36, 107, 14);
-		add(lblNewLabel_1);
-
-		voltar = new JButton("Voltar");
-		voltar.setForeground(Color.WHITE);
-		voltar.setFocusTraversalPolicyProvider(true);
-		voltar.setBackground(new Color(0, 102, 204));
-		voltar.setBounds(132, 179, 107, 35);
-		add(voltar);
+		JScrollPane scrollPane = new JScrollPane(table);
+		add(scrollPane, "cell 1 1 1 7,growy");
+		
+				voltar = new JButton("Voltar");
+				voltar.setForeground(Color.WHITE);
+				voltar.setFocusTraversalPolicyProvider(true);
+				voltar.setBackground(new Color(0, 102, 204));
+				add(voltar, "cell 0 6,alignx center");
 	}
 
 	public void carregarProdutos(List<Produtos> lista) {
@@ -105,7 +104,7 @@ public class Pagamento extends JPanel {
 		DefaultTableModel model = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Valor" });
 
 		for (String nome : nomesProdutos) {
-			model.addRow(new Object[] { nome, "0.00" }); // Valor pode ser ajustado
+			model.addRow(new Object[] { nome, "0.00" }); 
 		}
 
 		table.setModel(model);

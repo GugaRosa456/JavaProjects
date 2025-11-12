@@ -19,6 +19,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
+import net.miginfocom.swing.MigLayout;
+
 public class CadastroUsuarios extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -40,118 +42,105 @@ public class CadastroUsuarios extends JPanel {
 
 	/**
 	 * Create the panel.
-	 * @param janelas 
+	 * 
+	 * @param janelas
 	 */
 	public CadastroUsuarios(Janelas janelas) {
-		setLayout(null);
 	
+		setLayout(new MigLayout("fill, insets 10", "[grow,fill][grow,fill]",
+				"[]10[]10[]10[]10[]10[]10[]20[]20[]20[]20[]"));
+
+
+		lblNome = new JLabel("Nome");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(lblNome, "flowy,cell 0 0 2 1");
+
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(10, 43, 469, 20);
-		add(textFieldNome);
+		add(textFieldNome, "cell 0 0 2 1,growx");
 
-		
-		textFieldSenha = new JTextField();
-		textFieldSenha.setBounds(10, 112, 221, 20);
-		add(textFieldSenha);
-
-		textFieldConfirmarSenha = new JTextField();
-		textFieldConfirmarSenha.setBounds(241, 112, 238, 20);
-		add(textFieldConfirmarSenha);
-
-		
-		textFieldCPF = new JTextField();
-		textFieldCPF.setBounds(10, 170, 469, 20);
-		add(textFieldCPF);
-
-		
 		lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblSenha.setBounds(10, 87, 60, 14);
-		add(lblSenha);
-		
+		add(lblSenha, "cell 0 1");
+
+		textFieldSenha = new JTextField();
+		textFieldSenha.setColumns(10);
+		textFieldConfirmarSenha = new JTextField();
+		textFieldConfirmarSenha.setColumns(10);
 		lblConfirmarSenha = new JLabel("Confirmar Senha");
 		lblConfirmarSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblConfirmarSenha.setBounds(241, 87, 122, 14);
-		add(lblConfirmarSenha);
-		
-		 Cadastrar = new JButton("Cadastrar");
-		Cadastrar.setBounds(265, 210, 152, 23);
-		add(Cadastrar);
+		add(lblConfirmarSenha, "cell 1 1");
+		add(textFieldSenha, "cell 0 2 2 1,growx");
+		add(textFieldConfirmarSenha, "cell 0 2 2 1,growx");
+
+		// CPF
+		lblCpf_1 = new JLabel("CPF");
+		lblCpf_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		add(lblCpf_1, "cell 0 3,alignx center");
+
+		admin = new ButtonGroup();
+
+		textFieldCPF = new JTextField();
+		add(textFieldCPF, "cell 0 4 2 1,growx");
+
+		lblUmAdministrador = new JLabel("É um administrador ?");
+		lblUmAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(lblUmAdministrador, "cell 0 5,alignx center,aligny center");
+
+		sim = new JRadioButton("sim");
+		add(sim, "flowx,cell 1 5");
+		admin.add(sim);
+		não = new JRadioButton("não");
+		add(não, "cell 1 5");
+		admin.add(não);
+
+		Cadastrar = new JButton("Cadastrar");
 		Cadastrar.setFocusTraversalPolicyProvider(true);
 		Cadastrar.setForeground(Color.WHITE);
 		Cadastrar.setBackground(new Color(0, 102, 204));
-		
-		
-		lblUmAdministrador = new JLabel("É um administrador ?");
-		lblUmAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblUmAdministrador.setBounds(34, 212, 147, 14);
-		add(lblUmAdministrador);
-		
-		 sim = new JRadioButton("sim");
-		sim.setBounds(34, 243, 50, 23);
-		add(sim);
-	  
-		não = new JRadioButton("não");
-		não.setBounds(106, 243, 46, 23);
-		add(não);
-		
-		 admin = new ButtonGroup();
-		admin.add(sim);
-		admin.add(não);
-		
-		lblNome = new JLabel("Nome");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNome.setBounds(10, 18, 60, 14);
-		add(lblNome);
-		
-		lblCpf_1 = new JLabel("CPF");
-		lblCpf_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCpf_1.setBounds(10, 145, 36, 14);
-		add(lblCpf_1);
-		
+		add(Cadastrar, "flowx,cell 0 6,alignx right");
+
 		voltar = new JButton("Voltar");
 		voltar.setForeground(Color.WHITE);
 		voltar.setFocusTraversalPolicyProvider(true);
 		voltar.setBackground(new Color(0, 102, 204));
-		voltar.setBounds(265, 244, 152, 23);
-		add(voltar);
+		add(voltar, "cell 1 6");
 
 	}
-	
+
 	public boolean isAdmin() {
-		 return sim.isSelected();
-	}
-		
-		public String getNome() {
-			return this.textFieldNome.getText();
-		}
-
-		
-		public String getSenha() {
-			return this.textFieldSenha.getText();
-		}
-
-		
-		public String getCPF() {
-			return this.textFieldCPF.getText();
-		}
-		
-		public String getConfirmarSenha() {
-			return this.textFieldConfirmarSenha.getText();
-		}
-		public void cadastrar(ActionListener actionListener) {
-			this.Cadastrar.addActionListener(actionListener);
-		}
-		public void Voltar(ActionListener actionListener) {
-			this.voltar.addActionListener(actionListener);
-		}
-		public void limparCampos() {
-		    textFieldNome.setText("");
-		    textFieldSenha.setText("");
-		    textFieldConfirmarSenha.setText("");
-		    textFieldCPF.setText("");
-		    admin.setSelected(null, false);
-		}
-		
+		return sim.isSelected();
 	}
 
+	public String getNome() {
+		return this.textFieldNome.getText();
+	}
+
+	public String getSenha() {
+		return this.textFieldSenha.getText();
+	}
+
+	public String getCPF() {
+		return this.textFieldCPF.getText();
+	}
+
+	public String getConfirmarSenha() {
+		return this.textFieldConfirmarSenha.getText();
+	}
+
+	public void cadastrar(ActionListener actionListener) {
+		this.Cadastrar.addActionListener(actionListener);
+	}
+
+	public void Voltar(ActionListener actionListener) {
+		this.voltar.addActionListener(actionListener);
+	}
+
+	public void limparCampos() {
+		textFieldNome.setText("");
+		textFieldSenha.setText("");
+		textFieldConfirmarSenha.setText("");
+		textFieldCPF.setText("");
+		admin.clearSelection();
+	}
+
+}

@@ -19,17 +19,17 @@ public class PagamentoController {
 	private Pagamento view;
 	private Usuario model2;
 	private UsuarioDAO usuarioDAO;
-	private ComprarProdutos view2;
+	private Carrinho carrinho; 
 	private Navegador navegador;
 	private ListarProdutos view3;
 
 	public PagamentoController(ProdutosDAO model, Pagamento view, Usuario model2, UsuarioDAO usuarioDAO,
-			ComprarProdutos view2, Navegador navegador, ListarProdutos view3) {
+			Carrinho carrinho, Navegador navegador, ListarProdutos view3) {
 		this.model = model;
 		this.view = view;
 		this.model2 = model2;
 		this.usuarioDAO = usuarioDAO;
-		this.view2 = view2;
+		this.carrinho = carrinho;
 		this.navegador = navegador;
 		this.view3 = view3;
 
@@ -94,19 +94,9 @@ public class PagamentoController {
 			} catch (Exception ex) {
 			}
 			try {
-				if (view2 != null) {
-					try {
-						view2.getListaCarrinho().clear();
-					} catch (Exception ex) {
-						try {
-							view2.getTableModelCarrinho().setRowCount(0);
-						} catch (Exception ignore) {
-						}
-					}
-					try {
-						view2.carregarCarrinho();
-					} catch (Exception ignore) {
-					}
+				if (carrinho != null) {
+					
+					carrinho.limparCarrinho();
 				}
 			} catch (Exception ex) {
 			}
@@ -127,5 +117,10 @@ public class PagamentoController {
 
 	public void setUsuario(Usuario usuario) {
 		this.model2 = usuario;
+	}
+
+	
+	public Carrinho getCarrinho() {
+		return this.carrinho;
 	}
 }

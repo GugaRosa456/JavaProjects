@@ -12,12 +12,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionEvent;
+import javax.swing.text.MaskFormatter;
+import javax.swing.JFormattedTextField;
+import java.text.ParseException;
+
+import net.miginfocom.swing.MigLayout;
 
 public class CadastroProdutos extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField dataFabricacao;
-	private JTextField dataVencimento;
+	private JFormattedTextField dataFabricacao;
+	private JFormattedTextField dataVencimento;
 	private JTextField marca;
 	private JTextField quantidade;
 	private JTextField nomeProduto;
@@ -31,7 +36,6 @@ public class CadastroProdutos extends JPanel {
 	private JLabel lblNewLabel_1;
 	private JButton Cadastrar1;
 	private Janelas janela;
-	private JSeparator separator_1;
 	private JButton voltar;
 	private JLabel lblDataCadastro;
 
@@ -41,88 +45,77 @@ public class CadastroProdutos extends JPanel {
 	 */
 	public CadastroProdutos(Janelas janela) {
 		this.janela = janela;
-		setLayout(null);
+	
+		setLayout(new MigLayout("fill, insets 10", "[grow,fill][grow,fill]", "[][]10[][][]10[][]20[]20[]20[]"));
 
-		dataFabricacao = new JTextField();
-		dataFabricacao.setBounds(26, 92, 183, 20);
-		add(dataFabricacao);
-		dataFabricacao.setColumns(10);
+		MaskFormatter dateMask = null;
+		try {
+			dateMask = new MaskFormatter("##/##/####");
+			dateMask.setPlaceholderCharacter('_');
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
-		dataVencimento = new JTextField();
-		dataVencimento.setColumns(10);
-		dataVencimento.setBounds(282, 92, 183, 20);
-		add(dataVencimento);
-
-		marca = new JTextField();
-		marca.setColumns(10);
-		marca.setBounds(26, 154, 183, 20);
-		add(marca);
-
-		quantidade = new JTextField();
-		quantidade.setColumns(10);
-		quantidade.setBounds(282, 154, 183, 20);
-		add(quantidade);
+		lblNomeDoProduto = new JLabel("Nome do Produto:");
+		add(lblNomeDoProduto, "cell 0 0 2 1");
 
 		nomeProduto = new JTextField();
 		nomeProduto.setColumns(10);
-		nomeProduto.setBounds(26, 36, 439, 20);
-		add(nomeProduto);
+		add(nomeProduto, "cell 0 1 2 1");
 
-		estado = new JTextField();
-		estado.setColumns(10);
-		estado.setBounds(26, 210, 183, 20);
-		add(estado);
+		JLabel lblDataDeFabr = new JLabel("Data de Fabricação");
+		add(lblDataDeFabr, "cell 0 2");
+		
+				lblDataDeVencimento = new JLabel("Data de Vencimento:");
+				add(lblDataDeVencimento, "cell 1 2");
 
-		valor = new JTextField();
-		valor.setBounds(282, 210, 183, 20);
-		add(valor);
-		valor.setColumns(10);
+		dataFabricacao = new JFormattedTextField(dateMask);
+		dataFabricacao.setColumns(10);
+		add(dataFabricacao, "cell 0 4 2 1,growx");
 
-		Cadastrar1 = new JButton("Cadastrar");
-		Cadastrar1.setFocusTraversalPolicyProvider(true);
-		Cadastrar1.setForeground(Color.WHITE);
-		Cadastrar1.setBackground(new Color(0, 102, 204));
-		Cadastrar1.setBounds(138, 266, 108, 23);
-		add(Cadastrar1);
-
-		separator_1 = new JSeparator();
-		separator_1.setBounds(0, 241, 510, 2);
-		add(separator_1);
-
-		voltar = new JButton("Voltar");
-		voltar.setForeground(Color.WHITE);
-		voltar.setFocusTraversalPolicyProvider(true);
-		voltar.setBackground(new Color(0, 102, 204));
-		voltar.setBounds(256, 266, 108, 23);
-		add(voltar);
-
-		lblDataCadastro = new JLabel("valor");
-		lblDataCadastro.setBounds(282, 185, 183, 20);
-		add(lblDataCadastro);
-
-		lblDataDeVencimento = new JLabel("Data de Vencimento:");
-		lblDataDeVencimento.setBounds(282, 67, 183, 14);
-		add(lblDataDeVencimento);
+		dataVencimento = new JFormattedTextField(dateMask);
+		dataVencimento.setColumns(10);
+		add(dataVencimento, "cell 0 4 2 1,growx");
 
 		lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(26, 133, 183, 14);
-		add(lblMarca);
-
-		lblNomeDoProduto = new JLabel("Nome do Produto:");
-		lblNomeDoProduto.setBounds(26, 11, 183, 14);
-		add(lblNomeDoProduto);
-
-		lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(26, 185, 183, 14);
-		add(lblEstado);
-
-		lblNewLabel_1 = new JLabel("Quantidade:");
-		lblNewLabel_1.setBounds(282, 133, 183, 14);
-		add(lblNewLabel_1);
+		add(lblMarca, "cell 0 5");
 		
-		JLabel lblDataDeVenci = new JLabel("Data de Fabricação");
-		lblDataDeVenci.setBounds(26, 67, 183, 14);
-		add(lblDataDeVenci);
+				lblNewLabel_1 = new JLabel("Quantidade:");
+				add(lblNewLabel_1, "cell 1 5");
+
+		marca = new JTextField();
+		marca.setColumns(10);
+		add(marca, "cell 0 6 2 1,growx");
+
+		quantidade = new JTextField();
+		quantidade.setColumns(10);
+		add(quantidade, "cell 0 6 2 1,growx");
+				
+						lblEstado = new JLabel("Estado:");
+						add(lblEstado, "cell 0 7");
+						
+								lblDataCadastro = new JLabel("valor");
+								add(lblDataCadastro, "cell 1 7");
+				
+						estado = new JTextField();
+						estado.setColumns(10);
+						add(estado, "cell 0 8,growx");
+				
+						valor = new JTextField();
+						valor.setColumns(10);
+						add(valor, "cell 1 8,growx");
+				
+						Cadastrar1 = new JButton("Cadastrar");
+						Cadastrar1.setFocusTraversalPolicyProvider(true);
+						Cadastrar1.setForeground(Color.WHITE);
+						Cadastrar1.setBackground(new Color(0, 102, 204));
+						add(Cadastrar1, "cell 0 9,alignx center");
+				
+						voltar = new JButton("Voltar");
+						voltar.setForeground(Color.WHITE);
+						voltar.setFocusTraversalPolicyProvider(true);
+						voltar.setBackground(new Color(0, 102, 204));
+						add(voltar, "cell 1 9");
 
 	}
 
@@ -131,10 +124,14 @@ public class CadastroProdutos extends JPanel {
 	}
 
 	public String getDataFabricacao() {
+		Object v = this.dataFabricacao.getValue();
+		if (v == null) return "";
 		return this.dataFabricacao.getText().trim();
 	}
 
 	public String getDataVencimento() {
+		Object v = this.dataVencimento.getValue();
+		if (v == null) return "";
 		return this.dataVencimento.getText().trim();
 	}
 
@@ -146,7 +143,7 @@ public class CadastroProdutos extends JPanel {
 		try {
 			return Integer.parseInt(this.quantidade.getText().trim());
 		} catch (NumberFormatException e) {
-			return 0; // Default value if parsing fails.
+			return 0;
 		}
 	}
 
@@ -158,7 +155,7 @@ public class CadastroProdutos extends JPanel {
 		try {
 			return Double.parseDouble(this.valor.getText().trim());
 		} catch (NumberFormatException e) {
-			return 0.0; // Default value if parsing fails.
+			return 0.0; 
 		}
 	}
 

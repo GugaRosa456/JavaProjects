@@ -60,18 +60,18 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
                 
 		        if (usuario != null) {
 		        	// inform the pagamento controller about the logged-in user
-					try {
-						if (pagamentoController != null) {
-							pagamentoController.setUsuario(usuario);
-						}
-					} catch (Exception ex) {
-						// ignore if not available
+				try {
+					if (pagamentoController != null) {
+						pagamentoController.setUsuario(usuario);
 					}
+				} catch (Exception ex) {
+					// ignore if not available
+				}
 		            if (usuario.isAdmin()) {
-		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3);
+		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3, pagamentoController.getCarrinho());
 		                navegador.navegarPara(Janelas.MOSTRAR_PANEL);
 		            } else {
-		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3);
+		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3, pagamentoController.getCarrinho());
 		            	navegador.navegarPara(Janelas.LISTAR_PANEL);
 		            }
 		        } else {

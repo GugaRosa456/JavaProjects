@@ -10,6 +10,9 @@ import model.Produtos;
 import model.ProdutosDAO;
 import view.ComprarProdutos;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 public class Carrinho {
     private final ProdutosDAO produtosDAO; 
@@ -26,8 +29,15 @@ public class Carrinho {
 
     private void configurarEventos() {
        
-     
+      
         view.getRemoverButton().addActionListener(e -> removerProdutoCarrinho());
+
+        view.getTable1().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                adicionarProdutoCarrinho();
+            }
+        });
     }
 
     
@@ -38,13 +48,13 @@ public class Carrinho {
 
     public void limparCarrinho() {
         lista.clear();
-        view.carregarCarrinho();
+        view.carregarCarrinho(lista);
     }
 
   
     private void atualizarTabelas() {
         view.carregarProdutos(produtosDAO.listarProdutos());
-        view.carregarCarrinho();
+        view.carregarCarrinho(lista);
     }
 
     private void adicionarProdutoCarrinho() {
@@ -55,7 +65,8 @@ public class Carrinho {
             if (produto != null && produto.getQuantidade() > 0) {
                 produto.setQuantidade(produto.getQuantidade() - 1);
                 produtosDAO.atualizarProduto(produto); 
-                lista.add(produto); 
+             
+                lista.add(new Produtos(produto.getNomeProduto(), produto.getDataFabricacao(), produto.getDataVencimento(), produto.getValor(), 1, produto.getMarca(), produto.getEstado(), produto.getId())); 
                 atualizarTabelas(); 
             }
         }
@@ -65,7 +76,25 @@ public class Carrinho {
         int linhaSelecionada = view.getTableCarrinho().getSelectedRow();
         if (linhaSelecionada >= 0) {
             DefaultTableModel model = (DefaultTableModel) view.getTableCarrinho().getModel();
-            model.removeRow(linhaSelecionada);
+            String nomeProduto = model.getValueAt(linhaSelecionada, 0).toString();
+
+       
+            for (int i = 0; i < lista.size(); i++) {
+                Produtos p = lista.get(i);
+                if (p.getNomeProduto().equals(nomeProduto)) {
+                    lista.remove(i);
+                    break;
+                }
+            }
+
+   
+            Produtos produtoEstoque = produtosDAO.buscarPorNome(nomeProduto);
+            if (produtoEstoque != null) {
+                produtoEstoque.setQuantidade(produtoEstoque.getQuantidade() + 1);
+                produtosDAO.atualizarProduto(produtoEstoque);
+            }
+
+            atualizarTabelas();
         }
     }
     public List<Produtos> getListaCarrinho() { return lista; }
