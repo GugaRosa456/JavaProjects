@@ -22,13 +22,12 @@ public class Main {
 
 	        Navegador navegador = new Navegador(janela);
 	        UsuarioDAO usuarioDAO = new UsuarioDAO();
-	        ProdutosDAO produtosDAO = new ProdutosDAO();
+	        ProdutosDAO produtosDAO = janela.getProdutosDAO();
 	        Supermercado supermercado = new Supermercado();
 	        Usuario usuario = new Usuario(null, null, null, false);
-
+	        
+	        Carrinho carrinho = new Carrinho(produtosDAO, janela.getComprarProdutos(), janela.getListarProdutos(), janela.getMostrarProdutos());
 	       
-	        Carrinho carrinho = new Carrinho(produtosDAO, janela.getComprarProdutos());
-	
 	        PagamentoController pagamentoController = new PagamentoController(produtosDAO, janela.getPagamento(),usuario, usuarioDAO, carrinho, navegador, janela.getListarProdutos());
 	        
 	        ComprarProdutosController comprarProdutosController = new ComprarProdutosController(janela.getListarProdutos(), produtosDAO, navegador, janela.getComprarProdutos() , janela.getListarProdutos());
@@ -36,7 +35,7 @@ public class Main {
 	        CadastroUsuarioController cadastroUsuarioController = new CadastroUsuarioController(janela.getCadastroUsuarios(), usuarioDAO, navegador, janela.getLogin());
           
 	        LoginController loginController = new LoginController(janela.login, usuarioDAO, navegador, janela.getCadastroUsuarios(), janela.getListarProdutos(), janela.getMostrarProdutos(),supermercado, produtosDAO,
-						janela.getCadastroProdutos(), janela.getComprarProdutos(), janela.getPagamento(), pagamentoController);
+					janela.getCadastroProdutos(), janela.getComprarProdutos(), janela.getPagamento(), pagamentoController);
 
 	        MostrarProdutosController mostrarprodutos = new MostrarProdutosController(janela.getMostrarProdutos(), produtosDAO, navegador,janela.getCadastroProdutos());
 

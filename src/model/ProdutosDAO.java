@@ -216,20 +216,23 @@ public class ProdutosDAO {
 		}
 	}
 
-	public void diminuirQuantidade(String nomeProduto) {
-		if (isEmpty(nomeProduto))
-			return;
-		String sql = "UPDATE Produtos SET quantidade = quantidade - 1 WHERE nomeProduto = ? AND quantidade > 0";
-		try (Connection conn = BancoDeDados.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, nomeProduto);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao atualizar quantidade: " + e.getMessage(), "Erro",
-					JOptionPane.ERROR_MESSAGE);
-		}
+	public boolean diminuirQuantidade(String nomeProduto) {
+	    if (isEmpty(nomeProduto)) {
+	        return false; 
+	    }
+	    String sql = "UPDATE Produtos SET quantidade = quantidade - 1 WHERE nomeProduto = ? AND quantidade > 0";    
+	    try (Connection conn = BancoDeDados.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+	        stmt.setString(1, nomeProduto);
+	        int rowsUpdated = stmt.executeUpdate();
+	        return rowsUpdated > 0; 
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        JOptionPane.showMessageDialog(null, "Erro ao atualizar quantidade: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+	        return false;  
+	    }
 	}
 
+	
 	private boolean isEmpty(String s) {
 		return s == null || s.trim().isEmpty();
 	}

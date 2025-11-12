@@ -59,7 +59,6 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 		        Usuario usuario = model.buscarPorUsuarios(nome, senha);
                 
 		        if (usuario != null) {
-		        	// inform the pagamento controller about the logged-in user
 				try {
 					if (pagamentoController != null) {
 						pagamentoController.setUsuario(usuario);

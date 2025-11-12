@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import model.Produtos;
 import model.ProdutosDAO;
 import view.ComprarProdutos;
+import view.ListarProdutos;
+import view.MostrarProdutos;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,88 +19,109 @@ import java.awt.event.MouseEvent;
 public class Carrinho {
     private final ProdutosDAO produtosDAO; 
     private final ComprarProdutos view;    
+    private ListarProdutos listarView;
+    private MostrarProdutos mostrarView;
     private final List<Produtos> lista; 
 
     public Carrinho(ProdutosDAO produtosDAO, ComprarProdutos view) {
+        this(produtosDAO, view, null, null);
+    }
+
+    public Carrinho(ProdutosDAO produtosDAO, ComprarProdutos view, ListarProdutos listarView, MostrarProdutos mostrarView) {
         this.produtosDAO = produtosDAO;
         this.view = view;
+        this.listarView = listarView;
+        this.mostrarView = mostrarView;
         this.lista = new ArrayList<>();
         
         configurarEventos();
     }
 
     private void configurarEventos() {
+        
        
-      
-        view.getRemoverButton().addActionListener(e -> removerProdutoCarrinho());
+         view.getRemoverButton().addActionListener(e -> removerProdutoCarrinho());
 
-        view.getTable1().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                adicionarProdutoCarrinho();
-            }
-        });
-    }
+         view.getTable1().addMouseListener(new MouseAdapter() {
+             @Override
+             public void mouseClicked(MouseEvent e) {
+                 adicionarProdutoCarrinho();
+             }
+         });
+     }
 
-    
-    public double calcularTotalCarrinho() {
-        return lista.stream().mapToDouble(Produtos::getValor).sum();
-    }
+     
+     public double calcularTotalCarrinho() {
+         return lista.stream().mapToDouble(Produtos::getValor).sum();
+     }
 
 
-    public void limparCarrinho() {
-        lista.clear();
-        view.carregarCarrinho(lista);
-    }
+     public void limparCarrinho() {
+         lista.clear();
+         view.carregarCarrinho(lista);
+     }
 
-  
+   
     private void atualizarTabelas() {
-        view.carregarProdutos(produtosDAO.listarProdutos());
+        List<Produtos> produtos = produtosDAO.listarProdutos();
+        view.carregarProdutos(produtos);
+        if (listarView != null) {
+            listarView.carregarProdutos(produtos);
+        }
+        if (mostrarView != null) {
+            mostrarView.carregarProdutos(produtos);
+        }
+
         view.carregarCarrinho(lista);
     }
 
     private void adicionarProdutoCarrinho() {
         int linhaSelecionada = view.getTable1().getSelectedRow(); 
         if (linhaSelecionada >= 0) {
-            String nomeProduto = view.getTable1().getValueAt(linhaSelecionada, 0).toString(); 
-            Produtos produto = produtosDAO.buscarPorNome(nomeProduto); 
-            if (produto != null && produto.getQuantidade() > 0) {
-                produto.setQuantidade(produto.getQuantidade() - 1);
-                produtosDAO.atualizarProduto(produto); 
-             
-                lista.add(new Produtos(produto.getNomeProduto(), produto.getDataFabricacao(), produto.getDataVencimento(), produto.getValor(), 1, produto.getMarca(), produto.getEstado(), produto.getId())); 
-                atualizarTabelas(); 
+            String nomeProduto = view.getTable1().getValueAt(linhaSelecionada, 0).toString();           
+            boolean decreased = produtosDAO.diminuirQuantidade(nomeProduto); 
+            if (decreased) {
+                Produtos produto = produtosDAO.buscarPorNome(nomeProduto); 
+                if (produto != null) {
+                    lista.add(new Produtos(produto.getNomeProduto(), produto.getDataFabricacao(), 
+                                           produto.getDataVencimento(), produto.getValor(), 1, 
+                                           produto.getMarca(), produto.getEstado(), produto.getId()));
+                    atualizarTabelas(); 
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Não há estoque disponível.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-    private void removerProdutoCarrinho() {
-        int linhaSelecionada = view.getTableCarrinho().getSelectedRow();
-        if (linhaSelecionada >= 0) {
-            DefaultTableModel model = (DefaultTableModel) view.getTableCarrinho().getModel();
-            String nomeProduto = model.getValueAt(linhaSelecionada, 0).toString();
 
-       
-            for (int i = 0; i < lista.size(); i++) {
-                Produtos p = lista.get(i);
-                if (p.getNomeProduto().equals(nomeProduto)) {
-                    lista.remove(i);
-                    break;
-                }
-            }
+     private void removerProdutoCarrinho() {
+         int linhaSelecionada = view.getTableCarrinho().getSelectedRow();
+         if (linhaSelecionada >= 0) {
+             DefaultTableModel model = (DefaultTableModel) view.getTableCarrinho().getModel();
+             String nomeProduto = model.getValueAt(linhaSelecionada, 0).toString();
 
-   
+         
+             for (int i = 0; i < lista.size(); i++) {
+                 Produtos p = lista.get(i);
+                 if (p.getNomeProduto().equals(nomeProduto)) {
+                     lista.remove(i);
+                     break;
+                 }
+             }
+
             Produtos produtoEstoque = produtosDAO.buscarPorNome(nomeProduto);
             if (produtoEstoque != null) {
                 produtoEstoque.setQuantidade(produtoEstoque.getQuantidade() + 1);
                 produtosDAO.atualizarProduto(produtoEstoque);
             }
 
+      
             atualizarTabelas();
-        }
-    }
-    public List<Produtos> getListaCarrinho() { return lista; }
-   
-
+         }
+     }
+     public List<Produtos> getListaCarrinho() { return lista; }
     
-}
+
+     
+ }

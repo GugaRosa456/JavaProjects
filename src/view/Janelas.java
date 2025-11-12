@@ -25,6 +25,7 @@ public class Janelas extends JFrame {
     private Pagamento pagamento;
 
     private CadastroProdutosController cadastroProdutosController;
+    private ProdutosDAO produtosDAO;
 
     public static final String LOGIN_PANEL = "telaLogin";
     public static final String CADASTROPRODUTOS_PANEL = "cadastroProdutos";
@@ -51,7 +52,9 @@ public class Janelas extends JFrame {
         cadastroProdutos = new CadastroProdutos(this);
         pagamento = new Pagamento(this);
 
-       
+        // create a single ProdutosDAO for this window
+        this.produtosDAO = new ProdutosDAO();
+
         cadastroProdutosController = new CadastroProdutosController(cadastroProdutos, getProdutosDAO(), mostrarProdutos, new Navegador(this), new Supermercado());
 
         contentPane.add(login, LOGIN_PANEL);
@@ -102,7 +105,7 @@ public class Janelas extends JFrame {
     }
 
     public ProdutosDAO getProdutosDAO() {
-        return new ProdutosDAO();
+        return this.produtosDAO;
     }
 
     public CadastroProdutosController getCadastroProdutosController() {

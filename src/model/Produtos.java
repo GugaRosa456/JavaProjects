@@ -78,7 +78,6 @@ public void setEstado(String estado) {
     this.estado = estado;
 }
 
-// Convenience formatted getters in case callers expect formatted display
 public String getDataFabricacaoFormatada() {
     return (dataFabricacao == null) ? "" : dataFabricacao;
 }
