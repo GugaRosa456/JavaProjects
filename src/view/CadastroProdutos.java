@@ -90,32 +90,32 @@ public class CadastroProdutos extends JPanel {
 		quantidade = new JTextField();
 		quantidade.setColumns(10);
 		add(quantidade, "cell 0 6 2 1,growx");
-				
-						lblEstado = new JLabel("Estado:");
-						add(lblEstado, "cell 0 7");
+								
+										lblEstado = new JLabel("Estado:");
+										add(lblEstado, "cell 0 7");
 						
 								lblDataCadastro = new JLabel("valor");
 								add(lblDataCadastro, "cell 1 7");
-				
-						estado = new JTextField();
-						estado.setColumns(10);
-						add(estado, "cell 0 8,growx");
-				
-						valor = new JTextField();
-						valor.setColumns(10);
-						add(valor, "cell 1 8,growx");
-				
-						Cadastrar1 = new JButton("Cadastrar");
-						Cadastrar1.setFocusTraversalPolicyProvider(true);
-						Cadastrar1.setForeground(Color.WHITE);
-						Cadastrar1.setBackground(new Color(0, 102, 204));
-						add(Cadastrar1, "cell 0 9,alignx center");
-				
-						voltar = new JButton("Voltar");
-						voltar.setForeground(Color.WHITE);
-						voltar.setFocusTraversalPolicyProvider(true);
-						voltar.setBackground(new Color(0, 102, 204));
-						add(voltar, "cell 1 9");
+												
+														estado = new JTextField();
+														estado.setColumns(10);
+														add(estado, "cell 0 8,growx");
+										
+												valor = new JTextField();
+												valor.setColumns(10);
+												add(valor, "cell 1 8,growx");
+										
+												voltar = new JButton("Voltar");
+												voltar.setForeground(Color.WHITE);
+												voltar.setFocusTraversalPolicyProvider(true);
+												voltar.setBackground(new Color(0, 102, 204));
+												add(voltar, "cell 0 9");
+										
+												Cadastrar1 = new JButton("Cadastrar");
+												Cadastrar1.setFocusTraversalPolicyProvider(true);
+												Cadastrar1.setForeground(Color.WHITE);
+												Cadastrar1.setBackground(new Color(0, 102, 204));
+												add(Cadastrar1, "cell 1 9,alignx center");
 
 	}
 
