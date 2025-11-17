@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Produtos;
 import java.awt.Font;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
@@ -28,45 +29,48 @@ public class Pagamento extends JPanel {
 	private JTable table;
 	private JButton pagar;
 	private JButton voltar;
+	private JLabel TotalPagar;
 
 	/**
 	 * Create the panel.
 	 */
 	public Pagamento(Janelas janelas) {
 	
-		setLayout(new MigLayout("fill, insets 10", "[grow,fill][200]", "[][]20[]20[]20[]20[][grow][]"));
+		setLayout(new MigLayout("fill, insets 10", "[grow,fill][200]", "[][]20[]20[]20[]20[]20[]20[][grow][]"));
 
 		JMenuBar menuBar = new JMenuBar();
 		add(menuBar, "dock north, spanx");
 		
 				JLabel lblNewLabel_1 = new JLabel("produtos comprados");
 				add(lblNewLabel_1, "cell 1 0,alignx center");
-
-		JLabel lblValorInserido = new JLabel("Valor inserido:");
-		lblValorInserido.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(lblValorInserido, "cell 0 1,aligny top");
+				TotalPagar = new JLabel("Total a Pagar: R$ 0.00");
+				TotalPagar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				add(TotalPagar, "cell 0 2");
+				
+						JLabel lblValorInserido = new JLabel("Valor inserido:");
+						lblValorInserido.setFont(new Font("Tahoma", Font.PLAIN, 15));
+						add(lblValorInserido, "cell 0 3,aligny top");
 		
 				Valor = new JTextField();
 				Valor.setColumns(10);
-				add(Valor, "cell 0 2,growx");
+				add(Valor, "cell 0 4,growx");
 		
 				pagar = new JButton("pagar");
-				// Controller will attach listener via Pagar(ActionListener). No internal logic here.
 				pagar.setFocusTraversalPolicyProvider(true);
 				pagar.setForeground(Color.WHITE);
 				pagar.setBackground(new Color(0, 102, 204));
-				add(pagar, "cell 0 4,alignx center");
+				add(pagar, "cell 0 6,alignx center");
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Produto", "Valor" }));
 		JScrollPane scrollPane = new JScrollPane(table);
-		add(scrollPane, "cell 1 1 1 7,growy");
-		
-				voltar = new JButton("Voltar");
-				voltar.setForeground(Color.WHITE);
-				voltar.setFocusTraversalPolicyProvider(true);
-				voltar.setBackground(new Color(0, 102, 204));
-				add(voltar, "cell 0 6,alignx center");
+		add(scrollPane, "cell 1 1 1 9,growy");
+			
+			voltar = new JButton("Voltar");
+			voltar.setForeground(Color.WHITE);
+			voltar.setFocusTraversalPolicyProvider(true);
+			voltar.setBackground(new Color(0, 102, 204));
+			add(voltar, "cell 0 8,alignx center");
 	}
 
 	public void carregarProdutos(List<Produtos> lista) {
@@ -112,5 +116,17 @@ public class Pagamento extends JPanel {
 
 	public void clearValorField() {
 		this.Valor.setText("");
+	}
+	public JLabel TotalPagar() {
+		return TotalPagar;
+	}
+
+
+	public void setTotal(double total) {
+		this.TotalPagar.setText(String.format("Total a Pagar: R$ %.2f", total));
+	}
+
+	public void getTotalPagar(double total) {
+		setTotal(total);
 	}
 }

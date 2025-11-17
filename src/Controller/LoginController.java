@@ -64,7 +64,7 @@ public LoginController(Login view, UsuarioDAO model, Navegador navegador, Cadast
 						pagamentoController.setUsuario(usuario);
 					}
 				} catch (Exception ex) {
-					// ignore if not available
+					
 				}
 		            if (usuario.isAdmin()) {
 		            	supermercado.visualizarProdutos(view2, produtosDAO, view5, view6, navegador, view3, pagamentoController.getCarrinho());

@@ -26,14 +26,12 @@ public class ProdutosDAO {
 			JOptionPane.showMessageDialog(null, "Nome do produto é obrigatório.", "Erro", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-
 		LocalDate df = parseLocalDate(produto.getDataFabricacao());
 		if (df == null) {
 			JOptionPane.showMessageDialog(null, "Data de fabricação inválida. Use dd/MM/yyyy.", "Erro",
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-
 		LocalDate dv = null;
 		if (!isEmpty(produto.getDataVencimento())) {
 			dv = parseLocalDate(produto.getDataVencimento());
@@ -43,7 +41,6 @@ public class ProdutosDAO {
 				return;
 			}
 		}
-
 		String sql = "INSERT INTO Produtos (nomeProduto, dataFabricacao, dataVencimento, valor, quantidade, marca, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection conn = BancoDeDados.conectar()) {
@@ -52,7 +49,6 @@ public class ProdutosDAO {
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-
 			try (PreparedStatement ps = conn.prepareStatement(
 					"SELECT COLUMN_NAME, DATA_TYPE, COLUMN_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'Produtos' AND COLUMN_NAME IN ('dataFabricacao','dataVencimento')")) {
 				try (ResultSet rs = ps.executeQuery()) {
@@ -65,7 +61,6 @@ public class ProdutosDAO {
 			} catch (SQLException e) {
 				System.out.println("DEBUG: failed to read column metadata: " + e.getMessage());
 			}
-
 			System.out.println("DEBUG: values to insert -> nome='" + produto.getNomeProduto() + "', dataFabricacao='"
 					+ produto.getDataFabricacao() + "', dataVencimento='" + produto.getDataVencimento() + "', valor="
 					+ produto.getValor() + ", quantidade=" + produto.getQuantidade() + ", marca='" + produto.getMarca()
@@ -104,6 +99,10 @@ public class ProdutosDAO {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	
+	
+	
 
 	private void insertWithDateBinding(Connection conn, String sql, Produtos produto, LocalDate df, LocalDate dv)
 			throws SQLException {
@@ -217,22 +216,22 @@ public class ProdutosDAO {
 	}
 
 	public boolean diminuirQuantidade(String nomeProduto) {
-	    if (isEmpty(nomeProduto)) {
-	        return false; 
-	    }
-	    String sql = "UPDATE Produtos SET quantidade = quantidade - 1 WHERE nomeProduto = ? AND quantidade > 0";    
-	    try (Connection conn = BancoDeDados.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-	        stmt.setString(1, nomeProduto);
-	        int rowsUpdated = stmt.executeUpdate();
-	        return rowsUpdated > 0; 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        JOptionPane.showMessageDialog(null, "Erro ao atualizar quantidade: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-	        return false;  
-	    }
+		if (isEmpty(nomeProduto)) {
+			return false;
+		}
+		String sql = "UPDATE Produtos SET quantidade = quantidade - 1 WHERE nomeProduto = ? AND quantidade > 0";
+		try (Connection conn = BancoDeDados.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, nomeProduto);
+			int rowsUpdated = stmt.executeUpdate();
+			return rowsUpdated > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao atualizar quantidade: " + e.getMessage(), "Erro",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 	}
 
-	
 	private boolean isEmpty(String s) {
 		return s == null || s.trim().isEmpty();
 	}

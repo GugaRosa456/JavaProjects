@@ -86,7 +86,7 @@ public class PagamentoController {
 		if (usuario != null) {
 			JOptionPane.showMessageDialog(null,
 					"Pagamento realizado com sucesso!\n" + "Nome: " + usuario.getNome() + "\n" + "CPF: "
-							+ usuario.getCPF() + "\n" + "Total pago: R$ " + String.format("%.2f", valorDigitado),
+						+ usuario.getCPF() + "\n" + "Total pago: R$ " + String.format("%.2f", valorDigitado),
 					"Pagamento", JOptionPane.INFORMATION_MESSAGE);
 			modelo.setRowCount(0);
 			try {
@@ -100,6 +100,11 @@ public class PagamentoController {
 				}
 			} catch (Exception ex) {
 			}
+		
+			try {
+				view.getTotalPagar(0.0);
+			} catch (Exception ex) {
+			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Erro: usuário não encontrado ou dados incorretos.", "Erro",
 					JOptionPane.ERROR_MESSAGE);
@@ -109,9 +114,16 @@ public class PagamentoController {
 	public void carregarProdutosComprados(List<Produtos> produtosComprados) {
 		DefaultTableModel modelo = (DefaultTableModel) view.getTable().getModel();
 		modelo.setRowCount(0);
+		double total = 0.0;
 
 		for (Produtos produto : produtosComprados) {
 			modelo.addRow(new Object[] { produto.getNomeProduto(), produto.getValor() });
+			total += produto.getValor();
+		}
+
+		try {
+			view.setTotal(total);
+		} catch (Exception ex) {
 		}
 	}
 

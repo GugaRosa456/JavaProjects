@@ -38,7 +38,8 @@ public class Janelas extends JFrame {
     public Janelas() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 500, 350);
-
+        
+        
         cardLayout = new CardLayout();
         contentPane = new JPanel(cardLayout);
         contentPane.setPreferredSize(new Dimension(500, 350));
@@ -51,8 +52,6 @@ public class Janelas extends JFrame {
         cadastroUsuarios = new CadastroUsuarios(this);
         cadastroProdutos = new CadastroProdutos(this);
         pagamento = new Pagamento(this);
-
-        // create a single ProdutosDAO for this window
         this.produtosDAO = new ProdutosDAO();
 
         cadastroProdutosController = new CadastroProdutosController(cadastroProdutos, getProdutosDAO(), mostrarProdutos, new Navegador(this), new Supermercado());
@@ -67,6 +66,8 @@ public class Janelas extends JFrame {
 
         mostrarTela(LOGIN_PANEL);
     }
+    
+    
 
     public void mostrarTela(String panelName) {
         cardLayout.show(contentPane, panelName);
