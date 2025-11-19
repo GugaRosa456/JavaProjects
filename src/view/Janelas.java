@@ -37,12 +37,12 @@ public class Janelas extends JFrame {
 
     public Janelas() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 500, 350);
+        setBounds(100, 100, 600, 350);
         
         
         cardLayout = new CardLayout();
         contentPane = new JPanel(cardLayout);
-        contentPane.setPreferredSize(new Dimension(500, 350));
+        contentPane.setPreferredSize(new Dimension(600, 350));
         setContentPane(contentPane);
 
         login = new Login(this);

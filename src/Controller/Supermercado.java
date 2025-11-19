@@ -64,7 +64,8 @@ public class Supermercado {
             JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
            
             view2.limparCampos();
-
+        
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Erro de formato numérico: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {

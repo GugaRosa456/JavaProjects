@@ -15,6 +15,7 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 public class ProdutosDAO {
+	
 	private static final DateTimeFormatter INPUT_DATE = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public void adicionarProduto(Produtos produto) {
@@ -26,12 +27,16 @@ public class ProdutosDAO {
 			JOptionPane.showMessageDialog(null, "Nome do produto é obrigatório.", "Erro", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		LocalDate df = parseLocalDate(produto.getDataFabricacao());
-		if (df == null) {
-			JOptionPane.showMessageDialog(null, "Data de fabricação inválida. Use dd/MM/yyyy.", "Erro",
-					JOptionPane.ERROR_MESSAGE);
-			return;
+		LocalDate df = null;
+		if (!isEmpty(produto.getDataVencimento())) {
+			df = parseLocalDate(produto.getDataFabricacao());
+			if (df == null) {
+				JOptionPane.showMessageDialog(null, "Data de fabricação inválida. Use dd/MM/yyyy.", "Erro",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 		}
+		
 		LocalDate dv = null;
 		if (!isEmpty(produto.getDataVencimento())) {
 			dv = parseLocalDate(produto.getDataVencimento());
@@ -154,6 +159,7 @@ public class ProdutosDAO {
 			return null;
 		}
 	}
+
 
 	public List<Produtos> listarProdutos() {
 		List<Produtos> produtos = new ArrayList<>();
