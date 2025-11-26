@@ -40,7 +40,7 @@ public class ComprarProdutos extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("Produtos");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		add(lblNewLabel, "cell 0 0, wrap");
+		add(lblNewLabel, "cell 0 0,grow");
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -48,7 +48,7 @@ public class ComprarProdutos extends JPanel {
 			new String[] {"Nome", "Marca", "Estado", "Data Fabricação", "Data Vencimento", "Quantidade", "Valor"}
 		));
 		JScrollPane scrollPane = new JScrollPane(table);
-		add(scrollPane, "cell 0 1, growy");
+		add(scrollPane, "cell 0 1,grow");
 		
 		table_1 = new JTable();
 
@@ -58,13 +58,13 @@ public class ComprarProdutos extends JPanel {
 		));
 		table_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		JScrollPane scrollPaneCarrinho = new JScrollPane(table_1);
-		add(scrollPaneCarrinho, "cell 1 1, growy");
+		add(scrollPaneCarrinho, "cell 1 1,grow");
 		
 		Remover = new JButton("remover");
 		Remover.setFocusTraversalPolicyProvider(true);
 		Remover.setForeground(Color.WHITE);
 		Remover.setBackground(new Color(0, 102, 204));
-		add(Remover, "cell 1 2, alignx right");
+		add(Remover, "cell 1 2,grow");
 		
 		Sair = new JButton("Voltar");
 		Sair.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class ComprarProdutos extends JPanel {
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		add(Sair, "cell 0 2, center");
+		add(Sair, "cell 0 2,grow");
 	}
 	
 	public void carregarProdutos(List<Produtos> lista) {

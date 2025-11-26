@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 public class Pagamento extends JPanel {
 
@@ -36,41 +37,44 @@ public class Pagamento extends JPanel {
 	 */
 	public Pagamento(Janelas janelas) {
 	
-		setLayout(new MigLayout("fill, insets 10", "[grow,fill][200]", "[][]20[]20[]20[]20[]20[]20[][grow][]"));
+		setLayout(new MigLayout("fill, insets 10", "[grow][grow]", "[grow][grow][grow][grow][grow][grow][grow]"));
 
 		JMenuBar menuBar = new JMenuBar();
 		add(menuBar, "dock north, spanx");
 		
 				JLabel lblNewLabel_1 = new JLabel("produtos comprados");
-				add(lblNewLabel_1, "cell 1 0,alignx center");
+				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+				add(lblNewLabel_1, "cell 1 0,grow");
 				TotalPagar = new JLabel("Total a Pagar: R$ 0.00");
+				TotalPagar.setHorizontalAlignment(SwingConstants.CENTER);
 				TotalPagar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				add(TotalPagar, "cell 0 2");
+				add(TotalPagar, "cell 0 2,grow");
 				
 						JLabel lblValorInserido = new JLabel("Valor inserido:");
+						lblValorInserido.setHorizontalAlignment(SwingConstants.CENTER);
 						lblValorInserido.setFont(new Font("Tahoma", Font.PLAIN, 15));
-						add(lblValorInserido, "cell 0 3,aligny top");
+						add(lblValorInserido, "cell 0 3,grow");
 		
 				Valor = new JTextField();
 				Valor.setColumns(10);
-				add(Valor, "cell 0 4,growx");
-		
-				pagar = new JButton("pagar");
-				pagar.setFocusTraversalPolicyProvider(true);
-				pagar.setForeground(Color.WHITE);
-				pagar.setBackground(new Color(0, 102, 204));
-				add(pagar, "cell 0 6,alignx center");
+				add(Valor, "cell 0 4,grow");
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Produto", "Valor" }));
 		JScrollPane scrollPane = new JScrollPane(table);
-		add(scrollPane, "cell 1 1 1 9,growy");
+		add(scrollPane, "cell 1 1 1 6,grow");
+			
+					pagar = new JButton("pagar");
+					pagar.setFocusTraversalPolicyProvider(true);
+					pagar.setForeground(Color.WHITE);
+					pagar.setBackground(new Color(0, 102, 204));
+					add(pagar, "cell 0 5,grow");
 			
 			voltar = new JButton("Voltar");
 			voltar.setForeground(Color.WHITE);
 			voltar.setFocusTraversalPolicyProvider(true);
 			voltar.setBackground(new Color(0, 102, 204));
-			add(voltar, "cell 0 8,alignx center");
+			add(voltar, "cell 0 6,grow");
 	}
 
 	public void carregarProdutos(List<Produtos> lista) {

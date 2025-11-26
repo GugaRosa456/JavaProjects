@@ -45,7 +45,7 @@ public class CadastroProdutos extends JPanel {
 	public CadastroProdutos(Janelas janela) {
 		this.janela = janela;
 
-		setLayout(new MigLayout("fill, insets 10", "[grow,fill][grow,fill]", "[][]10[][][]10[][]20[]20[]20[]"));
+		setLayout(new MigLayout("fill", "[grow][grow]", "[][][][][]"));
 
 		MaskFormatter dateMask = null;
 		try {
@@ -56,65 +56,65 @@ public class CadastroProdutos extends JPanel {
 		}
 
 		lblNomeDoProduto = new JLabel("Nome do Produto:");
-		add(lblNomeDoProduto, "cell 0 0 2 1");
+		add(lblNomeDoProduto, "flowy,cell 0 0 2 1");
 
 		nomeProduto = new JTextField();
 		nomeProduto.setColumns(10);
-		add(nomeProduto, "cell 0 1 2 1");
+		add(nomeProduto, "cell 0 0 2 1,grow");
 
 		JLabel lblDataDeFabr = new JLabel("Data de Fabricação");
-		add(lblDataDeFabr, "cell 0 2");
-
-		lblDataDeVencimento = new JLabel("Data de Vencimento:");
-		add(lblDataDeVencimento, "cell 1 2");
+		add(lblDataDeFabr, "flowy,cell 0 1");
 
 		dataFabricacao = new JFormattedTextField(dateMask);
 		dataFabricacao.setColumns(10);
-		add(dataFabricacao, "cell 0 4 2 1,growx");
+		add(dataFabricacao, "cell 0 1,grow");
+
+		lblDataDeVencimento = new JLabel("Data de Vencimento:");
+		add(lblDataDeVencimento, "flowy,cell 1 1");
 
 		dataVencimento = new JFormattedTextField(dateMask);
 		dataVencimento.setColumns(10);
-		add(dataVencimento, "cell 0 4 2 1,growx");
+		add(dataVencimento, "cell 1 1,grow");
 
 		lblMarca = new JLabel("Marca:");
-		add(lblMarca, "cell 0 5");
-
-		lblNewLabel_1 = new JLabel("Quantidade:");
-		add(lblNewLabel_1, "cell 1 5");
+		add(lblMarca, "flowy,cell 0 2");
 
 		marca = new JTextField();
 		marca.setColumns(10);
-		add(marca, "cell 0 6 2 1,growx");
+		add(marca, "cell 0 2,grow");
+
+		lblNewLabel_1 = new JLabel("Quantidade:");
+		add(lblNewLabel_1, "flowy,cell 1 2");
 
 		quantidade = new JTextField();
 		quantidade.setColumns(10);
-		add(quantidade, "cell 0 6 2 1,growx");
+		add(quantidade, "cell 1 2,grow");
 
 		lblEstado = new JLabel("Estado:");
-		add(lblEstado, "cell 0 7");
+		add(lblEstado, "flowy,cell 0 3");
 
 		lblDataCadastro = new JLabel("valor");
-		add(lblDataCadastro, "cell 1 7");
-
-		estado = new JTextField();
-		estado.setColumns(10);
-		add(estado, "cell 0 8,growx");
-
-		valor = new JTextField();
-		valor.setColumns(10);
-		add(valor, "cell 1 8,growx");
+		add(lblDataCadastro, "flowy,cell 1 3");
 
 		voltar = new JButton("Voltar");
 		voltar.setForeground(Color.WHITE);
 		voltar.setFocusTraversalPolicyProvider(true);
 		voltar.setBackground(new Color(0, 102, 204));
-		add(voltar, "cell 0 9");
+		add(voltar, "cell 0 4,grow");
+
+		estado = new JTextField();
+		estado.setColumns(10);
+		add(estado, "cell 0 3,grow");
+
+		valor = new JTextField();
+		valor.setColumns(10);
+		add(valor, "cell 1 3,grow");
 
 		Cadastrar1 = new JButton("Cadastrar");
 		Cadastrar1.setFocusTraversalPolicyProvider(true);
 		Cadastrar1.setForeground(Color.WHITE);
 		Cadastrar1.setBackground(new Color(0, 102, 204));
-		add(Cadastrar1, "cell 1 9,alignx center");
+		add(Cadastrar1, "cell 1 4,grow");
 
 	}
 
@@ -170,8 +170,10 @@ public class CadastroProdutos extends JPanel {
 
 	public void limparCampos() {
 		nomeProduto.setText("");
-		if (dataFabricacao != null) dataFabricacao.setValue(null);
-		if (dataVencimento != null) dataVencimento.setValue(null);
+		if (dataFabricacao != null)
+			dataFabricacao.setValue(null);
+		if (dataVencimento != null)
+			dataVencimento.setValue(null);
 		marca.setText("");
 		quantidade.setText("");
 		estado.setText("");

@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
 import net.miginfocom.swing.MigLayout;
+import javax.swing.SwingConstants;
 
 public class CadastroUsuarios extends JPanel {
 
@@ -47,8 +48,7 @@ public class CadastroUsuarios extends JPanel {
 	 */
 	public CadastroUsuarios(Janelas janelas) {
 	
-		setLayout(new MigLayout("fill, insets 10", "[grow,fill][grow,fill]",
-				"[]10[]10[]10[]10[]10[]10[]20[]20[]20[]20[]"));
+		setLayout(new MigLayout("fill, insets 10", "[grow,fill][grow,fill]", "[]10[]10[]10[]20[]"));
 
 
 		lblNome = new JLabel("Nome");
@@ -56,54 +56,56 @@ public class CadastroUsuarios extends JPanel {
 		add(lblNome, "flowy,cell 0 0 2 1");
 
 		textFieldNome = new JTextField();
-		add(textFieldNome, "cell 0 0 2 1,growx");
-
-		lblSenha = new JLabel("Senha");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(lblSenha, "cell 0 1");
+		add(textFieldNome, "cell 0 0 2 1,grow");
 
 		textFieldSenha = new JTextField();
 		textFieldSenha.setColumns(10);
-		textFieldConfirmarSenha = new JTextField();
-		textFieldConfirmarSenha.setColumns(10);
+		
+				lblSenha = new JLabel("Senha");
+				lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				add(lblSenha, "flowy,cell 0 1");
+		add(textFieldSenha, "cell 0 1,grow");
 		lblConfirmarSenha = new JLabel("Confirmar Senha");
 		lblConfirmarSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(lblConfirmarSenha, "cell 1 1");
-		add(textFieldSenha, "cell 0 2 2 1,growx");
-		add(textFieldConfirmarSenha, "cell 0 2 2 1,growx");
-
-		// CPF
-		lblCpf_1 = new JLabel("CPF");
-		lblCpf_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		add(lblCpf_1, "cell 0 3,alignx center");
+		add(lblConfirmarSenha, "flowy,cell 1 1");
+		textFieldConfirmarSenha = new JTextField();
+		textFieldConfirmarSenha.setColumns(10);
+		add(textFieldConfirmarSenha, "cell 1 1,grow");
 
 		admin = new ButtonGroup();
+		
+				// CPF
+				lblCpf_1 = new JLabel("CPF");
+				lblCpf_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				add(lblCpf_1, "flowy,cell 0 2,growx");
 
 		textFieldCPF = new JTextField();
-		add(textFieldCPF, "cell 0 4 2 1,growx");
-
-		lblUmAdministrador = new JLabel("É um administrador ?");
-		lblUmAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(lblUmAdministrador, "cell 0 5,alignx center,aligny center");
-
-		sim = new JRadioButton("sim");
-		add(sim, "flowx,cell 1 5");
-		admin.add(sim);
+		textFieldCPF.setHorizontalAlignment(SwingConstants.LEFT);
+		add(textFieldCPF, "cell 0 2 2 1,grow");
+		
+				lblUmAdministrador = new JLabel("É um administrador ?");
+				lblUmAdministrador.setHorizontalAlignment(SwingConstants.CENTER);
+				lblUmAdministrador.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				add(lblUmAdministrador, "flowx,cell 0 3,alignx center,growy");
+		
+				sim = new JRadioButton("sim");
+				add(sim, "flowx,cell 1 3,growy");
+				admin.add(sim);
+		
+				Cadastrar = new JButton("Cadastrar");
+				Cadastrar.setFocusTraversalPolicyProvider(true);
+				Cadastrar.setForeground(Color.WHITE);
+				Cadastrar.setBackground(new Color(0, 102, 204));
+				add(Cadastrar, "cell 0 4,alignx right,growy");
+		
+				voltar = new JButton("Voltar");
+				voltar.setForeground(Color.WHITE);
+				voltar.setFocusTraversalPolicyProvider(true);
+				voltar.setBackground(new Color(0, 102, 204));
+				add(voltar, "cell 1 4,growy");
 		não = new JRadioButton("não");
-		add(não, "cell 1 5");
+		add(não, "cell 1 3,growy");
 		admin.add(não);
-
-		Cadastrar = new JButton("Cadastrar");
-		Cadastrar.setFocusTraversalPolicyProvider(true);
-		Cadastrar.setForeground(Color.WHITE);
-		Cadastrar.setBackground(new Color(0, 102, 204));
-		add(Cadastrar, "flowx,cell 0 6,alignx right");
-
-		voltar = new JButton("Voltar");
-		voltar.setForeground(Color.WHITE);
-		voltar.setFocusTraversalPolicyProvider(true);
-		voltar.setBackground(new Color(0, 102, 204));
-		add(voltar, "cell 1 6");
 
 	}
 

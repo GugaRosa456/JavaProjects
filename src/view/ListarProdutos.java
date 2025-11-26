@@ -33,7 +33,7 @@ public class ListarProdutos extends JPanel {
 	 * Create the panel.
 	 */
 	public ListarProdutos(Janelas janelas) {
-		setLayout(new MigLayout("fill, insets 10", "[grow]", "[][grow][]"));
+		setLayout(new MigLayout("fill, insets 10", "[grow]", "[grow][grow]"));
 		
 		JMenuBar menuBar = new JMenuBar();
 		add(menuBar, "dock north, spanx");
@@ -45,26 +45,26 @@ public class ListarProdutos extends JPanel {
 		));
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		add(scrollPane, "grow, wrap");
+		add(scrollPane, "cell 0 0,grow");
 		
 		Comprar = new JButton("Comprar");
 		Comprar.setFocusTraversalPolicyProvider(true);
 		Comprar.setForeground(Color.WHITE);
 		Comprar.setBackground(new Color(0, 102, 204));
 		
+		add(Comprar, "flowx,cell 0 1,grow");
+		
 		Pagar = new JButton("Pagar");
 		Pagar.setFocusTraversalPolicyProvider(true);
 		Pagar.setForeground(Color.WHITE);
 		Pagar.setBackground(new Color(0,102, 204));
+		add(Pagar, "cell 0 1,grow");
 		
 		Sair = new JButton("Sair");
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0,102, 204));
-		
-		add(Comprar, "split 3, center");
-		add(Sair);
-		add(Pagar, "wrap");
+		add(Sair, "cell 0 1,grow");
 		
 	}
 	public void comprar(ActionListener actionListener) {

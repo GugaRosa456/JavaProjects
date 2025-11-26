@@ -44,6 +44,7 @@ public class CadastroUsuarioController {
                     JOptionPane.showMessageDialog(view, "Usuário cadastrado com sucesso!");
                     
                     view.limparCampos();
+                    
                     navegador.navegarPara(Janelas.LOGIN_PANEL); 
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(view, "Erro: CPF e senha devem ser números.", "Erro de entrada", JOptionPane.ERROR_MESSAGE);

@@ -38,7 +38,7 @@ public class MostrarProdutos extends JPanel {
 	 */
 	public MostrarProdutos(Janelas janelas) {
 	
-		setLayout(new MigLayout("fill, insets 10", "[grow]", "[][grow][]"));
+		setLayout(new MigLayout("fill, insets 10", "[grow]", "[grow][grow]"));
 		
 		JMenuBar menuBar = new JMenuBar();
 		add(menuBar, "dock north");
@@ -53,19 +53,19 @@ public class MostrarProdutos extends JPanel {
 		table.setModel(model);
 
 		JScrollPane scrollPane = new JScrollPane(table);
-		add(scrollPane, "grow, wrap");
+		add(scrollPane, "cell 0 0,grow");
 		
 		alterar = new JButton("Adicionar");
 		alterar.setFocusTraversalPolicyProvider(true);
 		alterar.setForeground(Color.WHITE);
 		alterar.setBackground(new Color(0, 102, 204));
-		add(alterar, "split 2, center");
+		add(alterar, "flowx,cell 0 1,grow");
 		
 		Sair = new JButton("Sair");
 		Sair.setFocusTraversalPolicyProvider(true);
 		Sair.setForeground(Color.WHITE);
 		Sair.setBackground(new Color(0, 102, 204));
-		add(Sair, "wrap");
+		add(Sair, "cell 0 1,grow");
 	}
  public void alterar(ActionListener action) {
 	 alterar.addActionListener(action);
