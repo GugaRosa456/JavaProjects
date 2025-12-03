@@ -1,5 +1,5 @@
-package view;
-
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							package view;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -16,7 +16,7 @@ public class Janelas extends JFrame {
     private JPanel contentPane;
     private CardLayout cardLayout;
 
-    public Login login;
+    public Login login; 
     private ListarProdutos listarProdutos;
     private ComprarProdutos comprarProdutos;
     private MostrarProdutos mostrarProdutos;

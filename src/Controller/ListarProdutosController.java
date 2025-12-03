@@ -28,7 +28,7 @@ public class ListarProdutosController {
     	this.view.comprar(e -> {
  			this.navegador.navegarPara(Janelas.COMPRAR_PANEL);
  		});
-    	// compute total from the cart and set it on the payment view before navigating
+    	
     	this.view.pagar(e -> {
          try {
              DefaultTableModel carrinhoModel = view2.getTableModelCarrinho();
@@ -45,7 +45,7 @@ public class ListarProdutosController {
              }
              view3.setTotal(total);
          } catch (Exception ex) {
-             // ignore and continue to navigate
+         
          }
          this.navegador.navegarPara(Janelas.PAGAMENTO_PANEL);
     	});
